@@ -3,6 +3,7 @@ import { useQuery, Query } from "urql";
 import { PRODUCT_QUERY } from "../lib/query";
 
 import { Container, Text } from "@chakra-ui/react";
+import Inventory from "./inventory/Inventory";
 
 export default function Home() {
   //Fetch products from strapi
@@ -15,6 +16,7 @@ export default function Home() {
 
   if (fetching) return <p>Loading...</p>;
   if (error) return <p>Oh no... {error.message}</p>;
+  const inventories = data.inventories.data;
 
   return (
     <div>
@@ -29,7 +31,9 @@ export default function Home() {
             Main Page
           </Text>
         </main>
-        {console.log(data.inventories.data)}
+        {inventories.map((item, idx) => (
+          <Inventory key={idx} item={item.attributes} />
+        ))}
       </Container>
     </div>
   );
