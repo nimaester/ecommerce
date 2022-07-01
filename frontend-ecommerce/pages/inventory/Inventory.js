@@ -5,20 +5,19 @@ const Inventory = ({ item }) => {
   const { title, description, price } = item;
 
   return (
-    <Container maxW='6xl' margin='auto'>
-      <Flex margin='9' align='center' maxW='xl' justify='space-between'>
-        <Box>
-          <Text fontSize='3xl'>{title}</Text>
-          <Text>{description}</Text>
-          <Text>{price}</Text>
-        </Box>
-
+    <Container maxW='6xl'>
+      <Box margin='9' maxW='xl'>
         <Image
-          w='20'
+          cursor='pointer'
+          w='40'
           src={item.image.data.attributes.formats.thumbnail.url}
           alt={item.title}
         />
-      </Flex>
+        <Box cursor='pointer'>
+          <Text fontWeight='bold'>{title}</Text>
+          <Text>{price}</Text>
+        </Box>
+      </Box>
     </Container>
   );
 };
