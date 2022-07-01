@@ -30,11 +30,11 @@ export default function Home() {
           Main Page
         </Text>
       </main>
-      <Grid gridTemplateColumns='repeat(4, 1fr)' maxW='5xl' margin='auto'>
+      <Flex wrap='wrap' flexDir='row' maxW='container.lg' margin='auto'>
         {inventories.map((item) => (
           <Inventory key={item.attributes.slug} item={item.attributes} />
         ))}
-      </Grid>
+      </Flex>
     </div>
   );
 }

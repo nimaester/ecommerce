@@ -2,23 +2,28 @@ import React from "react";
 import { Flex, Text, Image, Box, Container } from "@chakra-ui/react";
 
 const Inventory = ({ item }) => {
-  const { title, description, price } = item;
+  const { title, price } = item;
 
   return (
-    <Container maxW='6xl'>
-      <Box margin='9' maxW='xl'>
-        <Image
-          cursor='pointer'
-          w='40'
-          src={item.image.data.attributes.formats.thumbnail.url}
-          alt={item.title}
-        />
-        <Box cursor='pointer'>
-          <Text fontWeight='bold'>{title}</Text>
-          <Text>{price}</Text>
-        </Box>
+    <Flex
+      flexDir='column'
+      justifyContent='space-between'
+      m='2'
+      p='2'
+      border='1px solid black'
+      maxW='xl'
+    >
+      <Image
+        cursor='pointer'
+        w='40'
+        src={item.image.data.attributes.formats.thumbnail.url}
+        alt={item.title}
+      />
+      <Box mt='6' cursor='pointer'>
+        <Text fontWeight='bold'>{title}</Text>
+        <Text>{price}</Text>
       </Box>
-    </Container>
+    </Flex>
   );
 };
 
