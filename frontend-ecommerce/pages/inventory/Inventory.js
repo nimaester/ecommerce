@@ -19,7 +19,7 @@ const Inventory = ({ item }) => {
         src={item.image.data.attributes.formats.thumbnail.url}
         alt={item.title}
       />
-      <Box mt='6' cursor='pointer'>
+      <Box mt='5' cursor='pointer'>
         <Text fontWeight='bold'>{title}</Text>
         <Text>{price}</Text>
       </Box>
