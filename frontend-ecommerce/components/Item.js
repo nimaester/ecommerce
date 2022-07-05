@@ -6,22 +6,23 @@ const Item = ({ item }) => {
 
   return (
     <Flex
+      backgroundColor='white'
+      borderRadius='10px'
       flexDir='column'
-      justifyContent='space-between'
       m='1'
       p='4'
-      border='1px solid black'
-      alignItems='center'
+      textAlign='right'
+      justifyContent='space-between'
     >
-      <Image
-        objectFit='contain'
-        p='2'
-        cursor='pointer'
-        h='90%'
-        w='90%'
-        src={item.image.data.attributes.formats.thumbnail.url}
-        alt={item.title}
-      />
+      <Box d='flex' margin='auto'>
+        <Image
+          objectFit='contain'
+          p='2'
+          cursor='pointer'
+          src={item.image.data.attributes.formats.thumbnail.url}
+          alt={item.title}
+        />
+      </Box>
 
       <Box pt='4' mt='6' cursor='pointer'>
         <Text fontWeight='bold'>{title}</Text>

@@ -19,3 +19,7 @@ export const PRODUCT_QUERY = `
     }
   }
 `;
+
+// export const GET_ITEM_INFO = `
+//   query get
+// `
