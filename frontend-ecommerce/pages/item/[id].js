@@ -1,14 +1,25 @@
-import { Container, Text } from "@chakra-ui/react";
+import { Container, Text, Box, Image, Button } from "@chakra-ui/react";
+import { useQuery } from "urql";
 import React from "react";
 
-const Test = () => {
+const ItemDetail = () => {
   return (
-    <Container maxW='6xl'>
-      <Text fontSize='5xl' color='brand.700'>
-        Test product
-      </Text>
+    <Container maxW='contaier.xl'>
+      <Box>
+        <Image src='' alt='' />
+      </Box>
+      <Box>
+        <Text>Title</Text>
+        <Text>Description</Text>
+      </Box>
+      <Box>
+        <Text>Quantity</Text>
+        <Button>+</Button>
+        <Button>-</Button>
+      </Box>
+      <Button>Add to cart</Button>
     </Container>
   );
 };
 
-export default Test;
+export default ItemDetail;
