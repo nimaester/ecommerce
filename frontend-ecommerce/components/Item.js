@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Flex, Text, Image, Box, PseudoBox } from "@chakra-ui/react";
+import { Flex, Text, Image, Box, Button } from "@chakra-ui/react";
 
 const Item = ({ item }) => {
   const { title, price } = item;
@@ -7,63 +7,62 @@ const Item = ({ item }) => {
 
   const mouseEnter = () => {
     setHover(true);
-    console.log("enter");
   };
 
   const mouseOut = () => {
     setHover(false);
-    console.log("out");
   };
 
   return (
-    <Flex
-      onMouseOver={mouseEnter}
-      onMouseOut={mouseOut}
-      backgroundColor='white'
-      borderRadius='10px'
-      flexDir='column'
-      m='1'
-      p='4'
-      textAlign='right'
-      justifyContent='space-between'
-      // _hover={{ backgroundColor: "red" }}
-    >
-      <Box
-        display={hover ? "block" : "none"}
-        zIndex='50'
+    <Box>
+      <Button
+        opacity={hover ? "1" : "0"}
         backgroundColor='red'
-        position='sticky'
-        top='0'
-        h='100%'
-        w='100%'
-      ></Box>
-
-      <Box d='flex' margin='auto'>
-        <Image
-          objectFit='contain'
-          p='2'
-          cursor='pointer'
-          src={item.image.data.attributes.formats.thumbnail.url}
-          alt={item.title}
-        />
-      </Box>
-
-      <Box
-        pt='4'
-        mt='6'
-        cursor='pointer'
-        fontSize={{
-          sm: "0.8rem",
-          md: "1rem",
-          lg: "1rem",
-          xl: "1rem",
-          base: "0.8rem",
-        }}
+        alignItems='center'
+        alignContent='center'
+        alignSelf='center'
       >
-        <Text fontWeight='bold'>{title}</Text>
-        <Text>$ {price}</Text>
-      </Box>
-    </Flex>
+        View
+      </Button>
+      <Flex
+        onMouseOver={mouseEnter}
+        onMouseOut={mouseOut}
+        backgroundColor='white'
+        borderRadius='10px'
+        flexDir='column'
+        h='95%'
+        w='95%'
+        textAlign='right'
+        justifyContent='space-between'
+        p='5'
+        m='5'
+      >
+        <Box d='flex' margin='auto'>
+          <Image
+            objectFit='contain'
+            p='2'
+            src={item.image.data.attributes.formats.thumbnail.url}
+            alt={item.title}
+          />
+        </Box>
+
+        <Box
+          pt='4'
+          mt='6'
+          cursor='pointer'
+          fontSize={{
+            sm: "0.8rem",
+            md: "1rem",
+            lg: "1rem",
+            xl: "1rem",
+            base: "0.8rem",
+          }}
+        >
+          <Text fontWeight='bold'>{title}</Text>
+          <Text>$ {price}</Text>
+        </Box>
+      </Flex>
+    </Box>
   );
 };
 

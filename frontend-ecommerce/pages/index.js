@@ -46,8 +46,6 @@ export default function Home() {
             xl: "repeat(5, 1fr)",
             base: "repeat(2, 1fr)",
           }}
-          wrap='wrap'
-          flexDir='row'
           mt='5rem'
           mb='5rem'
         >
