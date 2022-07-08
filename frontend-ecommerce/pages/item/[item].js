@@ -20,10 +20,11 @@ const ItemDetail = () => {
 
   return (
     <Container pt='5rem' maxW='container.xl' display='flex' gap='8'>
-      <Box flex='1'>
+      <Box flex='1.5'>
         <Image
           src={itemData.image.data.attributes.formats.medium.url}
           alt={slug}
+          maxW='90% n  '
         />
       </Box>
       <Flex p='1rem' flex='1' flexDir='column' justifyContent='center'>

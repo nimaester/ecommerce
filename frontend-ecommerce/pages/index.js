@@ -3,7 +3,7 @@ import { useQuery } from "urql";
 import { PRODUCT_QUERY } from "../lib/query";
 
 import { Container, Text, Flex, Grid, Box } from "@chakra-ui/react";
-import Item from "../components/Item";
+import Items from "../components/Items";
 
 export default function Home() {
   //Fetch products from strapi
@@ -50,7 +50,7 @@ export default function Home() {
           mb='5rem'
         >
           {inventories.map((item) => (
-            <Item key={item.attributes.slug} item={item.attributes} />
+            <Items key={item.attributes.slug} item={item.attributes} />
           ))}
         </Grid>
       </Container>

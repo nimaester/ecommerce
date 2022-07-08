@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Flex, Text, Image, Box, Button } from "@chakra-ui/react";
+import Link from "next/link";
 
-const Item = ({ item }) => {
+const Items = ({ item }) => {
   const { title, price } = item;
   const [hover, setHover] = useState(false);
 
@@ -15,6 +16,7 @@ const Item = ({ item }) => {
 
   return (
     <Box>
+      {/* <Link href={`item/${item}`} /> */}
       <Flex
         cursor='pointer'
         position='relative'
@@ -87,4 +89,4 @@ const Item = ({ item }) => {
   );
 };
 
-export default Item;
+export default Items;
