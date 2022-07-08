@@ -19,16 +19,18 @@ const ItemDetail = () => {
   const { title, available, description, price, slug } = itemData;
 
   return (
-    <Container maxW='container.xl' display='flex' gap='8'>
-      <Box pt='5rem' flexGrow='4'>
+    <Container pt='5rem' maxW='container.xl' display='flex' gap='8'>
+      <Box flex='1'>
         <Image
           src={itemData.image.data.attributes.formats.medium.url}
           alt={slug}
         />
       </Box>
-      <Flex flexGrow='1' flexDir='column' justifyContent='center'>
-        <Box w='500px'>
-          <Text fontSize='4xl'>{title}</Text>
+      <Flex p='1rem' flex='1' flexDir='column' justifyContent='center'>
+        <Box>
+          <Text fontSize='4xl' pt='4' pb='4'>
+            {title}
+          </Text>
           <Text>{description}</Text>
         </Box>
         <Box mt='5' display='flex' flexDir='row' justifyContent='space-between'>
