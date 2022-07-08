@@ -38,7 +38,7 @@
       "type": "float",
       "required": true
     },
-    "Available": {
+    "available": {
       "type": "boolean",
       "default": true,
       "required": true

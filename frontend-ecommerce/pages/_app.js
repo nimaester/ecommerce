@@ -4,10 +4,12 @@ import { Provider, createClient } from "urql";
 
 const colors = {
   brand: {
-    900: "#1a365d",
-    800: "#153e75",
-    700: "#2a69ac",
-    500: "#ff0000",
+    900: "#5d5c61",
+    800: "#938E94",
+    700: "#7395ae",
+    500: "#557a95",
+    400: "#b1a296",
+    100: "#F1F5F8",
   },
 };
 

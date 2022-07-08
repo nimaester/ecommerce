@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useQuery, Query } from "urql";
+import { useQuery } from "urql";
 import { PRODUCT_QUERY } from "../lib/query";
 
 import { Container, Text, Flex, Grid, Box } from "@chakra-ui/react";
@@ -8,7 +8,7 @@ import Item from "../components/Item";
 export default function Home() {
   //Fetch products from strapi
 
-  const [result, reexecuteQuery] = useQuery({
+  const [result] = useQuery({
     query: PRODUCT_QUERY,
   });
 
@@ -19,7 +19,7 @@ export default function Home() {
   const inventories = data.inventories.data;
 
   return (
-    <div style={{ backgroundColor: "#EEEDE7", height: "100vh" }}>
+    <Box background='brand.100' pb='1rem'>
       <Head>
         <title>Ecommerce App</title>
         <link rel='icon' href='/favicon.ico' />
@@ -54,6 +54,6 @@ export default function Home() {
           ))}
         </Grid>
       </Container>
-    </div>
+    </Box>
   );
 }

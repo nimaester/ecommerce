@@ -15,16 +15,9 @@ const Item = ({ item }) => {
 
   return (
     <Box>
-      <Button
-        opacity={hover ? "1" : "0"}
-        backgroundColor='red'
-        alignItems='center'
-        alignContent='center'
-        alignSelf='center'
-      >
-        View
-      </Button>
       <Flex
+        cursor='pointer'
+        position='relative'
         onMouseOver={mouseEnter}
         onMouseOut={mouseOut}
         backgroundColor='white'
@@ -34,8 +27,8 @@ const Item = ({ item }) => {
         w='95%'
         textAlign='right'
         justifyContent='space-between'
-        p='5'
-        m='5'
+        p='4'
+        m='4'
       >
         <Box d='flex' margin='auto'>
           <Image
@@ -49,7 +42,6 @@ const Item = ({ item }) => {
         <Box
           pt='4'
           mt='6'
-          cursor='pointer'
           fontSize={{
             sm: "0.8rem",
             md: "1rem",
@@ -60,6 +52,35 @@ const Item = ({ item }) => {
         >
           <Text fontWeight='bold'>{title}</Text>
           <Text>$ {price}</Text>
+        </Box>
+        <Box
+          position='absolute'
+          top='50%'
+          left='50%'
+          style={{
+            msTransform: "translate(-50%, -50%)",
+            transform: "translate(-50%, -50%)",
+          }}
+          opacity={hover ? "1" : "0"}
+          background='rgba(147, 142, 148, 0.2)'
+          h='100%'
+          w='100%'
+          borderRadius='10px'
+        >
+          <Button
+            position='absolute'
+            top='50%'
+            left='50%'
+            style={{
+              msTransform: "translate(-50%, -50%)",
+              transform: "translate(-50%, -50%)",
+            }}
+            backgroundColor='brand.500'
+            color='white'
+            _hover={{ backgroundColor: "brand.500" }}
+          >
+            View
+          </Button>
         </Box>
       </Flex>
     </Box>

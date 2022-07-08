@@ -1,15 +1,16 @@
 export const PRODUCT_QUERY = `
   query{
-    inventories{
-      data{
-        attributes{
-          title
-          description
-          price
-          slug
-          image{
-            data{
-              attributes{
+    inventories {
+      data {
+        attributes {
+          title,
+          description,
+          price,
+          slug,
+          available,
+          image {
+            data {
+              attributes {
                 formats
               }
             }
@@ -21,5 +22,24 @@ export const PRODUCT_QUERY = `
 `;
 
 export const GET_ITEM_INFO = `
-  query get
+  query getItem($slug: String!) {
+    inventories(filters: {slug: {eq: $slug}}) {
+      data {
+        attributes {
+          title,
+          description,
+          price,
+          slug,
+          available,
+          image {
+            data {
+              attributes {
+                formats
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 `;
