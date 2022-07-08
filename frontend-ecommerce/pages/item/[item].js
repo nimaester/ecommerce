@@ -20,14 +20,13 @@ const ItemDetail = () => {
 
   return (
     <Container maxW='container.xl' display='flex' gap='8'>
-      <Box>
+      <Box pt='5rem' flexGrow='4'>
         <Image
           src={itemData.image.data.attributes.formats.medium.url}
           alt={slug}
-          maxW='80%'
         />
       </Box>
-      <Flex flexDir='column' justifyContent='center'>
+      <Flex flexGrow='1' flexDir='column' justifyContent='center'>
         <Box w='500px'>
           <Text fontSize='4xl'>{title}</Text>
           <Text>{description}</Text>
