@@ -1,6 +1,7 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
 import { Provider, createClient } from "urql";
+import Nav from "../components/Nav";
 
 const colors = {
   brand: {
@@ -21,6 +22,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider value={client}>
       <ChakraProvider theme={theme}>
+        <Nav />
         <Component {...pageProps} />
       </ChakraProvider>
     </Provider>

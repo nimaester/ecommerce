@@ -19,7 +19,7 @@ export default function Home() {
   const inventories = data.inventories.data;
 
   return (
-    <Box background='brand.100' pb='1rem'>
+    <Box backgroundColor='brand.100' pb='1rem'>
       <Head>
         <title>Ecommerce App</title>
         <link rel='icon' href='/favicon.ico' />
@@ -39,6 +39,7 @@ export default function Home() {
           Main Page
         </Text>
         <Grid
+          style={{ overflowY: "auto", scrollbarGutter: "stable both-edges" }}
           gridTemplateColumns={{
             sm: "repeat(2, 1fr)",
             md: "repeat(3, 1fr)",

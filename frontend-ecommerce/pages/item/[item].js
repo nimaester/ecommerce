@@ -19,12 +19,12 @@ const ItemDetail = () => {
   const { title, available, description, price, slug } = itemData;
 
   return (
-    <Container pt='5rem' maxW='container.xl' display='flex' gap='8'>
-      <Box flex='1.5'>
+    <Container minH='98vh' maxW='container.xl' display='flex'>
+      <Box flex='1.5' display='flex' alignItems='center'>
         <Image
           src={itemData.image.data.attributes.formats.medium.url}
           alt={slug}
-          maxW='90% n  '
+          maxW='90%'
         />
       </Box>
       <Flex p='1rem' flex='1' flexDir='column' justifyContent='center'>
