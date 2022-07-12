@@ -18,7 +18,6 @@ const Items = ({ item }) => {
     <Box>
       <Link href={`item/${slug}`}>
         <Flex
-          cursor='pointer'
           position='relative'
           onMouseOver={mouseEnter}
           onMouseOut={mouseOut}

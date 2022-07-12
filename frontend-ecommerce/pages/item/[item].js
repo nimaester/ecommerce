@@ -1,4 +1,12 @@
-import { Container, Text, Box, Image, Button, Flex } from "@chakra-ui/react";
+import {
+  Container,
+  Text,
+  Box,
+  Image,
+  Button,
+  Flex,
+  transition,
+} from "@chakra-ui/react";
 import { useQuery } from "urql";
 import { GET_ITEM_INFO } from "../../lib/query";
 import { useRouter } from "next/router";
@@ -19,9 +27,10 @@ const ItemDetail = () => {
   const { title, available, description, price, slug } = itemData;
 
   return (
-    <Container minH='98vh' maxW='container.xl' display='flex'>
+    <Container maxW='container.xl' display='flex' p='20'>
       <Box flex='1.5' display='flex' alignItems='center'>
         <Image
+          _hover={{ transform: "scale(1.1)", transition: "ease 0.1s" }}
           src={itemData.image.data.attributes.formats.medium.url}
           alt={slug}
           maxW='90%'
@@ -47,7 +56,7 @@ const ItemDetail = () => {
           >
             {available ? "Add to cart" : "Not available"}
           </Button>
-          <Text>$ {price}</Text>
+          <Text fontSize='2xl'>$ {price}</Text>
         </Box>
       </Flex>
     </Container>

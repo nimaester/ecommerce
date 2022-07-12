@@ -14,23 +14,23 @@ const Nav = () => {
           <Link href={"/"}>
             <Flex alignItems='center' cursor='pointer'>
               <AiOutlineHome size='30' />
-              <Text>Home</Text>
+              <Text fontSize='1.2rem'>Home</Text>
             </Flex>
           </Link>
 
           <Flex cursor='pointer'>
             <FaExclamation size='25' />
-            <Text>What's New</Text>
+            <Text fontSize='1.2rem'>What's New</Text>
           </Flex>
 
           <Flex alignItems='center' cursor='pointer'>
             <FiLogIn size='30' />
-            <Text>Login</Text>
+            <Text fontSize='1.2rem'>Login</Text>
           </Flex>
 
           <Flex alignItems='center' cursor='pointer'>
             <RiShoppingCart2Line size='30' />
-            <Text>Cart</Text>
+            <Text fontSize='1.2rem'>Cart</Text>
           </Flex>
         </Flex>
       </Container>
