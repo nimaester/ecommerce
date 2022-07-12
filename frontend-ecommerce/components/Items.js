@@ -55,6 +55,7 @@ const Items = ({ item }) => {
             <Text>$ {price}</Text>
           </Box>
           <Box
+            opacity={hover ? "1" : "0"}
             position='absolute'
             top='50%'
             left='50%'
@@ -62,8 +63,10 @@ const Items = ({ item }) => {
               msTransform: "translate(-50%, -50%)",
               transform: "translate(-50%, -50%)",
             }}
-            opacity={hover ? "1" : "0"}
-            background='rgba(147, 142, 148, 0.2)'
+            _hover={{
+              cursor: "pointer",
+              boxShadow: "0 0 11px rgba(33,33,33,.5)",
+            }}
             h='100%'
             w='100%'
             borderRadius='10px'
