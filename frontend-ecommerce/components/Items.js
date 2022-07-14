@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Flex, Text, Image, Box, Button } from "@chakra-ui/react";
 import Link from "next/link";
 import { ButtonDefault } from "../elements/Buttons";
+import { FixedBox } from "../elements/Boxes";
 
 const Items = ({ item }) => {
   const { title, price, slug } = item;
@@ -55,23 +56,7 @@ const Items = ({ item }) => {
             <Text fontWeight='bold'>{title}</Text>
             <Text>$ {price}</Text>
           </Box>
-          <Box
-            opacity={hover ? "1" : "0"}
-            position='absolute'
-            top='50%'
-            left='50%'
-            style={{
-              msTransform: "translate(-50%, -50%)",
-              transform: "translate(-50%, -50%)",
-            }}
-            _hover={{
-              cursor: "pointer",
-              boxShadow: "0 0 11px rgba(33,33,33,.9)",
-            }}
-            h='100%'
-            w='100%'
-            borderRadius='10px'
-          >
+          <FixedBox opacity={hover ? "1" : "0"}>
             <ButtonDefault
               position='absolute'
               top='50%'
@@ -83,7 +68,7 @@ const Items = ({ item }) => {
             >
               View
             </ButtonDefault>
-          </Box>
+          </FixedBox>
         </Flex>
       </Link>
     </Box>

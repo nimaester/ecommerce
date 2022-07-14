@@ -87,8 +87,8 @@ const ItemDetail = () => {
           w='90%'
           cursor='pointer'
           onClick={() => router.back()}
-          _hover={{ outline: "none" }}
-          _active={{ outline: "none" }}
+          _hover={{ outline: "none", color: "button.primary" }}
+          _active={{ outline: "none", transform: "scale(1.05)" }}
         >
           <MdKeyboardBackspace size='30' /> Back to previous page
         </Button>

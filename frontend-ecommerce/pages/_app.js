@@ -12,6 +12,9 @@ const colors = {
     400: "#b1a296",
     100: "#F1F5F8",
   },
+  button: {
+    primary: "#332cf2",
+  },
 };
 
 const theme = extendTheme({ colors });
