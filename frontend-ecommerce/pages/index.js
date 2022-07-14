@@ -47,8 +47,20 @@ export default function Home() {
             xl: "repeat(5, 1fr)",
             base: "repeat(2, 1fr)",
           }}
-          mt='5rem'
-          mb='5rem'
+          pt={{
+            sm: "1rem",
+            md: "2rem",
+            lg: "5rem",
+            xl: "5rem",
+            base: "1rem",
+          }}
+          pb={{
+            sm: "1rem",
+            md: "2rem",
+            lg: "5rem",
+            xl: "5rem",
+            base: "1rem",
+          }}
         >
           {inventories.map((item) => (
             <Items key={item.attributes.slug} item={item.attributes} />

@@ -3,6 +3,8 @@ import { useQuery } from "urql";
 import { GET_ITEM_INFO } from "../../lib/query";
 import { useRouter } from "next/router";
 import { MdKeyboardBackspace } from "react-icons/md";
+import { ButtonDefault } from "../../elements/Buttons";
+import { ItemNameText } from "../../elements/Text";
 
 const ItemDetail = () => {
   const { query } = useRouter();
@@ -22,46 +24,72 @@ const ItemDetail = () => {
 
   return (
     <Box>
-      <Container maxW='container.xl' display='flex' p='20'>
-        <Box flex='1.5' display='flex' alignItems='center'>
+      <Container
+        maxW='container.xl'
+        display={{
+          sm: "block",
+          md: "flex",
+          lg: "flex",
+          xl: "flex",
+          base: "block",
+        }}
+        p={{
+          sm: "4rem 2rem",
+          md: "5rem",
+          lg: "5rem",
+          xl: "5rem",
+          base: "4rem 2rem",
+        }}
+      >
+        <Box
+          flex='1.5'
+          display='flex'
+          alignItems='center'
+          p={{
+            sm: "2rem 0rem",
+            base: "2rem 0rem",
+          }}
+        >
           <Image
             _hover={{ transform: "scale(1.1)", transition: "ease 0.1s" }}
             src={itemData.image.data.attributes.formats.medium.url}
             alt={slug}
             maxW='90%'
+            minW='90%'
           />
         </Box>
         <Flex p='1rem' flex='1' flexDir='column' justifyContent='center'>
           <Box>
-            <Text fontSize='4xl' pt='4' pb='4'>
+            <ItemNameText pt='4' pb='4'>
               {title}
+            </ItemNameText>
+            <Text pt='4' pb='4'>
+              {description}
             </Text>
-            <Text>{description}</Text>
           </Box>
           <Box
-            mt='5'
             display='flex'
-            flexDir='row'
             justifyContent='space-between'
+            alignItems='center'
+            p='2rem 0rem'
           >
-            <Button
-              _hover={{
-                backgroundColor: "brand.500",
-                color: "white",
-                border: `3px solid`,
-                borderColor: "brand.800",
-              }}
-              w='60%'
-              disabled={!available}
-            >
+            <ButtonDefault onClick={() => router.back()}>
               {available ? "Add to cart" : "Not available"}
-            </Button>
+            </ButtonDefault>
             <Text fontSize='2xl'>$ {price}</Text>
           </Box>
         </Flex>
       </Container>
       <Box pb='10' display='flex' justifyContent='center'>
-        <Button p='8' w='50%' cursor='pointer' onClick={() => router.back()}>
+        <Button
+          backgroundColor='transparent'
+          p='8'
+          w='90%'
+          cursor='pointer'
+          onClick={() => router.back()}
+          _hover={{ outline: "none" }}
+          _active={{ outline: "none" }}
+        >
           <MdKeyboardBackspace size='30' /> Back to previous page
         </Button>
       </Box>

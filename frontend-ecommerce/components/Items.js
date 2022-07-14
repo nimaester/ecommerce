@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Flex, Text, Image, Box, Button } from "@chakra-ui/react";
 import Link from "next/link";
+import { ButtonDefault } from "../elements/Buttons";
 
 const Items = ({ item }) => {
   const { title, price, slug } = item;
@@ -65,13 +66,13 @@ const Items = ({ item }) => {
             }}
             _hover={{
               cursor: "pointer",
-              boxShadow: "0 0 11px rgba(33,33,33,.5)",
+              boxShadow: "0 0 11px rgba(33,33,33,.9)",
             }}
             h='100%'
             w='100%'
             borderRadius='10px'
           >
-            <Button
+            <ButtonDefault
               position='absolute'
               top='50%'
               left='50%'
@@ -79,12 +80,9 @@ const Items = ({ item }) => {
                 msTransform: "translate(-50%, -50%)",
                 transform: "translate(-50%, -50%)",
               }}
-              backgroundColor='brand.500'
-              color='white'
-              _hover={{ backgroundColor: "brand.500" }}
             >
               View
-            </Button>
+            </ButtonDefault>
           </Box>
         </Flex>
       </Link>
