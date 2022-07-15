@@ -61,6 +61,7 @@ export default function Home() {
             xl: "5rem",
             base: "1rem",
           }}
+          gap='1rem'
         >
           {inventories.map((item) => (
             <Items key={item.attributes.slug} item={item.attributes} />

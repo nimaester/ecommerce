@@ -26,17 +26,15 @@ const Items = ({ item }) => {
           backgroundColor='white'
           borderRadius='10px'
           flexDir='column'
-          h='95%'
-          w='95%'
+          h='100%'
+          w='100%'
           textAlign='right'
           justifyContent='space-between'
           p='4'
-          m='4'
         >
           <Box d='flex' margin='auto'>
             <Image
-              objectFit='contain'
-              p='2'
+              p='1'
               src={item.image.data.attributes.formats.thumbnail.url}
               alt={item.title}
             />
