@@ -100,9 +100,9 @@ const ItemDetail = () => {
               display='flex'
               alignItems='center'
               justifyContent='center'
-              p={{
-                sm: "2rem 0rem",
-                base: "2rem 0rem",
+              h={{
+                sm: "80vh",
+                base: "80vh",
               }}
             >
               <Image
@@ -114,7 +114,18 @@ const ItemDetail = () => {
                 maxW='450px'
               />
             </Box>
-            <Flex p='1rem' flex='1' flexDir='column' justifyContent='center'>
+            <Flex
+              pl={{
+                sm: "0rem",
+                md: "2rem",
+                lg: "2rem",
+                xl: "2rem",
+                base: "0rem",
+              }}
+              flex='1'
+              flexDir='column'
+              justifyContent='center'
+            >
               <Box>
                 <ItemNameText pt='4' pb='4'>
                   {title}
