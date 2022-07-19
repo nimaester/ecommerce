@@ -7,6 +7,7 @@ import { MdKeyboardBackspace } from "react-icons/md";
 import { IoIosCloseCircle } from "react-icons/io";
 import { ButtonDefault } from "../../elements/Buttons";
 import { ItemNameText } from "../../elements/Text";
+// import
 
 const ItemDetail = () => {
   const [zoom, setZoom] = useState(false);
@@ -142,7 +143,7 @@ const ItemDetail = () => {
               >
                 <ButtonDefault
                   disabled={!available ? true : false}
-                  onClick={() => router.back()}
+                  onClick={() => router.push("/")}
                 >
                   {available ? "Add to cart" : "Sold Out"}
                 </ButtonDefault>

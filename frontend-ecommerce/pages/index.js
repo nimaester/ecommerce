@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Head from "next/head";
 import { useQuery } from "urql";
 import { PRODUCT_QUERY } from "../lib/query";
-import { Container, Text, Flex, Grid, Box } from "@chakra-ui/react";
+import { Container, Grid, Box } from "@chakra-ui/react";
 import Item from "../components/Item";
 import SortItem from "../components/SortItem";
 

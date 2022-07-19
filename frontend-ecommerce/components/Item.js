@@ -44,11 +44,11 @@ const Items = ({ item }) => {
             pt='4'
             mt='6'
             fontSize={{
-              sm: "0.8rem",
+              sm: "0.9rem",
               md: "1rem",
               lg: "1rem",
               xl: "1rem",
-              base: "0.8rem",
+              base: "0.9rem",
             }}
           >
             <Text fontWeight='bold'>{title}</Text>
