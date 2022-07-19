@@ -4,10 +4,9 @@ const StoreContext = createContext();
 
 const StoreProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
-  const [inventory, setInventory] = useState([]);
 
   return (
-    <StoreContext.Provider value={{ cart, setCart, inventory, setInventory }}>
+    <StoreContext.Provider value={{ cart, setCart }}>
       {children}
     </StoreContext.Provider>
   );

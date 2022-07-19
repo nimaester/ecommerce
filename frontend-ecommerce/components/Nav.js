@@ -5,8 +5,11 @@ import { Box, Container, Text, Flex } from "@chakra-ui/react";
 import { FaExclamation } from "react-icons/fa";
 import { FiLogIn } from "react-icons/fi";
 import Link from "next/link";
+import { useGlobalContext } from "../lib/storeContext";
 
 const Nav = () => {
+  const { cart } = useGlobalContext();
+
   return (
     <Box backgroundColor='brand.800'>
       <Container maxW='container.xl' p='5'>
@@ -30,7 +33,10 @@ const Nav = () => {
 
           <Flex alignItems='center' cursor='pointer'>
             <RiShoppingCart2Line size='30' />
-            <Text fontSize='1.2rem'>Cart</Text>
+
+            <Text ml='-0.1rem' zIndex='5' fontSize='1.2rem'>
+              {cart.length}
+            </Text>
           </Flex>
         </Flex>
       </Container>

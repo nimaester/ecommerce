@@ -5,8 +5,8 @@ const SortItem = () => {
   return (
     <Box p='2.5rem 0rem' display='flex' justifyContent='right'>
       <Select placeholder='Sort by' w='150px'>
-        <option value='philo'>Price: Hi-Low</option>
-        <option value='plohi'>Price: Low-Hi</option>
+        <option value='philo'>Price: High-Low</option>
+        <option value='plohi'>Price: Low-High</option>
       </Select>
     </Box>
   );

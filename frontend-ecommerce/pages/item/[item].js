@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Container, Text, Box, Image, Button, Flex } from "@chakra-ui/react";
+import {
+  Container,
+  Text,
+  Box,
+  Image,
+  Button,
+  Flex,
+  useToast,
+} from "@chakra-ui/react";
 import { useQuery } from "urql";
 import { GET_ITEM_INFO } from "../../lib/query";
 import { useRouter } from "next/router";
@@ -7,14 +15,18 @@ import { MdKeyboardBackspace } from "react-icons/md";
 import { IoIosCloseCircle } from "react-icons/io";
 import { ButtonDefault } from "../../elements/Buttons";
 import { ItemNameText } from "../../elements/Text";
-// import
+import { useGlobalContext } from "../../lib/storeContext";
 
 const ItemDetail = () => {
+  const toast = useToast();
+  const id = "test-toast";
+  const { cart, setCart } = useGlobalContext();
+
   const [zoom, setZoom] = useState(false);
   const { query } = useRouter();
   const router = useRouter();
 
-  // fectch item data from graphql api
+  // fetch item data from graphql api
   const [result] = useQuery({
     query: GET_ITEM_INFO,
     variables: { slug: query.item },
@@ -32,6 +44,20 @@ const ItemDetail = () => {
 
   const openZoom = () => {
     setZoom(true);
+  };
+
+  const addToCart = (slugName) => {
+    if (!cart.includes(slugName)) setCart([...cart, slugName]);
+    if (!toast.isActive(id)) {
+      const inCart = cart.includes(slugName);
+
+      toast({
+        id,
+        title: inCart ? "Item is already in the cart" : "Item added to cart",
+        status: inCart ? "error" : "success",
+        duration: 2000,
+      });
+    }
   };
 
   const showZoomedImage = () => {
@@ -141,12 +167,15 @@ const ItemDetail = () => {
                 alignItems='center'
                 p='2rem 0rem'
               >
-                <ButtonDefault
-                  disabled={!available ? true : false}
-                  onClick={() => router.push("/")}
-                >
-                  {available ? "Add to cart" : "Sold Out"}
-                </ButtonDefault>
+                <Box>
+                  <ButtonDefault
+                    disabled={!available ? true : false}
+                    onClick={() => addToCart(slug)}
+                  >
+                    {available ? "Add to cart" : "Sold Out"}
+                  </ButtonDefault>
+                </Box>
+
                 <Text fontSize='xl'>${price}</Text>
               </Box>
             </Flex>
