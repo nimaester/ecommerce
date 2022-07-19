@@ -17,3 +17,20 @@ export const ButtonDefault = ({ ...children }) => {
     ></Button>
   );
 };
+
+export const DisabledButton = ({ children }) => {
+  return (
+    <Button
+      {...children}
+      disabled
+      p='1.5rem 1.3rem'
+      backgroundColor='red'
+      color='#fff'
+      fontSize='1.2rem'
+      _hover={{ pointerEvents: "none" }}
+      _active={{ pointerEvents: "none" }}
+    >
+      Sold Out
+    </Button>
+  );
+};

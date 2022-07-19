@@ -13,7 +13,7 @@ import { GET_ITEM_INFO } from "../../lib/query";
 import { useRouter } from "next/router";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { IoIosCloseCircle } from "react-icons/io";
-import { ButtonDefault } from "../../elements/Buttons";
+import { ButtonDefault, DisabledButton } from "../../elements/Buttons";
 import { ItemNameText } from "../../elements/Text";
 import { useGlobalContext } from "../../lib/storeContext";
 
@@ -50,12 +50,11 @@ const ItemDetail = () => {
     if (!cart.includes(slugName)) setCart([...cart, slugName]);
     if (!toast.isActive(id)) {
       const inCart = cart.includes(slugName);
-
       toast({
         id,
         title: inCart ? "Item is already in the cart" : "Item added to cart",
         status: inCart ? "error" : "success",
-        duration: 2000,
+        duration: 800,
       });
     }
   };
@@ -168,12 +167,13 @@ const ItemDetail = () => {
                 p='2rem 0rem'
               >
                 <Box>
-                  <ButtonDefault
-                    disabled={!available ? true : false}
-                    onClick={() => addToCart(slug)}
-                  >
-                    {available ? "Add to cart" : "Sold Out"}
-                  </ButtonDefault>
+                  {available ? (
+                    <ButtonDefault onClick={() => addToCart(slug)}>
+                      Add to cart
+                    </ButtonDefault>
+                  ) : (
+                    <DisabledButton />
+                  )}
                 </Box>
 
                 <Text fontSize='xl'>${price}</Text>
