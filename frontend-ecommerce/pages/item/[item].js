@@ -137,8 +137,11 @@ const ItemDetail = () => {
               alignItems='center'
               justifyContent='center'
               h={{
-                sm: "80vh",
-                base: "80vh",
+                sm: "50vh",
+                md: "60vh",
+                lg: "60vh",
+                xl: "60vh",
+                base: "50vh",
               }}
             >
               <Image

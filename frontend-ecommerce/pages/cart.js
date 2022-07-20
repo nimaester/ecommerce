@@ -13,12 +13,7 @@ const Cart = () => {
 
   const emptyCart = () => {
     return (
-      <Box
-        display='flex'
-        minH='50vh'
-        justifyContent='center'
-        alignItems='center'
-      >
+      <Box display='flex' justifyContent='center' alignItems='center'>
         <Image src={emptyCartImage} h='auto' w='auto' alt='empty_cart' />
       </Box>
     );
