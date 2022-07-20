@@ -55,20 +55,18 @@ const ItemDetail = () => {
   };
 
   const addToCart = (slugName) => {
-    const inCart = cart.filter((item) => item.slug === slugName).length;
-    if (inCart === 0) {
+    const inCart = cart.filter((item) => item.slug === slugName).length > 0;
+    if (!inCart) {
       setCart([...cart, itemInfo]);
     }
     if (!toast.isActive(id)) {
       toast({
         id,
-        title:
-          inCart > 0 ? "Item is already in the cart" : "Item added to cart",
-        status: inCart > 0 ? "error" : "success",
+        title: inCart ? "Item is already in the cart" : "Item added to cart",
+        status: inCart ? "error" : "success",
         duration: 1000,
       });
     }
-    console.log(cart);
   };
 
   const showZoomedImage = () => {
