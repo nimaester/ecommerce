@@ -8,6 +8,7 @@ export const PRODUCT_QUERY = `
           price,
           slug,
           available,
+          count,
           image {
             data {
               attributes {
@@ -31,6 +32,7 @@ export const GET_ITEM_INFO = `
           price,
           slug,
           available,
+          count,
           image {
             data {
               attributes {

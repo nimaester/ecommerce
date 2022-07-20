@@ -36,7 +36,7 @@ const ItemDetail = () => {
   if (fetching) return <p>Loading...</p>;
   if (error) return <p>Oh no... {error.message}</p>;
   const itemData = data.inventories.data[0].attributes;
-  const { title, available, description, price, slug } = itemData;
+  const { title, available, description, price, slug, count } = itemData;
 
   const closeZoom = () => {
     setZoom(false);
@@ -46,17 +46,29 @@ const ItemDetail = () => {
     setZoom(true);
   };
 
+  const itemInfo = {
+    name: title,
+    description: description,
+    price: price,
+    slug: slug,
+    image: itemData.image.data.attributes.formats.thumbnail.url,
+  };
+
   const addToCart = (slugName) => {
-    if (!cart.includes(slugName)) setCart([...cart, slugName]);
+    const inCart = cart.filter((item) => item.slug === slugName).length;
+    if (inCart === 0) {
+      setCart([...cart, itemInfo]);
+    }
     if (!toast.isActive(id)) {
-      const inCart = cart.includes(slugName);
       toast({
         id,
-        title: inCart ? "Item is already in the cart" : "Item added to cart",
-        status: inCart ? "error" : "success",
-        duration: 800,
+        title:
+          inCart > 0 ? "Item is already in the cart" : "Item added to cart",
+        status: inCart > 0 ? "error" : "success",
+        duration: 1000,
       });
     }
+    console.log(cart);
   };
 
   const showZoomedImage = () => {
@@ -175,7 +187,7 @@ const ItemDetail = () => {
                     <DisabledButton />
                   )}
                 </Box>
-
+                {/* <Text>{count}</Text> ** ADD THIS OPTION LATER **/}
                 <Text fontSize='xl'>${price}</Text>
               </Box>
             </Flex>
