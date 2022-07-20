@@ -31,13 +31,15 @@ const Nav = () => {
             <Text fontSize='1.2rem'>Login</Text>
           </Flex>
 
-          <Flex alignItems='center' cursor='pointer'>
-            <RiShoppingCart2Line size='30' />
+          <Link href={"/cart"}>
+            <Flex alignItems='center' cursor='pointer'>
+              <RiShoppingCart2Line size='30' />
 
-            <Text ml='-0.1rem' zIndex='5' fontSize='1.2rem'>
-              {cart.length}
-            </Text>
-          </Flex>
+              <Text ml='-0.1rem' zIndex='5' fontSize='1.2rem'>
+                {cart.length}
+              </Text>
+            </Flex>
+          </Link>
         </Flex>
       </Container>
     </Box>

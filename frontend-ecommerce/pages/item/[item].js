@@ -55,7 +55,7 @@ const ItemDetail = () => {
   };
 
   const addToCart = (slugName) => {
-    const inCart = cart.filter((item) => item.slug === slugName).length > 0;
+    const inCart = cart.find((item) => item.slug === slugName);
     if (!inCart) {
       setCart([...cart, itemInfo]);
     }
