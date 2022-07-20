@@ -1,29 +1,57 @@
 import React from "react";
+import Image from "next/image";
 import { Container, Text, Box, Button } from "@chakra-ui/react";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { useGlobalContext } from "../lib/storeContext";
 import { useRouter } from "next/router";
 import CartItem from "../components/CartItem.js";
+import emptyCartImage from "../assets/empty_cart.jpg";
 
 const Cart = () => {
   const { cart } = useGlobalContext();
   const router = useRouter();
+
+  const emptyCart = () => {
+    return (
+      <Box
+        display='flex'
+        minH='50vh'
+        justifyContent='center'
+        alignItems='center'
+      >
+        <Image src={emptyCartImage} h='auto' w='auto' alt='empty_cart' />
+      </Box>
+    );
+  };
+
+  const showCartItems = () => {
+    return (
+      <Box>
+        {cart.length &&
+          cart.map((cartItem) => (
+            <CartItem key={cartItem.slug} cartItem={cartItem} />
+          ))}
+      </Box>
+    );
+  };
+
+  const calculatePrice = () => {
+    return cart
+      .reduce((val, cart) => {
+        return val + cart.price;
+      }, 0)
+      .toFixed(2);
+  };
 
   return (
     <Container maxW='container.xl'>
       <Text textAlign='center' fontSize='4xl' p='4rem 0rem'>
         Shopping Cart
       </Text>
-      {cart.length &&
-        cart.map((cartItem) => (
-          <CartItem key={cartItem.slug} cartItem={cartItem} />
-        ))}
-      <Text p='1rem' textAlign='right'>
-        {"Total: $" + cart.length
-          ? cart.reduce((prev, cart) => {
-              return prev + Number(cart.price);
-            }, 0)
-          : "Your cart is empty!"}
+
+      {cart.length > 0 ? showCartItems() : emptyCart()}
+      <Text p='2rem' textAlign='right'>
+        {cart.length > 0 ? `Total: $${calculatePrice()}` : null}
       </Text>
 
       <Box pb='10' display='flex' justifyContent='center'>
