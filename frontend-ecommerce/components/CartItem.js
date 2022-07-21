@@ -29,7 +29,7 @@ const CartItem = ({ cartItem }) => {
             _hover={{ cursor: "pointer" }}
             onClick={() => removeItem(cartItem.slug)}
           >
-            remove
+            Remove
           </Text>
         </Box>
       </Flex>
