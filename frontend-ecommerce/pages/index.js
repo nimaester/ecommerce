@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React from "react";
 import Head from "next/head";
 import { useQuery } from "urql";
 import { PRODUCT_QUERY } from "../lib/query";
@@ -8,16 +8,13 @@ import SortItem from "../components/SortItem";
 import { useGlobalContext } from "../lib/storeContext";
 
 export default function Home() {
-  //Fetch products from strapi
   const { sort } = useGlobalContext();
 
+  //Fetch products from strapi
   const [result] = useQuery({
     query: PRODUCT_QUERY,
   });
-
   const { data, fetching, error } = result;
-  const [sortBy, setSortBy] = useState("");
-
   if (fetching) return <p>Loading...</p>;
   if (error) return <p>Oh no... {error.message}</p>;
   const inventories = data.inventories.data;

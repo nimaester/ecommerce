@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Flex, Text, Image } from "@chakra-ui/react";
 import { useGlobalContext } from "../lib/storeContext";
+import Link from "next/link";
 
 const CartItem = ({ cartItem }) => {
   const { cart, setCart } = useGlobalContext();
@@ -22,9 +23,23 @@ const CartItem = ({ cartItem }) => {
         position='relative'
         w='100%'
       >
-        <Image maxW='80px' src={cartItem.image} alt={cartItem.slug} />
-        <Text>{cartItem.name}</Text>
-        <Box display='flex' flexDir='column' alignItems='center'>
+        <Link href={`item/${cartItem.slug}`}>
+          <Flex flex='1.8' justifyContent='space-between' alignItems='center'>
+            <Image
+              _hover={{ cursor: "pointer" }}
+              maxW='80px'
+              src={cartItem.image}
+              alt={cartItem.slug}
+            />
+            <Text _hover={{ cursor: "pointer" }}>{cartItem.name}</Text>
+          </Flex>
+        </Link>
+        <Flex
+          flex='1.2 '
+          flexDir='column'
+          alignItems='end'
+          justifyContent='right'
+        >
           <Text>$ {cartItem.price}</Text>
           <Text
             color='red'
@@ -33,8 +48,9 @@ const CartItem = ({ cartItem }) => {
           >
             Remove
           </Text>
-        </Box>
+        </Flex>
       </Flex>
+
       <hr />
     </Box>
   );

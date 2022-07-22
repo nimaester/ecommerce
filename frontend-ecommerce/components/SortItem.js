@@ -3,7 +3,7 @@ import { Box, Select } from "@chakra-ui/react";
 import { useGlobalContext } from "../lib/storeContext";
 
 const SortItem = () => {
-  const { sort, setSort } = useGlobalContext();
+  const { setSort } = useGlobalContext();
 
   return (
     <Box p='2rem 0rem' display='flex' justifyContent='end'>

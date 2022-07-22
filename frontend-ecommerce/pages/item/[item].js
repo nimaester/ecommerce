@@ -201,7 +201,7 @@ const ItemDetail = () => {
           p='8'
           w='90%'
           cursor='pointer'
-          onClick={() => router.push("/")}
+          onClick={() => router.back()}
           _hover={{ outline: "none", color: "button.primary" }}
           _active={{ outline: "none", transform: "scale(1.05)" }}
         >
