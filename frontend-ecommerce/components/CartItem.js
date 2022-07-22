@@ -14,13 +14,15 @@ const CartItem = ({ cartItem }) => {
 
   return (
     <Box p='0rem 2rem'>
-      <Flex p='2rem 0rem' justifyContent='space-between' alignItems='center'>
-        <Image
-          w='10%'
-          objectFit='fill'
-          src={cartItem.image}
-          alt={cartItem.slug}
-        />
+      <Flex
+        p='2rem 0rem'
+        justifyContent='space-between'
+        alignItems='center'
+        h='100px'
+        position='relative'
+        w='100%'
+      >
+        <Image maxW='80px' src={cartItem.image} alt={cartItem.slug} />
         <Text>{cartItem.name}</Text>
         <Box display='flex' flexDir='column' alignItems='center'>
           <Text>$ {cartItem.price}</Text>

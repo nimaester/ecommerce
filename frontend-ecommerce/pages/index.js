@@ -5,9 +5,12 @@ import { PRODUCT_QUERY } from "../lib/query";
 import { Container, Grid, Box } from "@chakra-ui/react";
 import Item from "../components/Item";
 import SortItem from "../components/SortItem";
+import { useGlobalContext } from "../lib/storeContext";
 
 export default function Home() {
   //Fetch products from strapi
+  const { sort } = useGlobalContext();
+
   const [result] = useQuery({
     query: PRODUCT_QUERY,
   });
@@ -18,6 +21,38 @@ export default function Home() {
   if (fetching) return <p>Loading...</p>;
   if (error) return <p>Oh no... {error.message}</p>;
   const inventories = data.inventories.data;
+
+  const displaySort = () => {
+    if (sort === "philo") {
+      return (
+        <>
+          {inventories
+            .sort((a, b) => b.attributes.price - a.attributes.price)
+            .map((item) => (
+              <Item key={item.attributes.slug} item={item.attributes} />
+            ))}
+        </>
+      );
+    } else if (sort === "plohi") {
+      return (
+        <>
+          {inventories
+            .sort((a, b) => a.attributes.price - b.attributes.price)
+            .map((item) => (
+              <Item key={item.attributes.slug} item={item.attributes} />
+            ))}
+        </>
+      );
+    } else {
+      return (
+        <>
+          {inventories.map((item) => (
+            <Item key={item.attributes.slug} item={item.attributes} />
+          ))}
+        </>
+      );
+    }
+  };
 
   return (
     <Box backgroundColor='brand.100' pb='1rem'>
@@ -54,9 +89,7 @@ export default function Home() {
           }}
           gap='1rem'
         >
-          {inventories.map((item) => (
-            <Item key={item.attributes.slug} item={item.attributes} />
-          ))}
+          {displaySort()}
         </Grid>
       </Container>
     </Box>

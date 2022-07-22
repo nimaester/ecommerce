@@ -4,9 +4,10 @@ const StoreContext = createContext();
 
 const StoreProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [sort, setSort] = useState("");
 
   return (
-    <StoreContext.Provider value={{ cart, setCart }}>
+    <StoreContext.Provider value={{ cart, setCart, sort, setSort }}>
       {children}
     </StoreContext.Provider>
   );
