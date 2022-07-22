@@ -15,31 +15,32 @@ const CartItem = ({ cartItem }) => {
 
   return (
     <Box p='0rem 2rem'>
-      <Flex
-        p='2rem 0rem'
-        justifyContent='space-between'
-        alignItems='center'
-        h='100px'
-        position='relative'
-        w='100%'
-      >
+      <Flex p='2rem 0rem' justifyContent='space-between' h='100px'>
         <Link href={`item/${cartItem.slug}`}>
-          <Flex flex='1.8' justifyContent='space-between' alignItems='center'>
+          <Box
+            display={{
+              xl: "flex",
+              lg: "flex",
+              md: "flex",
+              sm: "none",
+              base: "none",
+            }}
+            alignItems='center'
+          >
             <Image
               _hover={{ cursor: "pointer" }}
-              maxW='80px'
+              maxW='70px'
               src={cartItem.image}
               alt={cartItem.slug}
             />
+          </Box>
+        </Link>
+        <Link href={`item/${cartItem.slug}`}>
+          <Flex alignItems='center'>
             <Text _hover={{ cursor: "pointer" }}>{cartItem.name}</Text>
           </Flex>
         </Link>
-        <Flex
-          flex='1.2 '
-          flexDir='column'
-          alignItems='end'
-          justifyContent='right'
-        >
+        <Flex flexDir='column' alignItems='end'>
           <Text>$ {cartItem.price}</Text>
           <Text
             color='red'
