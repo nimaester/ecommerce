@@ -47,7 +47,7 @@ const CartItem = ({ cartItem }) => {
             _hover={{ cursor: "pointer" }}
             onClick={() => removeItem(cartItem.slug)}
           >
-            Remove
+            remove
           </Text>
         </Flex>
       </Flex>
