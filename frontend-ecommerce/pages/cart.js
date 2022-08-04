@@ -33,7 +33,7 @@ const Cart = () => {
   const calculatePrice = () => {
     return cart
       .reduce((val, cart) => {
-        return val + cart.price;
+        return val + cart.price * cart.count;
       }, 0)
       .toFixed(2);
   };

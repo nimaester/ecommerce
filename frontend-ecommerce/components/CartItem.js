@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Flex, Text, Image } from "@chakra-ui/react";
 import { useGlobalContext } from "../lib/storeContext";
 import Link from "next/link";
+import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 
 const CartItem = ({ cartItem }) => {
   const { cart, setCart } = useGlobalContext();
@@ -35,11 +36,20 @@ const CartItem = ({ cartItem }) => {
             />
           </Box>
         </Link>
-        <Link href={`item/${cartItem.slug}`}>
-          <Flex alignItems='center'>
+
+        <Flex alignItems='center' justifyContent='space-between'>
+          <Link href={`item/${cartItem.slug}`}>
             <Text _hover={{ cursor: "pointer" }}>{cartItem.name}</Text>
-          </Flex>
-        </Link>
+          </Link>
+        </Flex>
+
+        <Box>
+          <Box display='flex' alignItems='center'>
+            <AiFillCaretDown size='20px' />
+            <Text p='10px'>{cartItem.count}</Text>
+            <AiFillCaretUp size='20px' />
+          </Box>
+        </Box>
         <Flex flexDir='column' alignItems='end'>
           <Text>$ {cartItem.price}</Text>
           <Text

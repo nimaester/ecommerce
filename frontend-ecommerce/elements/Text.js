@@ -6,11 +6,11 @@ export const ItemNameText = ({ ...children }) => {
     <Text
       {...children}
       fontSize={{
-        sm: "3xl",
-        md: "4xl",
-        lg: "4xl",
-        xl: "4xl",
-        base: "3xl",
+        sm: "4xl",
+        md: "5xl",
+        lg: "6xl",
+        xl: "6xl",
+        base: "4xl",
       }}
       pt='4'
       pb='4'
