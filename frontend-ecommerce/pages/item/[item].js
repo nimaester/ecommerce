@@ -55,7 +55,8 @@ const ItemDetail = () => {
       price: price,
       slug: slug,
       image: itemData.image.data.attributes.formats.thumbnail.url,
-      count: numOfItem,
+      count: Number(numOfItem),
+      limit: count,
     };
   };
 
@@ -75,7 +76,7 @@ const ItemDetail = () => {
     ));
   };
 
-  const addToCart = (slugName, num) => {
+  const addToCart = (slugName) => {
     const inCart = cart.find((item) => item.slug === slugName);
     if (!inCart) {
       setCart([...cart, itemInCart()]);
