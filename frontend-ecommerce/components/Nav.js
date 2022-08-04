@@ -9,6 +9,11 @@ import { useGlobalContext } from "../lib/storeContext";
 
 const Nav = () => {
   const { cart } = useGlobalContext();
+  const countCartItems = () => {
+    let itemCount = 0;
+    cart.forEach((item) => (itemCount += item.count));
+    return itemCount;
+  };
 
   return (
     <Box backgroundColor='brand.800'>
@@ -36,7 +41,7 @@ const Nav = () => {
               <RiShoppingCart2Line size='30' />
 
               <Text ml='-0.1rem' zIndex='5' fontSize='1.2rem'>
-                {cart.length}
+                {countCartItems()}
               </Text>
             </Flex>
           </Link>

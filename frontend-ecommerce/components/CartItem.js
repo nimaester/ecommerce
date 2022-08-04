@@ -1,12 +1,13 @@
 import React from "react";
-import { Box, Flex, Text, Image, Button } from "@chakra-ui/react";
+import { Box, Flex, Text, Image, Button, useToast } from "@chakra-ui/react";
 import { useGlobalContext } from "../lib/storeContext";
 import Link from "next/link";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import { IoMdTennisball } from "react-icons/io";
 
 const CartItem = ({ cartItem }) => {
   const { cart, setCart } = useGlobalContext();
+  const toast = useToast();
+  const id = "test-toast";
 
   const removeItem = (item) => {
     const newCartItems = cart.filter((cartItem) => {
@@ -15,21 +16,34 @@ const CartItem = ({ cartItem }) => {
     setCart(newCartItems);
   };
 
-  // fix this shit
   const updateItemQuantity = (itemName, type) => {
-    let newCart = cart.map((item) => {
-      if (item.name === itemName) {
-        if (type === "add" && item.count < item.limit)
-          return { ...item, ...(item.count = item.count + 1) };
-        else if (type === "minus" && item.count > 0) {
-          return { ...item, ...(item.count = item.count - 1) };
+    let newCart = cart
+      .map((item) => {
+        if (item.name === itemName) {
+          if (type === "add") {
+            if (item.count < item.limit) {
+              return { ...item, ...(item.count = item.count + 1) };
+            } else {
+              if (!toast.isActive(id)) {
+                toast({
+                  id,
+                  title: "Not enough inventory",
+                  status: "error",
+                  duration: 1000,
+                });
+              }
+              return item;
+            }
+          } else if (type === "minus") {
+            return { ...item, ...(item.count = item.count - 1) };
+          } else {
+            return item;
+          }
         } else {
-          null;
+          return item;
         }
-      } else {
-        return item;
-      }
-    });
+      })
+      .filter((item) => item.count !== 0);
     setCart(newCart);
   };
 

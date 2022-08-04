@@ -134,16 +134,9 @@ const ItemDetail = () => {
     <Box>
       <Container
         maxW='container.xl'
-        display={{
-          sm: "block",
-          md: "flex",
-          lg: "flex",
-          xl: "flex",
-          base: "block",
-        }}
         p={{
           sm: "2rem",
-          md: "3rem 5rem",
+          md: "3rem 1rem",
           lg: "3rem 5rem",
           xl: "3rem 5rem",
           base: "2rem",
@@ -152,19 +145,27 @@ const ItemDetail = () => {
         {zoom ? (
           showZoomedImage()
         ) : (
-          <>
+          <Box
+            display={{
+              sm: "block",
+              md: "flex",
+              lg: "flex",
+              xl: "flex",
+              base: "block",
+            }}
+            p={{
+              sm: "2rem 0rem",
+              md: "0rem",
+              lg: "0rem",
+              xl: "0rem",
+              base: "2rem 0rem",
+            }}
+          >
             <Box
               flex='1.4'
               display='flex'
-              alignItems='center'
               justifyContent='center'
-              h={{
-                sm: "50vh",
-                md: "60vh",
-                lg: "60vh",
-                xl: "60vh",
-                base: "50vh",
-              }}
+              alignItems='center'
             >
               <Image
                 _hover={{ cursor: "zoom-in" }}
@@ -175,6 +176,7 @@ const ItemDetail = () => {
                 maxW='450px'
               />
             </Box>
+
             <Flex
               pl={{
                 sm: "0rem",
@@ -216,7 +218,7 @@ const ItemDetail = () => {
                 </Box>
               </Box>
             </Flex>
-          </>
+          </Box>
         )}
       </Container>
       <Box pb='10' display='flex' justifyContent='center'>
