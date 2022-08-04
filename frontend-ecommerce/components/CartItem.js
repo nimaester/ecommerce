@@ -22,7 +22,7 @@ const CartItem = ({ cartItem }) => {
         if (item.name === itemName) {
           if (type === "add") {
             if (item.count < item.limit) {
-              return { ...item, ...(item.count = item.count + 1) };
+              return { ...item, ...(item.count += 1) };
             } else {
               if (!toast.isActive(id)) {
                 toast({
@@ -35,7 +35,7 @@ const CartItem = ({ cartItem }) => {
               return item;
             }
           } else if (type === "minus") {
-            return { ...item, ...(item.count = item.count - 1) };
+            return { ...item, ...(item.count -= 1) };
           } else {
             return item;
           }
