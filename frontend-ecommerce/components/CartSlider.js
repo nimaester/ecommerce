@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Button, Box, Flex, Text, Image } from "@chakra-ui/react";
 import Link from "next/link";
 import { useGlobalContext } from "../lib/storeContext";
+import { CartSliderButton } from "../elements/Buttons";
 
 const CartSlider = () => {
   const { cartSlider, setCartSlider, cart } = useGlobalContext();
@@ -23,7 +24,7 @@ const CartSlider = () => {
           backgroundColor='white'
           flex='3'
           overflow='auto'
-          minW='600px'
+          minW='500px'
         >
           {cartSlider &&
             cart.map((item) => (
@@ -36,9 +37,9 @@ const CartSlider = () => {
                   <Image w='5rem' src={item.image} />
                 </Box>
                 <Box flex='5'>
-                  <Text>{item.name}</Text>
-                  <Text>{item.count}</Text>
-                  <Text>${item.price}</Text>
+                  <Text fontSize='xl'>{item.name}</Text>
+                  <Text>Qty: {item.count}</Text>
+                  <Text>${item.price * item.count}</Text>
                 </Box>
               </Flex>
             ))}
@@ -52,9 +53,13 @@ const CartSlider = () => {
           backgroundColor='white'
         >
           <Link href={"/cart"}>
-            <Button onClick={() => setCartSlider(false)}>Checkout</Button>
+            <CartSliderButton onClick={() => setCartSlider(false)}>
+              Checkout
+            </CartSliderButton>
           </Link>
-          <Button onClick={() => setCartSlider(false)}>Close Cart</Button>
+          <CartSliderButton onClick={() => setCartSlider(false)}>
+            Close Cart
+          </CartSliderButton>
         </Flex>
       </Box>
     </Container>
