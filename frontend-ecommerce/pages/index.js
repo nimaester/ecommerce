@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Head from "next/head";
 import { useQuery } from "urql";
 import { PRODUCT_QUERY } from "../lib/query";
@@ -8,7 +8,7 @@ import SortItem from "../components/SortItem";
 import { useGlobalContext } from "../lib/storeContext";
 
 export default function Home() {
-  const { sort } = useGlobalContext();
+  const { sort, cartSlider } = useGlobalContext();
 
   //Fetch products from strapi
   const [result] = useQuery({
@@ -85,6 +85,8 @@ export default function Home() {
             base: "1rem",
           }}
           gap='1rem'
+          overflowY={cartSlider ? "hidden" : "auto"}
+          position={cartSlider ? "fixed" : "auto"}
         >
           {displaySort()}
         </Grid>

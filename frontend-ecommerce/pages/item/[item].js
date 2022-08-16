@@ -21,7 +21,7 @@ import { useGlobalContext } from "../../lib/storeContext";
 const ItemDetail = () => {
   const toast = useToast();
   const id = "test-toast";
-  const { cart, setCart } = useGlobalContext();
+  const { cart, setCart, cartSlider } = useGlobalContext();
   const [numOfItem, setNumOfItem] = useState(1);
 
   const [zoom, setZoom] = useState(false);
@@ -141,6 +141,8 @@ const ItemDetail = () => {
           xl: "3rem 5rem",
           base: "2rem",
         }}
+        overflowY={cartSlider ? "hidden" : "auto"}
+        position={cartSlider ? "fixed" : "auto"}
       >
         {zoom ? (
           showZoomedImage()

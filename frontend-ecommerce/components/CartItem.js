@@ -3,6 +3,7 @@ import { Box, Flex, Text, Image, Button, useToast } from "@chakra-ui/react";
 import { useGlobalContext } from "../lib/storeContext";
 import Link from "next/link";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { CartPlusMinusButton } from "../elements/Buttons";
 
 const CartItem = ({ cartItem }) => {
   const { cart, setCart } = useGlobalContext();
@@ -77,23 +78,24 @@ const CartItem = ({ cartItem }) => {
         </Flex>
 
         <Flex w='200px' justifyContent='space-between'>
-          <Box display='flex' alignItems='center'>
-            <Button
+          <Box
+            border='1px solid #E1E3E4'
+            borderRadius='5px'
+            display='flex'
+            alignItems='center'
+          >
+            <CartPlusMinusButton
               onClick={() => updateItemQuantity(cartItem.name, "minus")}
-              padding='0rem'
-              backgroundColor='transparent'
             >
               <AiOutlineMinus size='20px' />
-            </Button>
+            </CartPlusMinusButton>
 
             <Text p='10px'>{cartItem.count}</Text>
-            <Button
-              padding='0rem'
-              backgroundColor='transparent'
+            <CartPlusMinusButton
               onClick={() => updateItemQuantity(cartItem.name, "add")}
             >
               <AiOutlinePlus size='20px' />
-            </Button>
+            </CartPlusMinusButton>
           </Box>
           <Flex flexDir='column' alignItems='end'>
             <Text>$ {cartItem.price}</Text>

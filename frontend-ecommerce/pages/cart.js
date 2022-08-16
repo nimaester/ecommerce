@@ -8,7 +8,7 @@ import CartItem from "../components/CartItem.js";
 import emptyCartImage from "../assets/empty_cart.jpg";
 
 const Cart = () => {
-  const { cart } = useGlobalContext();
+  const { cart, cartSlider } = useGlobalContext();
   const router = useRouter();
 
   const emptyCart = () => {
@@ -39,7 +39,11 @@ const Cart = () => {
   };
 
   return (
-    <Container maxW='container.xl'>
+    <Container
+      maxW='container.xl'
+      overflowY={cartSlider ? "hidden" : "auto"}
+      position={cartSlider ? "fixed" : "auto"}
+    >
       <Text textAlign='center' fontSize='4xl' p='4rem 0rem'>
         Shopping Cart
       </Text>

@@ -5,9 +5,12 @@ const StoreContext = createContext();
 const StoreProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [sort, setSort] = useState("");
+  const [cartSlider, setCartSlider] = useState(false);
 
   return (
-    <StoreContext.Provider value={{ cart, setCart, sort, setSort }}>
+    <StoreContext.Provider
+      value={{ cart, setCart, sort, setSort, cartSlider, setCartSlider }}
+    >
       {children}
     </StoreContext.Provider>
   );

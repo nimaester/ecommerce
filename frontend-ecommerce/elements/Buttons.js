@@ -34,3 +34,14 @@ export const DisabledButton = ({ children }) => {
     </Button>
   );
 };
+
+export const CartPlusMinusButton = ({ ...children }) => {
+  return (
+    <Button
+      {...children}
+      _hover={{ textDecoration: "none" }}
+      padding='0rem'
+      backgroundColor='transparent'
+    ></Button>
+  );
+};
