@@ -18,6 +18,7 @@ import { ButtonDefault, DisabledButton } from "../../elements/Buttons";
 import { ItemNameText } from "../../elements/Text";
 import { DefaultContainer } from "../../elements/Container";
 import { useGlobalContext } from "../../lib/storeContext";
+import { Loading } from "../../elements/Loading";
 
 const ItemDetail = () => {
   const toast = useToast();
@@ -36,7 +37,7 @@ const ItemDetail = () => {
   });
   const { data, fetching, error } = result;
 
-  if (fetching) return <p>Loading...</p>;
+  if (fetching) return <Loading />;
   if (error) return <p>Oh no... {error.message}</p>;
   const itemData = data.inventories.data[0].attributes;
   const { title, description, price, slug, count } = itemData;

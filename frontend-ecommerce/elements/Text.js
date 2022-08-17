@@ -1,5 +1,5 @@
 import React from "react";
-import { Text } from "@chakra-ui/react";
+import { Text, forwardRef, Flex } from "@chakra-ui/react";
 
 export const ItemNameText = ({ ...children }) => {
   return (
@@ -34,3 +34,12 @@ export const HeaderText = ({ ...children }) => {
     ></Text>
   );
 };
+
+export const NavLinkText = forwardRef((props, ref) => (
+  <Flex
+    {...props}
+    _hover={{ cursor: "pointer", color: "blue", transform: "scale(1.05)" }}
+    alignItems='center'
+    ref={ref}
+  ></Flex>
+));

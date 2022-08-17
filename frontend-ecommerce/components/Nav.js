@@ -6,6 +6,7 @@ import { FaExclamation } from "react-icons/fa";
 import { FiLogIn } from "react-icons/fi";
 import Link from "next/link";
 import { useGlobalContext } from "../lib/storeContext";
+import { NavLinkText } from "../elements/Text";
 
 const Nav = () => {
   const { cart, cartSlider, setCartSlider } = useGlobalContext();
@@ -16,39 +17,54 @@ const Nav = () => {
   };
 
   return (
-    <Box backgroundColor='brand.800' position='sticky' top='0' zIndex='5'>
-      <Container maxW='container.xl' p='5'>
-        <Flex pr='2' pl='2' justifyContent='space-between'>
+    <Box backgroundColor='brand.200' position='sticky' top='0' zIndex='5'>
+      <Container
+        p={{
+          sm: "2rem 2rem",
+          md: "2rem 3rem",
+          lg: "2rem 3rem",
+          xl: "2rem 3rem",
+          base: "2rem 1rem",
+        }}
+        fontSize={{
+          sm: "1rem",
+          md: "1.5rem",
+          lg: "1.5rem",
+          xl: "1.5rem",
+          base: "1rem",
+        }}
+        maxW='container.xl'
+      >
+        <Flex justifyContent='space-between'>
           <Link href={"/"}>
-            <Flex
-              alignItems='center'
+            <NavLinkText
               cursor='pointer'
+              justifyContent='center'
               onClick={() => setCartSlider(false)}
+              alignItems='center'
             >
               <AiOutlineHome size='30' />
-              <Text fontSize='1.2rem'>Home</Text>
-            </Flex>
+              <Text>Home</Text>
+            </NavLinkText>
           </Link>
-          <Flex cursor='pointer'>
+          <NavLinkText cursor='pointer' alignItems='center'>
             <FaExclamation size='25' />
-            <Text fontSize='1.2rem'>What's New</Text>
-          </Flex>
-          <Flex alignItems='center' cursor='pointer'>
+            <Text>What's New</Text>
+          </NavLinkText>
+          <NavLinkText alignItems='center' cursor='pointer'>
             <FiLogIn size='30' />
-            <Text fontSize='1.2rem'>Login</Text>
-          </Flex>
+            <Text>Login</Text>
+          </NavLinkText>
 
-          <Flex
+          <NavLinkText
             alignItems='center'
             cursor='pointer'
             onClick={() => setCartSlider(!cartSlider)}
           >
             <RiShoppingCart2Line size='30' />
 
-            <Text ml='-0.1rem' zIndex='5' fontSize='1.2rem'>
-              {countCartItems()}
-            </Text>
-          </Flex>
+            <Text>{countCartItems()}</Text>
+          </NavLinkText>
         </Flex>
       </Container>
     </Box>
