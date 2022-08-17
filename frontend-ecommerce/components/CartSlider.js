@@ -37,7 +37,9 @@ const CartSlider = () => {
                   <Image w='5rem' src={item.image} />
                 </Box>
                 <Box flex='5'>
-                  <Text fontSize='xl'>{item.name}</Text>
+                  <Text fontSize='lg' fontWeight='bold'>
+                    {item.name}
+                  </Text>
                   <Text>Qty: {item.count}</Text>
                   <Text>${item.price * item.count}</Text>
                 </Box>
