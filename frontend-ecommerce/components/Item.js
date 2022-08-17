@@ -8,21 +8,13 @@ const Items = ({ item }) => {
   const { title, price, slug } = item;
   const [hover, setHover] = useState(false);
 
-  const mouseEnter = () => {
-    setHover(true);
-  };
-
-  const mouseOut = () => {
-    setHover(false);
-  };
-
   return (
     <Box>
       <Link href={`item/${slug}`}>
         <Flex
           position='relative'
-          onMouseOver={mouseEnter}
-          onMouseOut={mouseOut}
+          onMouseOver={() => setHover(true)}
+          onMouseOut={() => setHover(false)}
           backgroundColor='white'
           borderRadius='10px'
           flexDir='column'

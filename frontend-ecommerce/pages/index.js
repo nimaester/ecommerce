@@ -8,6 +8,7 @@ import SortItem from "../components/SortItem";
 import { useGlobalContext } from "../lib/storeContext";
 import { DefaultContainer } from "../elements/Container";
 import { HeaderText } from "../elements/Text";
+import { Loading } from "../elements/Loading";
 
 export default function Home() {
   const { sort, cartSlider } = useGlobalContext();
@@ -16,8 +17,9 @@ export default function Home() {
   const [result] = useQuery({
     query: PRODUCT_QUERY,
   });
+
   const { data, fetching, error } = result;
-  if (fetching) return <p>Loading...</p>;
+  if (fetching) return <Loading />;
   if (error) return <p>Oh no... {error.message}</p>;
   const inventories = data.inventories.data;
 
@@ -54,7 +56,7 @@ export default function Home() {
   };
 
   return (
-    <Box backgroundColor='brand.100' pb='1rem'>
+    <Box backgroundColor='brand.100'>
       <Head>
         <title>Ecommerce App</title>
         <link rel='icon' href='/favicon.ico' />
@@ -70,13 +72,6 @@ export default function Home() {
             lg: "repeat(4, 1fr)",
             xl: "repeat(5, 1fr)",
             base: "repeat(2, 1fr)",
-          }}
-          pb={{
-            sm: "1rem",
-            md: "2rem",
-            lg: "5rem",
-            xl: "5rem",
-            base: "1rem",
           }}
           gap='1rem'
         >

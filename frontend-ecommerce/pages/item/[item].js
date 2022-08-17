@@ -110,12 +110,8 @@ const ItemDetail = () => {
           alignItems='center'
         >
           <Image
-            m='auto'
             src={itemData.image.data.attributes.formats.medium.url}
             alt={slug}
-            h='auto'
-            w='auto'
-            maxH='85vh'
           />
         </Box>
         <Button

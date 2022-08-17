@@ -15,11 +15,11 @@ export const FixedBox = ({ ...children }) => {
       }}
       _hover={{
         cursor: "pointer",
-        boxShadow: "0 0 11px rgba(33,33,33,.9)",
+        boxShadow: "0 0 10px rgba(33,33,33,.9)",
       }}
       h='100%'
       w='100%'
-      borderRadius='10px'
+      borderRadius='5px'
     ></Box>
   );
 };

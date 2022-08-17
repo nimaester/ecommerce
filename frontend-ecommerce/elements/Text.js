@@ -23,7 +23,7 @@ export const HeaderText = ({ ...children }) => {
     <Text
       {...children}
       fontSize={{
-        sm: "3xl",
+        sm: "4xl",
         md: "5xl",
         lg: "5xl",
         xl: "5xl",
