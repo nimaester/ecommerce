@@ -16,6 +16,7 @@ import { MdKeyboardBackspace } from "react-icons/md";
 import { IoIosCloseCircle } from "react-icons/io";
 import { ButtonDefault, DisabledButton } from "../../elements/Buttons";
 import { ItemNameText } from "../../elements/Text";
+import { DefaultContainer } from "../../elements/Container";
 import { useGlobalContext } from "../../lib/storeContext";
 
 const ItemDetail = () => {
@@ -131,112 +132,112 @@ const ItemDetail = () => {
   };
 
   return (
-    <Box>
-      <Container
-        maxW='container.xl'
-        p={{
-          sm: "2rem",
-          md: "3rem 1rem",
-          lg: "3rem 5rem",
-          xl: "3rem 5rem",
-          base: "2rem",
-        }}
-        overflowY={cartSlider ? "hidden" : "auto"}
-        position={cartSlider ? "fixed" : "auto"}
-      >
-        {zoom ? (
-          showZoomedImage()
-        ) : (
+    <DefaultContainer mt='3rem'>
+      {zoom ? (
+        showZoomedImage()
+      ) : (
+        <Box
+          display={{
+            sm: "block",
+            md: "flex",
+            lg: "flex",
+            xl: "flex",
+            base: "block",
+          }}
+        >
           <Box
-            display={{
-              sm: "block",
+            flex='1.4'
+            display='flex'
+            justifyContent='center'
+            alignItems='center'
+            pb={{
+              sm: "4rem",
               md: "flex",
               lg: "flex",
               xl: "flex",
-              base: "block",
-            }}
-            p={{
-              sm: "2rem 0rem",
-              md: "0rem",
-              lg: "0rem",
-              xl: "0rem",
-              base: "2rem 0rem",
+              base: "4rem",
             }}
           >
-            <Box
-              flex='1.4'
-              display='flex'
-              justifyContent='center'
-              alignItems='center'
-            >
-              <Image
-                _hover={{ cursor: "zoom-in" }}
-                src={itemData.image.data.attributes.formats.medium.url}
-                alt={slug}
-                onClick={openZoom}
-                w='100%'
-                maxW='450px'
-              />
+            <Image
+              _hover={{ cursor: "zoom-in" }}
+              src={itemData.image.data.attributes.formats.medium.url}
+              alt={slug}
+              onClick={openZoom}
+              w={{
+                sm: "80%",
+                md: "100%",
+                lg: "100%",
+                xl: "100%",
+                base: "80%",
+              }}
+              maxW='450px'
+            />
+          </Box>
+
+          <Flex
+            pl={{
+              sm: "0rem",
+              md: "2rem",
+              lg: "2rem",
+              xl: "2rem",
+              base: "0rem",
+            }}
+            flex='1'
+            flexDir='column'
+            justifyContent='center'
+          >
+            <Box>
+              <ItemNameText>{title}</ItemNameText>
+              <Text fontSize='2xl'>${price}</Text>
+              <Text pt='4' pb='4'>
+                {description}
+              </Text>
             </Box>
 
-            <Flex
-              pl={{
-                sm: "0rem",
-                md: "2rem",
-                lg: "2rem",
-                xl: "2rem",
-                base: "0rem",
+            <Box
+              display='flex'
+              gap='2rem'
+              justifyContent={{
+                sm: "left",
+                base: "space-between",
               }}
-              flex='1'
-              flexDir='column'
-              justifyContent='center'
+              alignItems='center'
+              p='2rem 0rem'
             >
+              {count > 0 ? (
+                <Select
+                  onChange={(e) => setNumOfItem(e.target.value)}
+                  maxW='80px'
+                  p='0rem'
+                >
+                  {showNumberOfItems(count)}
+                </Select>
+              ) : null}
               <Box>
-                <ItemNameText>{title}</ItemNameText>
-                <Text fontSize='2xl'>${price}</Text>
-                <Text pt='4' pb='4'>
-                  {description}
-                </Text>
-              </Box>
-
-              <Box display='flex' gap='2rem' alignItems='center' p='2rem 0rem'>
                 {count > 0 ? (
-                  <Select
-                    onChange={(e) => setNumOfItem(e.target.value)}
-                    maxW='80px'
-                    p='0rem'
-                  >
-                    {showNumberOfItems(count)}
-                  </Select>
-                ) : null}
-                <Box>
-                  {count > 0 ? (
-                    <ButtonDefault onClick={() => addToCart(slug)}>
-                      Add to cart
-                    </ButtonDefault>
-                  ) : (
-                    <DisabledButton />
-                  )}
-                </Box>
+                  <ButtonDefault onClick={() => addToCart(slug)}>
+                    Add to cart
+                  </ButtonDefault>
+                ) : (
+                  <DisabledButton />
+                )}
               </Box>
-            </Flex>
-          </Box>
-        )}
-      </Container>
-      <Box pb='10' display='flex' justifyContent='center'>
-        <Button
-          backgroundColor='transparent'
-          p='8'
-          w='90%'
-          cursor='pointer'
-          onClick={() => router.back()}
-          _hover={{ outline: "none", color: "button.primary" }}
-          _active={{ outline: "none", transform: "scale(1.05)" }}
-        >
-          <MdKeyboardBackspace size='30' /> Back to previous page
-        </Button>
-      </Box>
-    </Box>
+            </Box>
+          </Flex>
+        </Box>
+      )}
+      <Button
+        backgroundColor='transparent'
+        p='5rem 0rem'
+        w='100%'
+        cursor='pointer'
+        onClick={() => router.back()}
+        _hover={{ outline: "none", color: "button.primary" }}
+        _active={{ outline: "none", transform: "scale(1.05)" }}
+      >
+        <MdKeyboardBackspace size='30' /> Back to previous page
+      </Button>
+    </DefaultContainer>
   );
 };
 

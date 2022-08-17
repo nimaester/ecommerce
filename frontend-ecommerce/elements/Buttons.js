@@ -28,6 +28,9 @@ export const CartSliderButton = forwardRef((props, ref) => (
     }}
     _active={{ transform: "scale(1.05)" }}
     ref={ref}
+    backgroundColor='#2B3636'
+    border='2px solid gray'
+    color='white'
   ></Button>
 ));
 
@@ -53,7 +56,7 @@ export const CartPlusMinusButton = ({ ...children }) => {
     <Button
       {...children}
       _hover={{ textDecoration: "none" }}
-      padding='0rem'
+      padding='0'
       backgroundColor='transparent'
     ></Button>
   );

@@ -6,9 +6,11 @@ import { useGlobalContext } from "../lib/storeContext";
 import { useRouter } from "next/router";
 import CartItem from "../components/CartItem.js";
 import emptyCartImage from "../assets/empty_cart.jpg";
+import { DefaultContainer } from "../elements/Container";
+import { HeaderText } from "../elements/Text";
 
 const Cart = () => {
-  const { cart, cartSlider } = useGlobalContext();
+  const { cart } = useGlobalContext();
   const router = useRouter();
 
   const emptyCart = () => {
@@ -31,22 +33,21 @@ const Cart = () => {
   };
 
   const calculatePrice = () => {
-    return cart
+    let total = cart
       .reduce((val, cart) => {
         return val + cart.price * cart.count;
       }, 0)
       .toFixed(2);
+
+    //adds comma if thousands
+    return String(total).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
   };
 
   return (
-    <Container
-      maxW='container.xl'
-      overflowY={cartSlider ? "hidden" : "auto"}
-      position={cartSlider ? "fixed" : "auto"}
-    >
-      <Text textAlign='center' fontSize='4xl' p='4rem 0rem'>
+    <DefaultContainer maxW='container.xl'>
+      <HeaderText textAlign='center' pb='4rem' fontSize='4xl'>
         Shopping Cart
-      </Text>
+      </HeaderText>
 
       {cart.length > 0 ? showCartItems() : emptyCart()}
       <Text p='2rem' textAlign='right'>
@@ -66,7 +67,7 @@ const Cart = () => {
           <MdKeyboardBackspace size='30' /> Continue shopping
         </Button>
       </Box>
-    </Container>
+    </DefaultContainer>
   );
 };
 export default Cart;

@@ -49,7 +49,7 @@ const CartItem = ({ cartItem }) => {
   };
 
   return (
-    <Box p='0rem 2rem'>
+    <Box p='0rem'>
       <Flex p='2rem 0rem' justifyContent='space-between' h='100px'>
         <Link href={`item/${cartItem.slug}`}>
           <Box
@@ -90,7 +90,7 @@ const CartItem = ({ cartItem }) => {
               <AiOutlineMinus size='20px' />
             </CartPlusMinusButton>
 
-            <Text p='10px'>{cartItem.count}</Text>
+            <Text>{cartItem.count}</Text>
             <CartPlusMinusButton
               onClick={() => updateItemQuantity(cartItem.name, "add")}
             >

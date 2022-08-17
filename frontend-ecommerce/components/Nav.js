@@ -29,12 +29,10 @@ const Nav = () => {
               <Text fontSize='1.2rem'>Home</Text>
             </Flex>
           </Link>
-
           <Flex cursor='pointer'>
             <FaExclamation size='25' />
             <Text fontSize='1.2rem'>What's New</Text>
           </Flex>
-
           <Flex alignItems='center' cursor='pointer'>
             <FiLogIn size='30' />
             <Text fontSize='1.2rem'>Login</Text>
