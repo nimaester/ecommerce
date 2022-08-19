@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Container, Text, Box, Button } from "@chakra-ui/react";
+import { Text, Box, Button } from "@chakra-ui/react";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { useGlobalContext } from "../lib/storeContext";
 import { useRouter } from "next/router";

@@ -1,7 +1,8 @@
 import React from "react";
+import Image from "next/image";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { AiOutlineHome } from "react-icons/ai";
-import { Box, Container, Text, Flex } from "@chakra-ui/react";
+import { Box, Container, Flex } from "@chakra-ui/react";
 import Link from "next/link";
 import { useGlobalContext } from "../lib/storeContext";
 import { NavLinkText, NavBrandText } from "../elements/Text";
@@ -41,9 +42,13 @@ const Nav = () => {
       >
         <Flex justifyContent='space-between'>
           <Box flex='3'>
-            <NavBrandText>Marcia's Boutique</NavBrandText>
+            <Link href={"/"}>
+              <NavLinkText onClick={() => setCartSlider(false)}>
+                Marcia's Boutique
+              </NavLinkText>
+            </Link>
           </Box>
-          <Flex justifyContent='space-between' flex='2'>
+          <Flex justifyContent='space-between' flex='2' alignItems='center'>
             <Link href={"/"}>
               <NavLinkText onClick={() => setCartSlider(false)}>
                 Home

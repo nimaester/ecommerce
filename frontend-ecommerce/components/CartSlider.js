@@ -3,7 +3,6 @@ import { Container, Button, Box, Flex, Text, Image } from "@chakra-ui/react";
 import Link from "next/link";
 import { useGlobalContext } from "../lib/storeContext";
 import { CartSliderButton } from "../elements/Buttons";
-import emptyCart from "../assets/empty-cart2.jpg";
 
 const CartSlider = () => {
   const { cartSlider, setCartSlider, cart } = useGlobalContext();
