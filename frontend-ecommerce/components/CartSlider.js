@@ -8,6 +8,17 @@ import emptyCart from "../assets/empty-cart2.jpg";
 const CartSlider = () => {
   const { cartSlider, setCartSlider, cart } = useGlobalContext();
 
+  const calculatePrice = (price, count) => {
+    let total = cart
+      .reduce((val, cart) => {
+        return val + price * count;
+      }, 0)
+      .toFixed(2);
+
+    //adds comma if thousands
+    return String(total).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   const emptySliderCart = () => {
     return (
       <Box
@@ -35,7 +46,7 @@ const CartSlider = () => {
           <Text fontWeight='medium' as='span' color='blue'>
             {item.count}
           </Text>
-          <Text>${item.price * item.count}</Text>
+          <Text>$ {calculatePrice(item.price, item.count)}</Text>
         </Box>
       </Flex>
     ));
