@@ -2,11 +2,9 @@ import React from "react";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { AiOutlineHome } from "react-icons/ai";
 import { Box, Container, Text, Flex } from "@chakra-ui/react";
-import { FaExclamation } from "react-icons/fa";
-import { FiLogIn } from "react-icons/fi";
 import Link from "next/link";
 import { useGlobalContext } from "../lib/storeContext";
-import { NavLinkText } from "../elements/Text";
+import { NavLinkText, NavBrandText } from "../elements/Text";
 
 const Nav = () => {
   const { cart, cartSlider, setCartSlider } = useGlobalContext();
@@ -17,7 +15,13 @@ const Nav = () => {
   };
 
   return (
-    <Box backgroundColor='brand.200' position='sticky' top='0' zIndex='5'>
+    <Box
+      backgroundColor='brand.700'
+      position='sticky'
+      top='0'
+      zIndex='5'
+      color='#2B3636'
+    >
       <Container
         p={{
           sm: "2rem 2rem",
@@ -36,35 +40,23 @@ const Nav = () => {
         maxW='container.xl'
       >
         <Flex justifyContent='space-between'>
-          <Link href={"/"}>
-            <NavLinkText
-              cursor='pointer'
-              justifyContent='center'
-              onClick={() => setCartSlider(false)}
-              alignItems='center'
-            >
-              <AiOutlineHome size='30' />
-              <Text>Home</Text>
+          <Box flex='3'>
+            <NavBrandText>Marcia's Boutique</NavBrandText>
+          </Box>
+          <Flex justifyContent='space-between' flex='2'>
+            <Link href={"/"}>
+              <NavLinkText onClick={() => setCartSlider(false)}>
+                Home
+              </NavLinkText>
+            </Link>
+            <NavLinkText>New Products</NavLinkText>
+            <NavLinkText>Login</NavLinkText>
+
+            <NavLinkText onClick={() => setCartSlider(!cartSlider)}>
+              <RiShoppingCart2Line size='20' />
+              {countCartItems()}
             </NavLinkText>
-          </Link>
-          <NavLinkText cursor='pointer' alignItems='center'>
-            <FaExclamation size='25' />
-            <Text>What's New</Text>
-          </NavLinkText>
-          <NavLinkText alignItems='center' cursor='pointer'>
-            <FiLogIn size='30' />
-            <Text>Login</Text>
-          </NavLinkText>
-
-          <NavLinkText
-            alignItems='center'
-            cursor='pointer'
-            onClick={() => setCartSlider(!cartSlider)}
-          >
-            <RiShoppingCart2Line size='30' />
-
-            <Text>{countCartItems()}</Text>
-          </NavLinkText>
+          </Flex>
         </Flex>
       </Container>
     </Box>
