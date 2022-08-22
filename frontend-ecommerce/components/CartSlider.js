@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Button, Box, Flex, Text, Image } from "@chakra-ui/react";
+import { Container, Box, Flex, Text, Image } from "@chakra-ui/react";
 import Link from "next/link";
 import { useGlobalContext } from "../lib/storeContext";
 import { CartSliderButton } from "../elements/Buttons";
@@ -25,8 +25,15 @@ const CartSlider = () => {
         display='flex'
         justifyContent='center'
         alignItems='center'
+        flexDir='column'
       >
-        <Text>Your Cart is Empty</Text>
+        <Image
+          pb='5'
+          src='https://mbpics7528.s3.us-west-1.amazonaws.com/empty-cart2.png'
+          alt='empty_cart_image'
+          opacity='0.7'
+        />
+        <Text>Your cart is empty!</Text>
       </Box>
     );
   };

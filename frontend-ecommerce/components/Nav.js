@@ -1,11 +1,9 @@
 import React from "react";
-import Image from "next/image";
 import { RiShoppingCart2Line } from "react-icons/ri";
-import { AiOutlineHome } from "react-icons/ai";
-import { Box, Container, Flex } from "@chakra-ui/react";
+import { Box, Container, Flex, Image } from "@chakra-ui/react";
 import Link from "next/link";
 import { useGlobalContext } from "../lib/storeContext";
-import { NavLinkText, NavBrandText } from "../elements/Text";
+import { NavLinkText } from "../elements/Text";
 
 const Nav = () => {
   const { cart, cartSlider, setCartSlider } = useGlobalContext();
@@ -17,7 +15,7 @@ const Nav = () => {
 
   return (
     <Box
-      backgroundColor='brand.700'
+      backgroundColor='brand.900'
       position='sticky'
       top='0'
       zIndex='5'
@@ -43,9 +41,12 @@ const Nav = () => {
         <Flex justifyContent='space-between'>
           <Box flex='3'>
             <Link href={"/"}>
-              <NavLinkText onClick={() => setCartSlider(false)}>
-                Marcia's Boutique
-              </NavLinkText>
+              <Image
+                src='https://mbpics7528.s3.us-west-1.amazonaws.com/logoColor.png'
+                alt='marcias_boutique'
+                w='100px'
+                _hover={{ cursor: "pointer" }}
+              />
             </Link>
           </Box>
           <Flex justifyContent='space-between' flex='2' alignItems='center'>
@@ -54,11 +55,11 @@ const Nav = () => {
                 Home
               </NavLinkText>
             </Link>
-            <NavLinkText>New Products</NavLinkText>
+            <NavLinkText>Shop</NavLinkText>
             <NavLinkText>Login</NavLinkText>
 
             <NavLinkText onClick={() => setCartSlider(!cartSlider)}>
-              <RiShoppingCart2Line size='20' />
+              <RiShoppingCart2Line size='25' />
               {countCartItems()}
             </NavLinkText>
           </Flex>

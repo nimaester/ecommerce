@@ -1,11 +1,9 @@
 import React from "react";
-import Image from "next/image";
-import { Text, Box, Button } from "@chakra-ui/react";
+import { Text, Box, Button, Image } from "@chakra-ui/react";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { useGlobalContext } from "../lib/storeContext";
 import { useRouter } from "next/router";
 import CartItem from "../components/CartItem.js";
-import emptyCartImage from "../assets/empty_cart.jpg";
 import { DefaultContainer } from "../elements/Container";
 import { HeaderText } from "../elements/Text";
 
@@ -16,7 +14,10 @@ const Cart = () => {
   const emptyCart = () => {
     return (
       <Box display='flex' justifyContent='center' alignItems='center'>
-        <Image src={emptyCartImage} h='auto' w='auto' alt='empty_cart' />
+        <Image
+          src='https://mbpics7528.s3.us-west-1.amazonaws.com/empty_cart.png'
+          alt='empty_cart'
+        />
       </Box>
     );
   };

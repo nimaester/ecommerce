@@ -40,7 +40,8 @@ export const NavLinkText = forwardRef((props, ref) => (
     {...props}
     _hover={{ cursor: "pointer", color: "black" }}
     ref={ref}
-    fontSize='1rem'
+    fontSize='1.2rem'
+    color='brand.200'
   ></Flex>
 ));
 
