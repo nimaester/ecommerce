@@ -1,9 +1,11 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 
 export const FixedBox = ({ ...children }) => {
   return (
     <Box
+      as={motion.div}
       {...children}
       zIndex='2'
       position='absolute'
@@ -13,7 +15,7 @@ export const FixedBox = ({ ...children }) => {
         msTransform: "translate(-50%, -50%)",
         transform: "translate(-50%, -50%)",
       }}
-      _hover={{
+      whileHover={{
         cursor: "pointer",
         boxShadow: "0 0 10px rgba(33,33,33,.9)",
       }}

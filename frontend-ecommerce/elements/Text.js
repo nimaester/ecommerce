@@ -1,5 +1,6 @@
 import React from "react";
-import { Text, forwardRef, Flex } from "@chakra-ui/react";
+import { Text, forwardRef } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 
 export const ItemNameText = ({ ...children }) => {
   return (
@@ -36,13 +37,15 @@ export const HeaderText = ({ ...children }) => {
 };
 
 export const NavLinkText = forwardRef((props, ref) => (
-  <Flex
+  <Text
     {...props}
-    _hover={{ cursor: "pointer", color: "black" }}
+    as={motion.p}
+    whileHover={{ scale: 1.1, originX: 0, color: "black", cursor: "pointer" }}
     ref={ref}
     fontSize='1.2rem'
     color='brand.200'
-  ></Flex>
+    display='flex'
+  ></Text>
 ));
 
 export const NavBrandText = ({ ...children }) => {
