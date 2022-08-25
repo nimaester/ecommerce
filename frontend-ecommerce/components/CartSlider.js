@@ -1,8 +1,9 @@
 import React from "react";
-import { Container, Box, Flex, Text, Image } from "@chakra-ui/react";
+import { Container, Box, Flex, Text, Image, chakra } from "@chakra-ui/react";
 import Link from "next/link";
 import { useGlobalContext } from "../lib/storeContext";
 import { CartSliderButton } from "../elements/Buttons";
+import { motion, isValidMotionProp } from "framer-motion";
 
 const CartSlider = () => {
   const { cartSlider, setCartSlider, cart } = useGlobalContext();
@@ -21,6 +22,7 @@ const CartSlider = () => {
   const emptySliderCart = () => {
     return (
       <Box
+        as={motion.div}
         minH='40vh'
         display='flex'
         justifyContent='center'
@@ -95,6 +97,10 @@ const CartSlider = () => {
     );
   };
 
+  const SlidingMotionBox = chakra(motion.div, {
+    shouldForwardProp: (prop) => isValidMotionProp(prop) || prop === "children",
+  });
+
   return (
     <Container
       minW='100%'
@@ -105,7 +111,15 @@ const CartSlider = () => {
       display={cartSlider ? "block" : "none"}
       zIndex='10'
     >
-      <Box position='fixed' right='0' onClick={(e) => e.stopPropagation()}>
+      <SlidingMotionBox
+        initial={{ x: "90%" }}
+        animate={{ x: "0%" }}
+        transition={{ type: "tween", duration: 0.5, ease: "easeInOut" }}
+        exit={{ x: "90%" }}
+        position='fixed'
+        right='0'
+        onClick={(e) => e.stopPropagation()}
+      >
         <Box
           p='1rem 2.5rem'
           maxH='50vh'
@@ -117,7 +131,7 @@ const CartSlider = () => {
           {cart.length > 0 ? sliderCart() : emptySliderCart()}
         </Box>
         {cart.length > 0 ? sliderCartButtons() : emptySliderCartButtons()}
-      </Box>
+      </SlidingMotionBox>
     </Container>
   );
 };

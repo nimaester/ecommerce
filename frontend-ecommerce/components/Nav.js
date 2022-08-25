@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useGlobalContext } from "../lib/storeContext";
 import { NavLinkText } from "../elements/Text";
 
+const { AnimatePresence } = require("framer-motion");
+
 const Nav = () => {
   const { cart, cartSlider, setCartSlider } = useGlobalContext();
   const countCartItems = () => {
@@ -58,10 +60,12 @@ const Nav = () => {
             <NavLinkText>Shop</NavLinkText>
             <NavLinkText>Login</NavLinkText>
 
-            <NavLinkText onClick={() => setCartSlider(!cartSlider)}>
-              <RiShoppingCart2Line size='25' />
-              {countCartItems()}
-            </NavLinkText>
+            <AnimatePresence>
+              <NavLinkText onClick={() => setCartSlider(!cartSlider)}>
+                <RiShoppingCart2Line size='25' />
+                {countCartItems()}
+              </NavLinkText>
+            </AnimatePresence>
           </Flex>
         </Flex>
       </Container>
