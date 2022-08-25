@@ -3,7 +3,6 @@ import { extendTheme } from "@chakra-ui/react";
 import { Provider, createClient } from "urql";
 import { StoreProvider } from "../lib/storeContext";
 import Nav from "../components/Nav";
-import CartSlider from "../components/CartSlider";
 
 const colors = {
   brand: {
@@ -31,7 +30,7 @@ function MyApp({ Component, pageProps }) {
       <StoreProvider>
         <ChakraProvider theme={theme}>
           <Nav />
-          <CartSlider />
+
           <Component {...pageProps} />
         </ChakraProvider>
       </StoreProvider>

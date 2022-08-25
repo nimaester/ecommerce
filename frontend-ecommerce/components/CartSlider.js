@@ -108,14 +108,13 @@ const CartSlider = () => {
       backgroundColor='rgba(0, 0, 0, .1)'
       onClick={() => setCartSlider(false)}
       position='fixed'
-      display={cartSlider ? "block" : "none"}
       zIndex='10'
     >
-      <SlidingMotionBox
-        initial={{ x: "90%" }}
-        animate={{ x: "0%" }}
-        transition={{ type: "tween", duration: 0.5, ease: "easeInOut" }}
-        exit={{ x: "90%" }}
+      <Box
+        // initial={{ x: "90%" }}
+        // animate={{ x: "0%" }}
+        // transition={{ type: "tween", duration: 0.5, ease: "easeInOut" }}
+        // exit={{ x: "90%" }}
         position='fixed'
         right='0'
         onClick={(e) => e.stopPropagation()}
@@ -131,7 +130,7 @@ const CartSlider = () => {
           {cart.length > 0 ? sliderCart() : emptySliderCart()}
         </Box>
         {cart.length > 0 ? sliderCartButtons() : emptySliderCartButtons()}
-      </SlidingMotionBox>
+      </Box>
     </Container>
   );
 };

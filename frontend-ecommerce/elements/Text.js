@@ -1,6 +1,5 @@
 import React from "react";
 import { Text, forwardRef } from "@chakra-ui/react";
-import { motion } from "framer-motion";
 
 export const ItemNameText = ({ ...children }) => {
   return (
@@ -39,8 +38,7 @@ export const HeaderText = ({ ...children }) => {
 export const NavLinkText = forwardRef((props, ref) => (
   <Text
     {...props}
-    as={motion.p}
-    whileHover={{ scale: 1.1, originX: 0, color: "black", cursor: "pointer" }}
+    _hover={{ transform: "scale(1.05)", color: "black", cursor: "pointer" }}
     ref={ref}
     fontSize='1.2rem'
     color='brand.200'

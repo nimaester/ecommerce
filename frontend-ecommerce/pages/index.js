@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { useQuery } from "urql";
 import { PRODUCT_QUERY } from "../lib/query";
-import { Container, Grid, Box, Text } from "@chakra-ui/react";
+import { Grid, Box } from "@chakra-ui/react";
 import Item from "../components/Item";
 import SortItem from "../components/SortItem";
 import { useGlobalContext } from "../lib/storeContext";
