@@ -4,8 +4,10 @@ import { Box, Container, Flex, Image } from "@chakra-ui/react";
 import Link from "next/link";
 import { useGlobalContext } from "../lib/storeContext";
 import { NavLinkText } from "../elements/Text";
-import { AnimatePresence } from "framer-motion";
+// import { AnimatePresence } from "framer-motion";
 import CartSlider from "./CartSlider";
+
+const { AnimatePresence } = require("framer-motion");
 
 const Nav = () => {
   const { cart, cartSlider, setCartSlider } = useGlobalContext();
@@ -66,7 +68,18 @@ const Nav = () => {
           </Flex>
         </Flex>
       </Container>
-      {cartSlider && <CartSlider />}
+
+      <Box
+        minW='100%'
+        minH='100%'
+        backgroundColor='rgba(0, 0, 0, .1)'
+        onClick={() => setCartSlider(false)}
+        position='fixed'
+        zIndex='100'
+        display={cartSlider ? "block" : "none"}
+      >
+        <AnimatePresence>{cartSlider && <CartSlider />}</AnimatePresence>
+      </Box>
     </Box>
   );
 };

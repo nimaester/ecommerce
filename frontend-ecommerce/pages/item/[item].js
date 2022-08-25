@@ -102,16 +102,11 @@ const ItemDetail = () => {
         top='0'
         left='0'
         backgroundColor='white'
+        minW='100%'
       >
-        <Box
-          p='5'
-          minW='100vw'
-          minH='100vh'
-          display='flex'
-          justifyContent='center'
-          alignItems='center'
-        >
+        <Box p='5' display='flex' justifyContent='center' alignItems='center'>
           <Image
+            objectFit='contain'
             src={itemData.image.data.attributes.formats.medium.url}
             alt={slug}
           />

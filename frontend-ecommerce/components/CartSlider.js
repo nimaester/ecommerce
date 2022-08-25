@@ -102,36 +102,31 @@ const CartSlider = () => {
   });
 
   return (
-    <Container
-      minW='100%'
-      minH='100%'
-      backgroundColor='rgba(0, 0, 0, .1)'
-      onClick={() => setCartSlider(false)}
+    <SlidingMotionBox
+      exit={{ y: "90%" }}
+      initial={{ x: "90%" }}
+      animate={{ x: "0%" }}
+      transition={{
+        type: "tween",
+        duration: 0.2,
+        ease: "easeInOut",
+      }}
       position='fixed'
-      zIndex='10'
+      right='0'
+      onClick={(e) => e.stopPropagation()}
     >
       <Box
-        // initial={{ x: "90%" }}
-        // animate={{ x: "0%" }}
-        // transition={{ type: "tween", duration: 0.5, ease: "easeInOut" }}
-        // exit={{ x: "90%" }}
-        position='fixed'
-        right='0'
-        onClick={(e) => e.stopPropagation()}
+        p='1rem 2.5rem'
+        maxH='50vh'
+        backgroundColor='white'
+        flex='3'
+        overflow='auto'
+        minW='500px'
       >
-        <Box
-          p='1rem 2.5rem'
-          maxH='50vh'
-          backgroundColor='white'
-          flex='3'
-          overflow='auto'
-          minW='500px'
-        >
-          {cart.length > 0 ? sliderCart() : emptySliderCart()}
-        </Box>
-        {cart.length > 0 ? sliderCartButtons() : emptySliderCartButtons()}
+        {cart.length > 0 ? sliderCart() : emptySliderCart()}
       </Box>
-    </Container>
+      {cart.length > 0 ? sliderCartButtons() : emptySliderCartButtons()}
+    </SlidingMotionBox>
   );
 };
 
