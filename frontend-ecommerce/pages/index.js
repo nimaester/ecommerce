@@ -9,6 +9,7 @@ import { useGlobalContext } from "../lib/storeContext";
 import { DefaultContainer } from "../elements/Container";
 import { HeaderText } from "../elements/Text";
 import { Loading } from "../elements/Loading";
+import { FailedToFetch } from "../elements/FailedToFetch";
 import { motion } from "framer-motion";
 
 export default function Home() {
@@ -25,7 +26,7 @@ export default function Home() {
 
   const { data, fetching, error } = result;
   if (fetching) return <Loading />;
-  if (error) return <p>Oh no... {error.message}</p>;
+  if (error) return <FailedToFetch />;
   const inventories = data.inventories.data;
 
   const displaySort = () => {

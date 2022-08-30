@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, forwardRef, Flex, Text } from "@chakra-ui/react";
+import { Button, forwardRef, Flex, Text, Link } from "@chakra-ui/react";
 import { MdKeyboardBackspace } from "react-icons/md";
 
 export const ButtonDefault = forwardRef((props, ref) => (
@@ -62,14 +62,18 @@ export const CartPlusMinusButton = ({ ...children }) => {
 };
 
 export const ContinueShoppingButton = forwardRef((props, ref) => (
-  <Flex {...props} ref={ref} alignItems='center' justifyContent='center'>
+  <Flex alignItems='center' justifyContent='center'>
     <Button
+      as={Link}
+      {...props}
+      ref={ref}
       backgroundColor='transparent'
       mt='5rem'
       _hover={{
         color: "blue",
         WebkitTransform: "translateY(-3px)",
         transform: "translateY(-3px)",
+        textDecoration: "none",
       }}
       _active={{ transform: "scale(1.05)" }}
     >

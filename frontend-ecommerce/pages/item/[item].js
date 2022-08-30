@@ -21,6 +21,7 @@ import { ItemNameText } from "../../elements/Text";
 import { DefaultContainer } from "../../elements/Container";
 import { useGlobalContext } from "../../lib/storeContext";
 import { Loading } from "../../elements/Loading";
+import { FailedToFetch } from "../../elements/FailedToFetch";
 import { motion } from "framer-motion";
 
 const ItemDetail = () => {
@@ -41,7 +42,8 @@ const ItemDetail = () => {
   const { data, fetching, error } = result;
 
   if (fetching) return <Loading />;
-  if (error) return <p>Oh no... {error.message}</p>;
+  if (error) return <FailedToFetch />;
+
   const itemData = data.inventories.data[0].attributes;
   const { title, description, price, slug, count } = itemData;
 
