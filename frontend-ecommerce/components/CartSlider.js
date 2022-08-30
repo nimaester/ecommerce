@@ -3,20 +3,18 @@ import { Box, Flex, Text, Image } from "@chakra-ui/react";
 import Link from "next/link";
 import { useGlobalContext } from "../lib/storeContext";
 import { CartSliderButton } from "../elements/Buttons";
-import { motion } from "framer-motion";
+import RemoveItemPopUp from "./RemoveItemPopUp";
+import { motion, AnimatePresence } from "framer-motion";
 
 const CartSlider = () => {
-  const { cartSlider, setCartSlider, cart } = useGlobalContext();
+  const { cartSlider, setCartSlider, cart, setCart } = useGlobalContext();
 
   const calculatePrice = (price, count) => {
-    let total = cart
-      .reduce((prev, val) => {
-        return prev + val.price * val.count;
-      }, 0)
-      .toFixed(2);
-
     //adds comma if thousands
-    return String(total).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    return String((count * price).toFixed(2)).replace(
+      /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
+      ","
+    );
   };
 
   const emptySliderCart = () => {
@@ -25,6 +23,7 @@ const CartSlider = () => {
         as={motion.div}
         display='flex'
         minH='200px'
+        minW='350px'
         justifyContent='center'
         alignItems='center'
         flexDir='column'
@@ -54,22 +53,30 @@ const CartSlider = () => {
           transition: { duration: 0.2, delay: i * 0.2 },
         }}
         alignItems='center'
-        maxW='300px'
         p='1rem'
+        maxW='350px'
+        justifyContent='space-evenly'
       >
-        <Box mr='3rem' p='10px' flex='1'>
-          <Image src={item.image} alt={item.slug} />
-        </Box>
-        <Box flex='3'>
-          <Text fontSize='lg' fontWeight='bold'>
+        <Flex justifyContent='center' p='10px' mr='2rem'>
+          <Image maxW='80px' src={item.image} alt={item.slug} />
+        </Flex>
+        <Flex justifyContent='center' flexDir='column' mr='2rem'>
+          <Text whiteSpace='nowrap' fontWeight='bold'>
             {item.name}
           </Text>
-          <Text as='span'>Qty: </Text>
-          <Text fontWeight='medium' as='span' color='blue'>
-            {item.count}
+          <Text>
+            Qty:{" "}
+            <span style={{ color: "blue", fontWeight: "" }}>{item.count}</span>{" "}
           </Text>
+
           <Text>$ {calculatePrice(item.price, item.count)}</Text>
-        </Box>
+        </Flex>
+
+        <Flex zIndex='20' justifyContent='end'>
+          <AnimatePresence>
+            <RemoveItemPopUp key={item.slug} itemName={item.slug} />
+          </AnimatePresence>
+        </Flex>
       </Flex>
     ));
   };
@@ -123,14 +130,18 @@ const CartSlider = () => {
         borderRadius='10px'
         boxShadow='0 0 10px rgba(33,33,33,.9)'
         p='1rem'
-        minW='450px'
       >
         <Box
           as={motion.div}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { duration: 0.8 } }}
         >
-          <Text textAlign='center' fontSize='2xl'>
+          <Text
+            borderBottom='1px solid #E5E5E5'
+            textAlign='center'
+            fontSize='2xl'
+            pb='1rem'
+          >
             Cart Items
           </Text>
 

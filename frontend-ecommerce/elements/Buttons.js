@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, forwardRef, Flex, Box, Text } from "@chakra-ui/react";
+import { Button, forwardRef, Flex, Text } from "@chakra-ui/react";
 import { MdKeyboardBackspace } from "react-icons/md";
 
 export const ButtonDefault = forwardRef((props, ref) => (

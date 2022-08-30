@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Flex, Text, Image, Box, Button } from "@chakra-ui/react";
+import { Flex, Text, Image, Box } from "@chakra-ui/react";
 import Link from "next/link";
 import { ButtonDefault } from "../elements/Buttons";
 import { FixedBox } from "../elements/Boxes";

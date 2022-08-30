@@ -11,7 +11,6 @@ import {
 import { useQuery } from "urql";
 import { GET_ITEM_INFO } from "../../lib/query";
 import { useRouter } from "next/router";
-import { MdKeyboardBackspace } from "react-icons/md";
 import { IoIosCloseCircle } from "react-icons/io";
 import {
   ButtonDefault,
