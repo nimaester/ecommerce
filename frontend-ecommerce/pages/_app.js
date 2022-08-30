@@ -27,13 +27,12 @@ const client = createClient({ url: process.env.NEXT_PUBLIC_INVENTORIES_API });
 function MyApp({ Component, pageProps }) {
   return (
     <Provider value={client}>
-      <StoreProvider>
-        <ChakraProvider theme={theme}>
+      <ChakraProvider theme={theme}>
+        <StoreProvider>
           <Nav />
-
           <Component {...pageProps} />
-        </ChakraProvider>
-      </StoreProvider>
+        </StoreProvider>
+      </ChakraProvider>
     </Provider>
   );
 }

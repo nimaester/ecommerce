@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import {
   Container,
+  Link,
   Text,
   Box,
   Image,
@@ -20,6 +21,7 @@ import { ItemNameText } from "../../elements/Text";
 import { DefaultContainer } from "../../elements/Container";
 import { useGlobalContext } from "../../lib/storeContext";
 import { Loading } from "../../elements/Loading";
+import { motion } from "framer-motion";
 
 const ItemDetail = () => {
   const toast = useToast();
@@ -97,24 +99,27 @@ const ItemDetail = () => {
   const showZoomedImage = () => {
     return (
       <Box
-        position='absolute'
+        position='fixed'
         zIndex='20'
         top='0'
         left='0'
+        w='100%'
+        h='100%'
+        display='flex'
+        justifyContent='center'
+        alignItems='center'
         backgroundColor='white'
-        minW='100%'
       >
-        <Box p='5' display='flex' justifyContent='center' alignItems='center'>
-          <Image
-            objectFit='contain'
-            src={itemData.image.data.attributes.formats.medium.url}
-            alt={slug}
-          />
-        </Box>
+        <Image
+          maxH='95vh'
+          src={itemData.image.data.attributes.formats.medium.url}
+          alt={slug}
+        />
+
         <Button
           backgroundColor='transparent'
           onClick={closeZoom}
-          position='absolute'
+          position='fixed'
           right='0'
           top='0'
         >
@@ -125,7 +130,12 @@ const ItemDetail = () => {
   };
 
   return (
-    <DefaultContainer mt='3rem'>
+    <DefaultContainer
+      as={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { duration: 0.5 } }}
+      mt='3rem'
+    >
       {zoom ? (
         showZoomedImage()
       ) : (
@@ -219,17 +229,19 @@ const ItemDetail = () => {
           </Flex>
         </Box>
       )}
-      <Button
-        backgroundColor='transparent'
-        p='5rem 0rem'
-        w='100%'
-        cursor='pointer'
-        onClick={() => router.back()}
-        _hover={{ outline: "none", color: "button.primary" }}
-        _active={{ outline: "none", transform: "scale(1.05)" }}
-      >
-        <MdKeyboardBackspace size='30' /> Back to previous page
-      </Button>
+      <Flex justifyContent='center' alignItems='center'>
+        <Box _hover={{ color: "#332cf2" }} display='flex' alignItems='center'>
+          <MdKeyboardBackspace size='30' />
+          <Text
+            onClick={() => router.push("/")}
+            backgroundColor='transparent'
+            p='5rem 0rem'
+            cursor='pointer'
+          >
+            Continue Shopping
+          </Text>
+        </Box>
+      </Flex>
     </DefaultContainer>
   );
 };

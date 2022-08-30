@@ -9,6 +9,7 @@ import { useGlobalContext } from "../lib/storeContext";
 import { DefaultContainer } from "../elements/Container";
 import { HeaderText } from "../elements/Text";
 import { Loading } from "../elements/Loading";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const { sort, cartSlider } = useGlobalContext();
@@ -56,7 +57,12 @@ export default function Home() {
   };
 
   return (
-    <Box backgroundColor='brand.100'>
+    <Box
+      backgroundColor='brand.100'
+      as={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { duration: 1 } }}
+    >
       <Head>
         <title>Ecommerce App</title>
         <link rel='icon' href='/favicon.ico' />

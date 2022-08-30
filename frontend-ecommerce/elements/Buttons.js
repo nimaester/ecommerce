@@ -5,7 +5,7 @@ export const ButtonDefault = forwardRef((props, ref) => (
   <Button
     {...props}
     p='1.5rem 1.3rem'
-    backgroundColor='#332cf2'
+    backgroundColor='button.primary'
     color='#fff'
     fontSize='1.2rem'
     _hover={{

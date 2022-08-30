@@ -3,7 +3,7 @@ import { Container, Box, Flex, Text, Image, chakra } from "@chakra-ui/react";
 import Link from "next/link";
 import { useGlobalContext } from "../lib/storeContext";
 import { CartSliderButton } from "../elements/Buttons";
-import { motion, isValidMotionProp } from "framer-motion";
+import { motion } from "framer-motion";
 
 const CartSlider = () => {
   const { cartSlider, setCartSlider, cart } = useGlobalContext();
@@ -97,36 +97,39 @@ const CartSlider = () => {
     );
   };
 
-  const SlidingMotionBox = chakra(motion.div, {
-    shouldForwardProp: (prop) => isValidMotionProp(prop) || prop === "children",
-  });
-
   return (
-    <SlidingMotionBox
-      exit={{ y: "90%" }}
-      initial={{ x: "90%" }}
-      animate={{ x: "0%" }}
-      transition={{
-        type: "tween",
-        duration: 0.2,
-        ease: "easeInOut",
-      }}
+    <Box
+      minW='100%'
+      minH='100vh'
+      backgroundColor='rgba(0, 0, 0, .1)'
+      onClick={() => setCartSlider(false)}
       position='fixed'
-      right='0'
-      onClick={(e) => e.stopPropagation()}
+      zIndex='100'
+      display={cartSlider ? "block" : "none"}
     >
       <Box
-        p='1rem 2.5rem'
-        maxH='50vh'
-        backgroundColor='white'
-        flex='3'
-        overflow='auto'
-        minW='500px'
+        as={motion.div}
+        initial={{ x: "100%" }}
+        animate={{ x: "0%", transition: { type: "tween", duration: 0.2 } }}
+        position='fixed'
+        right='0'
+        onClick={(e) => e.stopPropagation()}
+        zIndex='1000'
+        key={Math.random()}
       >
-        {cart.length > 0 ? sliderCart() : emptySliderCart()}
+        <Box
+          p='1rem 2.5rem'
+          maxH='50vh'
+          backgroundColor='white'
+          flex='3'
+          overflow='auto'
+          minW='500px'
+        >
+          {cart.length > 0 ? sliderCart() : emptySliderCart()}
+        </Box>
+        {cart.length > 0 ? sliderCartButtons() : emptySliderCartButtons()}
       </Box>
-      {cart.length > 0 ? sliderCartButtons() : emptySliderCartButtons()}
-    </SlidingMotionBox>
+    </Box>
   );
 };
 
