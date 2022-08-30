@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { RiShoppingCart2Line } from "react-icons/ri";
-import { Box, Container, Flex, Image } from "@chakra-ui/react";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { Box, Container, Flex, Image, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { useGlobalContext } from "../lib/storeContext";
 import { NavLinkText } from "../elements/Text";
 import CartSlider from "./CartSlider";
+import { useMediaQuery } from "@chakra-ui/react";
 
 const Nav = () => {
+  const [smallScreenSize, setSmallScreenSize] = useState(false);
+  const [isSmallScreen] = useMediaQuery("(max-width: 768px)");
+
   const { cart, cartSlider, setCartSlider } = useGlobalContext();
+
   const countCartItems = () => {
     let itemCount = 0;
     cart.forEach((item) => (itemCount += item.count));
-    return itemCount;
+    return itemCount > 0 ? itemCount : " ";
   };
 
   return (
@@ -50,7 +56,12 @@ const Nav = () => {
               />
             </Link>
           </Box>
-          <Flex justifyContent='space-between' flex='2' alignItems='center'>
+          <Flex
+            justifyContent='space-between'
+            flex='2'
+            alignItems='center'
+            display={isSmallScreen ? "none" : "flex"}
+          >
             <Link href={"/"}>
               <NavLinkText onClick={() => setCartSlider(false)}>
                 Home
@@ -63,10 +74,22 @@ const Nav = () => {
               {countCartItems()}
             </NavLinkText>
           </Flex>
+          <Flex
+            alignItems='center'
+            color='white'
+            _hover={{
+              transform: "scale(1.05)",
+              color: "black",
+              cursor: "pointer",
+            }}
+            display={isSmallScreen ? "flex" : "none"}
+          >
+            <GiHamburgerMenu size='35' />
+          </Flex>
         </Flex>
       </Container>
 
-      {cartSlider && <CartSlider key='motion' />}
+      {cartSlider && <CartSlider />}
     </Box>
   );
 };

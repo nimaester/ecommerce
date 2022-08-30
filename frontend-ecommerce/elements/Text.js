@@ -35,8 +35,9 @@ export const HeaderText = ({ ...children }) => {
   );
 };
 
-export const NavLinkText = forwardRef((props, ref) => (
+export const NavLinkText = forwardRef(({ ...children }, props, ref) => (
   <Text
+    {...children}
     {...props}
     _hover={{ transform: "scale(1.05)", color: "black", cursor: "pointer" }}
     ref={ref}
@@ -46,24 +47,24 @@ export const NavLinkText = forwardRef((props, ref) => (
   ></Text>
 ));
 
-export const NavBrandText = ({ ...children }) => {
-  return (
-    <Text
-      fontSize={{
-        sm: "3xl",
-        md: "3xl",
-        lg: "3xl",
-        xl: "3xl",
-        base: "3xl",
-      }}
-      {...children}
-      _hover={{
-        cursor: "pointer",
-      }}
-      bgClip='text'
-      fontFamily='cursive'
-      fontWeight='bold'
-      color='#2B3636'
-    ></Text>
-  );
-};
+// export const NavBrandText = ({ ...children }) => {
+//   return (
+//     <Text
+//       fontSize={{
+//         sm: "3xl",
+//         md: "3xl",
+//         lg: "3xl",
+//         xl: "3xl",
+//         base: "3xl",
+//       }}
+//       {...children}
+//       _hover={{
+//         cursor: "pointer",
+//       }}
+//       bgClip='text'
+//       fontFamily='cursive'
+//       fontWeight='bold'
+//       color='#2B3636'
+//     ></Text>
+//   );
+// };
