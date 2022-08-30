@@ -35,9 +35,8 @@ export const HeaderText = ({ ...children }) => {
   );
 };
 
-export const NavLinkText = forwardRef(({ ...children }, props, ref) => (
+export const NavLinkText = forwardRef((props, ref) => (
   <Text
-    {...children}
     {...props}
     _hover={{ transform: "scale(1.05)", color: "black", cursor: "pointer" }}
     ref={ref}

@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-
 import {
-  Container,
-  Link,
   Text,
   Box,
   Image,
@@ -16,7 +13,11 @@ import { GET_ITEM_INFO } from "../../lib/query";
 import { useRouter } from "next/router";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { IoIosCloseCircle } from "react-icons/io";
-import { ButtonDefault, DisabledButton } from "../../elements/Buttons";
+import {
+  ButtonDefault,
+  DisabledButton,
+  ContinueShoppingButton,
+} from "../../elements/Buttons";
 import { ItemNameText } from "../../elements/Text";
 import { DefaultContainer } from "../../elements/Container";
 import { useGlobalContext } from "../../lib/storeContext";
@@ -26,7 +27,7 @@ import { motion } from "framer-motion";
 const ItemDetail = () => {
   const toast = useToast();
   const id = "test-toast";
-  const { cart, setCart, cartSlider } = useGlobalContext();
+  const { cart, setCart, setCartSlider } = useGlobalContext();
   const [numOfItem, setNumOfItem] = useState(1);
 
   const [zoom, setZoom] = useState(false);
@@ -129,11 +130,16 @@ const ItemDetail = () => {
     );
   };
 
+  const returnToShopping = () => {
+    router.push("/");
+    setCartSlider(false);
+  };
+
   return (
     <DefaultContainer
       as={motion.div}
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1, transition: { duration: 0.5 } }}
+      animate={{ opacity: 1, transition: { duration: 0.2 } }}
       mt='3rem'
     >
       {zoom ? (
@@ -229,19 +235,7 @@ const ItemDetail = () => {
           </Flex>
         </Box>
       )}
-      <Flex justifyContent='center' alignItems='center'>
-        <Box _hover={{ color: "#332cf2" }} display='flex' alignItems='center'>
-          <MdKeyboardBackspace size='30' />
-          <Text
-            onClick={() => router.push("/")}
-            backgroundColor='transparent'
-            p='5rem 0rem'
-            cursor='pointer'
-          >
-            Continue Shopping
-          </Text>
-        </Box>
-      </Flex>
+      <ContinueShoppingButton onClick={() => returnToShopping()} />
     </DefaultContainer>
   );
 };

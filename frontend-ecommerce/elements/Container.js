@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, forwardRef } from "@chakra-ui/react";
+import { Container } from "@chakra-ui/react";
 
 export const DefaultContainer = ({ ...children }) => {
   return (

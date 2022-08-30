@@ -20,6 +20,14 @@ const Nav = () => {
     return itemCount > 0 ? itemCount : " ";
   };
 
+  const closeSliderOnSmallScreenSize = () => {
+    if (isSmallScreen) setCartSlider(false);
+  };
+
+  useEffect(() => {
+    closeSliderOnSmallScreenSize();
+  }, [isSmallScreen]);
+
   return (
     <Box
       backgroundColor='brand.900'

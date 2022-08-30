@@ -12,12 +12,16 @@ import { Loading } from "../elements/Loading";
 import { motion } from "framer-motion";
 
 export default function Home() {
-  const { sort, cartSlider } = useGlobalContext();
+  const { sort, cartSlider, setCartSlider } = useGlobalContext();
 
   //Fetch products from strapi
   const [result] = useQuery({
     query: PRODUCT_QUERY,
   });
+
+  const closeCartSlider = () => {
+    setCartSlider(false);
+  };
 
   const { data, fetching, error } = result;
   if (fetching) return <Loading />;
@@ -61,7 +65,7 @@ export default function Home() {
       backgroundColor='brand.100'
       as={motion.div}
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1, transition: { duration: 1 } }}
+      animate={{ opacity: 1, transition: { duration: 0.3 } }}
     >
       <Head>
         <title>Ecommerce App</title>
