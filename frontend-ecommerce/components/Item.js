@@ -3,13 +3,14 @@ import { Flex, Text, Image, Box } from "@chakra-ui/react";
 import Link from "next/link";
 import { ButtonDefault } from "../elements/Buttons";
 import { FixedBox } from "../elements/Boxes";
+import { motion } from "framer-motion";
 
 const Items = ({ item }) => {
   const { title, price, slug } = item;
   const [hover, setHover] = useState(false);
 
   return (
-    <Box>
+    <Box w='100%'>
       <Link href={`item/${slug}`}>
         <Flex
           position='relative'
@@ -17,14 +18,12 @@ const Items = ({ item }) => {
           onMouseOut={() => setHover(false)}
           backgroundColor='white'
           borderRadius='10px'
-          flexDir='column'
+          flexDirection='column'
           h='100%'
-          w='100%'
           textAlign='right'
-          justifyContent='space-between'
           p='4'
         >
-          <Box d='flex' margin='auto'>
+          <Box margin='auto'>
             <Image
               p='1'
               src={item.image.data.attributes.formats.thumbnail.url}

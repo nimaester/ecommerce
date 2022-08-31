@@ -13,7 +13,7 @@ import { FailedToFetch } from "../elements/FailedToFetch";
 import { motion } from "framer-motion";
 
 export default function Home() {
-  const { sort, cartSlider, setCartSlider } = useGlobalContext();
+  const { sort, setCartSlider } = useGlobalContext();
 
   //Fetch products from strapi
   const [result] = useQuery({
@@ -45,7 +45,17 @@ export default function Home() {
         <>
           {inventories
             .sort((a, b) => a.attributes.price - b.attributes.price)
-            .map((item) => (
+            .map((item, i) => (
+              <Item key={item.attributes.slug} item={item.attributes} />
+            ))}
+        </>
+      );
+    } else if (sort === "avail") {
+      return (
+        <>
+          {inventories
+            .sort((a, b) => b.attributes.count - a.attributes.count)
+            .map((item, i) => (
               <Item key={item.attributes.slug} item={item.attributes} />
             ))}
         </>

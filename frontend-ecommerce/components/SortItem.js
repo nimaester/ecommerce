@@ -14,6 +14,7 @@ const SortItem = () => {
       >
         <option value='philo'>Price: High-Low</option>
         <option value='plohi'>Price: Low-High</option>
+        <option value='avail'>In Stock</option>
       </Select>
     </Box>
   );

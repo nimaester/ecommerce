@@ -1,11 +1,12 @@
 import React from "react";
-import { Text, Box, Button, Image } from "@chakra-ui/react";
-import { MdKeyboardBackspace } from "react-icons/md";
+import { Text, Box, Flex, Image } from "@chakra-ui/react";
 import { useGlobalContext } from "../lib/storeContext";
 import { useRouter } from "next/router";
 import CartItem from "../components/CartItem.js";
 import { DefaultContainer } from "../elements/Container";
 import { HeaderText } from "../elements/Text";
+import { ContinueShoppingButton, ButtonDefault } from "../elements/Buttons";
+import getStripe from "../lib/getStripe";
 
 const Cart = () => {
   const { cart } = useGlobalContext();
@@ -33,6 +34,19 @@ const Cart = () => {
     );
   };
 
+  const handlePurchaseButton = async () => {
+    const stripePromise = await getStripe();
+    const response = await fetch("/api/stripe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cart),
+    });
+    const data = await response.json();
+    await stripePromise.redirectToCheckout({ sessionId: data.id });
+  };
+
   const calculatePrice = () => {
     let total = cart
       .reduce((val, cart) => {
@@ -45,29 +59,29 @@ const Cart = () => {
   };
 
   return (
-    <DefaultContainer maxW='container.xl'>
+    <DefaultContainer>
       <HeaderText textAlign='center' pb='4rem' fontSize='4xl'>
         Shopping Cart
       </HeaderText>
 
       {cart.length > 0 ? showCartItems() : emptyCart()}
+
       <Text p='2rem' textAlign='right'>
         {cart.length > 0 ? `Total: $${calculatePrice()}` : null}
       </Text>
+      <Flex justifyContent='center'>
+        {cart.length > 0 && (
+          <ButtonDefault
+            onClick={handlePurchaseButton}
+            border='1px solid black'
+            w='180px'
+          >
+            Submit Order
+          </ButtonDefault>
+        )}
+      </Flex>
 
-      <Box pb='10' display='flex' justifyContent='center'>
-        <Button
-          backgroundColor='transparent'
-          p='8'
-          w='90%'
-          cursor='pointer'
-          onClick={() => router.push("/")}
-          _hover={{ outline: "none", color: "button.primary" }}
-          _active={{ outline: "none", transform: "scale(1.05)" }}
-        >
-          <MdKeyboardBackspace size='30' /> Continue shopping
-        </Button>
-      </Box>
+      <ContinueShoppingButton onClick={() => router.push("/")} />
     </DefaultContainer>
   );
 };

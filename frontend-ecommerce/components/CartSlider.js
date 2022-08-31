@@ -44,14 +44,14 @@ const CartSlider = () => {
     return cart.map((item, i) => (
       <Flex
         as={motion.div}
-        m='1rem 0rem'
-        key={item.slug}
         initial={{ opacity: 0, translateX: 100 }}
         animate={{
           opacity: 1,
           translateX: 0,
           transition: { duration: 0.2, delay: i * 0.2 },
         }}
+        m='1rem 0rem'
+        key={item.slug}
         alignItems='center'
         p='1rem'
         maxW='350px'
