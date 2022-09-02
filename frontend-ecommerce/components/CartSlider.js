@@ -55,15 +55,14 @@ const CartSlider = () => {
         alignItems='center'
         p='1rem'
         maxW='350px'
-        justifyContent='space-evenly'
+        justifyContent='space-between'
       >
         <Flex justifyContent='center' p='10px' mr='2rem'>
-          <Image maxW='80px' src={item.image} alt={item.slug} />
+          <Image maxW='50px' src={item.image} alt={item.slug} />
         </Flex>
+
         <Flex justifyContent='center' flexDir='column' mr='2rem'>
-          <Text whiteSpace='nowrap' fontWeight='bold'>
-            {item.name}
-          </Text>
+          <Text fontWeight='bold'>{item.name}</Text>
           <Text>
             Qty:{" "}
             <span style={{ color: "blue", fontWeight: "" }}>{item.count}</span>{" "}
