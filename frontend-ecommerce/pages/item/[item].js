@@ -47,14 +47,6 @@ const ItemDetail = () => {
   const itemData = data.inventories.data[0].attributes;
   const { title, description, price, slug, count } = itemData;
 
-  const closeZoom = () => {
-    setZoom(false);
-  };
-
-  const openZoom = () => {
-    setZoom(true);
-  };
-
   const itemInCart = () => {
     return {
       name: title,
@@ -120,7 +112,7 @@ const ItemDetail = () => {
 
         <Button
           backgroundColor='transparent'
-          onClick={closeZoom}
+          onClick={() => setZoom(false)}
           position='fixed'
           right='0'
           top='0'
@@ -172,7 +164,7 @@ const ItemDetail = () => {
               _hover={{ cursor: "zoom-in" }}
               src={itemData.image.data.attributes.formats.medium.url}
               alt={slug}
-              onClick={openZoom}
+              onClick={() => setZoom(true)}
               w={{
                 sm: "80%",
                 md: "100%",
