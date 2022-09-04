@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { FaRegUser } from "react-icons/fa";
 import { Box, Container, Flex, Image, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { useGlobalContext } from "../lib/storeContext";
@@ -38,11 +39,11 @@ const Nav = () => {
     >
       <Container
         p={{
-          sm: "2rem 2rem",
-          md: "2rem 3rem",
-          lg: "2rem 3rem",
-          xl: "2rem 3rem",
-          base: "2rem 1rem",
+          sm: "1rem",
+          md: "1rem 3rem",
+          lg: "1rem 3rem",
+          xl: "1rem 3rem",
+          base: "1rem",
         }}
         fontSize={{
           sm: "1rem",
@@ -54,15 +55,25 @@ const Nav = () => {
         maxW='container.xl'
       >
         <Flex justifyContent='space-between'>
-          <Box flex='3'>
+          <Box display='flex' alignItems='center' flex='3'>
             <Link href={"/"}>
               <Image
                 src='https://mbpics7528.s3.us-west-1.amazonaws.com/logoColor.png'
                 alt='marcias_boutique'
-                w='100px'
+                w='50px'
                 _hover={{ cursor: "pointer" }}
               />
             </Link>
+
+            <Text
+              ml='10px'
+              fontStyle='italic'
+              fontWeight='bold'
+              color='brand.200'
+              fontSize='1rem'
+            >
+              Marcia's Boutique
+            </Text>
           </Box>
           <Flex
             justifyContent='space-between'
@@ -76,7 +87,9 @@ const Nav = () => {
               </NavLinkText>
             </Link>
             <NavLinkText>Shop</NavLinkText>
-            <NavLinkText>Login</NavLinkText>
+            <NavLinkText>
+              <FaRegUser size='22' />
+            </NavLinkText>
             <NavLinkText onClick={() => setCartSlider(!cartSlider)}>
               <RiShoppingCart2Line size='25' />
               {countCartItems()}

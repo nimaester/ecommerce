@@ -6,8 +6,8 @@ import Nav from "../components/Nav";
 
 const colors = {
   brand: {
-    900: "#5d5c61",
-    800: "#938E94",
+    900: "#525F6E",
+    800: "#BFBFBF",
     700: "#7395ae",
     500: "#557a95",
     400: "#b1a296",

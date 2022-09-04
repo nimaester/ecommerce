@@ -38,9 +38,11 @@ export const HeaderText = ({ ...children }) => {
 export const NavLinkText = forwardRef((props, ref) => (
   <Text
     {...props}
-    _hover={{ transform: "scale(1.05)", color: "black", cursor: "pointer" }}
+    _hover={{ transform: "scale(1.05)", color: "brand.800", cursor: "pointer" }}
     ref={ref}
-    fontSize='1.2rem'
+    textTransform='uppercase'
+    fontSize='1.1rem'
+    fontWeight='bold'
     color='brand.200'
     display='flex'
   ></Text>
