@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaRegUser } from "react-icons/fa";
@@ -10,7 +10,6 @@ import CartSlider from "./CartSlider";
 import { useMediaQuery } from "@chakra-ui/react";
 
 const Nav = () => {
-  const [smallScreenSize, setSmallScreenSize] = useState(false);
   const [isSmallScreen] = useMediaQuery("(max-width: 768px)");
 
   const { cart, cartSlider, setCartSlider } = useGlobalContext();
@@ -39,11 +38,11 @@ const Nav = () => {
     >
       <Container
         p={{
-          sm: "1rem",
-          md: "1rem 3rem",
-          lg: "1rem 3rem",
-          xl: "1rem 3rem",
-          base: "1rem",
+          sm: "0.5rem 2rem",
+          md: "0.5rem 3rem",
+          lg: "0.5rem 3rem",
+          xl: "0.5rem 3rem",
+          base: "0.5rem 2rem",
         }}
         fontSize={{
           sm: "1rem",
@@ -58,9 +57,9 @@ const Nav = () => {
           <Box display='flex' alignItems='center' flex='3'>
             <Link href={"/"}>
               <Image
-                src='https://mbpics7528.s3.us-west-1.amazonaws.com/logoColor.png'
+                src='https://mbpics7528.s3.us-west-1.amazonaws.com/logoWhite.png'
                 alt='marcias_boutique'
-                w='50px'
+                w='80px'
                 _hover={{ cursor: "pointer" }}
               />
             </Link>
@@ -68,9 +67,9 @@ const Nav = () => {
             <Text
               ml='10px'
               fontStyle='italic'
-              fontWeight='bold'
               color='brand.200'
-              fontSize='1rem'
+              fontSize='1.4rem'
+              display={!isSmallScreen ? "block" : "none"}
             >
               Marcia's Boutique
             </Text>
@@ -90,9 +89,15 @@ const Nav = () => {
             <NavLinkText>
               <FaRegUser size='22' />
             </NavLinkText>
-            <NavLinkText onClick={() => setCartSlider(!cartSlider)}>
+            <NavLinkText
+              position='relative'
+              onClick={() => setCartSlider(!cartSlider)}
+            >
               <RiShoppingCart2Line size='25' />
-              {countCartItems()}
+
+              <span style={{ marginTop: "-10px", color: "white" }}>
+                {countCartItems()}
+              </span>
             </NavLinkText>
           </Flex>
           <Flex

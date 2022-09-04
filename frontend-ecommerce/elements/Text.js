@@ -6,14 +6,15 @@ export const ItemNameText = ({ ...children }) => {
     <Text
       {...children}
       fontSize={{
-        sm: "4xl",
-        md: "5xl",
-        lg: "5xl",
-        xl: "5xl",
-        base: "4xl",
+        sm: "2xl",
+        md: "3xl",
+        lg: "3xl",
+        xl: "3xl",
+        base: "2xl",
       }}
       pt='4'
       pb='4'
+      fontWeight='bold'
     ></Text>
   );
 };
@@ -41,7 +42,7 @@ export const NavLinkText = forwardRef((props, ref) => (
     _hover={{ transform: "scale(1.05)", color: "brand.800", cursor: "pointer" }}
     ref={ref}
     textTransform='uppercase'
-    fontSize='1.1rem'
+    fontSize='1rem'
     fontWeight='bold'
     color='brand.200'
     display='flex'

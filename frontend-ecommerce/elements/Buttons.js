@@ -64,7 +64,6 @@ export const CartPlusMinusButton = ({ ...children }) => {
 export const ContinueShoppingButton = forwardRef((props, ref) => (
   <Flex alignItems='center' justifyContent='center'>
     <Button
-      as={Link}
       {...props}
       ref={ref}
       backgroundColor='transparent'

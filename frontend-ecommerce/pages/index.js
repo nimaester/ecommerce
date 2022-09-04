@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { useQuery } from "urql";
 import { PRODUCT_QUERY } from "../lib/query";
@@ -14,15 +14,12 @@ import { motion } from "framer-motion";
 
 export default function Home() {
   const { sort, setCartSlider } = useGlobalContext();
+  const [updatePage, setUpdatePage] = useState(false);
 
   //Fetch products from strapi
   const [result] = useQuery({
     query: PRODUCT_QUERY,
   });
-
-  const closeCartSlider = () => {
-    setCartSlider(false);
-  };
 
   const { data, fetching, error } = result;
   if (fetching) return <Loading />;

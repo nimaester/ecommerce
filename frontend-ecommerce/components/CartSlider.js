@@ -121,8 +121,8 @@ const CartSlider = () => {
         initial={{ x: "100%" }}
         animate={{ x: "0%", transition: { type: "tween", duration: 0.3 } }}
         position='fixed'
-        right='10'
-        top='150'
+        right='5'
+        top='81'
         onClick={(e) => e.stopPropagation()}
         zIndex='10'
         backgroundColor='white'
