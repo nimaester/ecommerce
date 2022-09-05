@@ -67,16 +67,16 @@ const Cart = () => {
       {cart.length > 0 ? showCartItems() : emptyCart()}
 
       <Text p='2rem' textAlign='right'>
-        {cart.length > 0 ? `Total: $${calculatePrice()}` : null}
+        {cart.length > 0 ? `Subtotal: $${calculatePrice()}` : null}
       </Text>
       <Flex justifyContent='center'>
         {cart.length > 0 && (
           <ButtonDefault
             onClick={handlePurchaseButton}
             border='1px solid black'
-            w='180px'
+            w='280px'
           >
-            Submit Order
+            Proceed To Payment
           </ButtonDefault>
         )}
       </Flex>

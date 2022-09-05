@@ -17,6 +17,7 @@ export default async function handler(req, res) {
           { shipping_rate: "shr_1LemInCGPgQ7vRl5JavEVTdp" },
           { shipping_rate: "shr_1LemJfCGPgQ7vRl5jlGj8kFq" },
         ],
+
         line_items: req.body.map((item) => {
           return {
             price_data: {
@@ -32,7 +33,7 @@ export default async function handler(req, res) {
         }),
 
         mode: "payment",
-        success_url: `${req.headers.origin}/success`,
+        success_url: `${req.headers.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${req.headers.origin}`,
       });
       res.status(200).json(session);
