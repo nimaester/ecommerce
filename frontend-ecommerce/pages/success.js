@@ -1,5 +1,7 @@
 import React from "react";
 import { Box, Text, Flex, Image } from "@chakra-ui/react";
+import { ContinueShoppingButton } from "../elements/Buttons";
+import { useRouter } from "next/router";
 
 const stripe = require("stripe")(
   `${process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY}`
@@ -16,13 +18,14 @@ export const getServerSideProps = async (params) => {
 };
 
 const Success = ({ order }) => {
-  console.log(order);
+  const router = useRouter();
   return (
     <Box>
       <Flex
-        h='80vh'
+        mb='5rem'
+        h='50vh'
         flexDir='column'
-        justifyContent='center'
+        justifyContent='end'
         alignItems='center'
       >
         <Image
@@ -37,6 +40,7 @@ const Success = ({ order }) => {
         </Text>
         <Text>We look forward your next visit.</Text>
       </Flex>
+      <ContinueShoppingButton onClick={() => router.push("/")} />
     </Box>
   );
 };
