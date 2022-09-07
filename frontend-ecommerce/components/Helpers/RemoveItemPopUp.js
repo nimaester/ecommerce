@@ -10,7 +10,7 @@ import {
   Button,
   Box,
 } from "@chakra-ui/react";
-import { useGlobalContext } from "../lib/storeContext";
+import { useGlobalContext } from "../../lib/storeContext";
 
 const RemoveItemPopUp = ({ itemName }) => {
   const { cart, setCart } = useGlobalContext();

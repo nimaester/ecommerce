@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Flex, Text, Image, Box } from "@chakra-ui/react";
 import Link from "next/link";
-import { ButtonDefault } from "../elements/Buttons";
-import { FixedBox } from "../elements/Boxes";
-import { motion } from "framer-motion";
+import { ButtonDefault } from "../../elements/Buttons";
+import { FixedBox } from "../../elements/Boxes";
 
 const Items = ({ item }) => {
   const { title, price, slug } = item;

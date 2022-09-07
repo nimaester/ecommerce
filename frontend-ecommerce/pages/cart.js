@@ -2,7 +2,7 @@ import React from "react";
 import { Text, Box, Flex, Image } from "@chakra-ui/react";
 import { useGlobalContext } from "../lib/storeContext";
 import { useRouter } from "next/router";
-import CartItem from "../components/CartItem.js";
+import CartItem from "../components/Cart/CartItem.js";
 import { DefaultContainer } from "../elements/Container";
 import { HeaderText } from "../elements/Text";
 import { ContinueShoppingButton, ButtonDefault } from "../elements/Buttons";

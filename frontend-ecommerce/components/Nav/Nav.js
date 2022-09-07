@@ -4,9 +4,9 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { FaRegUser } from "react-icons/fa";
 import { Box, Container, Flex, Image, Text } from "@chakra-ui/react";
 import Link from "next/link";
-import { useGlobalContext } from "../lib/storeContext";
-import { NavLinkText } from "../elements/Text";
-import CartSlider from "./CartSlider";
+import { useGlobalContext } from "../../lib/storeContext";
+import { NavLinkText } from "../../elements/Text";
+import CartSlider from "../Cart/CartSlider";
 import { useMediaQuery } from "@chakra-ui/react";
 
 const Nav = () => {

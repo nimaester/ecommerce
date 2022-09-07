@@ -1,9 +1,9 @@
 import React from "react";
 import { Box, Flex, Text, useToast, Image } from "@chakra-ui/react";
-import { useGlobalContext } from "../lib/storeContext";
+import { useGlobalContext } from "../../lib/storeContext";
 import Link from "next/link";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import { CartPlusMinusButton } from "../elements/Buttons";
+import { CartPlusMinusButton } from "../../elements/Buttons";
 
 const CartItem = ({ cartItem }) => {
   const { cart, setCart } = useGlobalContext();

@@ -1,13 +1,13 @@
 import React from "react";
 import { Box, Flex, Text, Image } from "@chakra-ui/react";
 import Link from "next/link";
-import { useGlobalContext } from "../lib/storeContext";
-import { CartSliderButton } from "../elements/Buttons";
-import RemoveItemPopUp from "./RemoveItemPopUp";
+import { useGlobalContext } from "../../lib/storeContext";
+import { CartSliderButton } from "../../elements/Buttons";
+import RemoveItemPopUp from "../Helpers/RemoveItemPopUp";
 import { motion, AnimatePresence } from "framer-motion";
 
 const CartSlider = () => {
-  const { cartSlider, setCartSlider, cart, setCart } = useGlobalContext();
+  const { cartSlider, setCartSlider, cart } = useGlobalContext();
 
   const calculatePrice = (price, count) => {
     //adds comma if thousands

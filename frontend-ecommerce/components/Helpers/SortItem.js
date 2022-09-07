@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Select } from "@chakra-ui/react";
-import { useGlobalContext } from "../lib/storeContext";
+import { useGlobalContext } from "../../lib/storeContext";
 
 const SortItem = () => {
   const { setSort } = useGlobalContext();
