@@ -3,6 +3,7 @@ import { extendTheme } from "@chakra-ui/react";
 import { Provider, createClient } from "urql";
 import { StoreProvider } from "../lib/storeContext";
 import Nav from "../components/Nav/Nav.js";
+import Footer from "../components/Footer/Footer";
 
 const colors = {
   brand: {
@@ -29,7 +30,9 @@ function MyApp({ Component, pageProps }) {
     <Provider value={client}>
       <ChakraProvider theme={theme}>
         <StoreProvider>
+          <Nav />
           <Component {...pageProps} />
+          <Footer />
         </StoreProvider>
       </ChakraProvider>
     </Provider>

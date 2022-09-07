@@ -49,6 +49,19 @@ export const NavLinkText = forwardRef((props, ref) => (
   ></Text>
 ));
 
+export const FooterHeaderText = ({ ...children }) => {
+  return (
+    <Text
+      {...children}
+      textTransform='uppercase'
+      fontSize='1.2rem'
+      fontWeight='bold'
+      color='brand.800'
+      pb='2rem'
+    ></Text>
+  );
+};
+
 // export const NavBrandText = ({ ...children }) => {
 //   return (
 //     <Text

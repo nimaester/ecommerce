@@ -124,7 +124,7 @@ const ItemDetail = () => {
   };
 
   const returnToShopping = () => {
-    router.push("/");
+    router.push("/shop");
     setCartSlider(false);
   };
 

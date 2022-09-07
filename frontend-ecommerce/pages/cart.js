@@ -81,7 +81,7 @@ const Cart = () => {
         )}
       </Flex>
 
-      <ContinueShoppingButton onClick={() => router.push("/")} />
+      <ContinueShoppingButton onClick={() => router.push("/shop")} />
     </DefaultContainer>
   );
 };

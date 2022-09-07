@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Text, Flex, Image } from "@chakra-ui/react";
-import { ContinueShoppingButton } from "../elements/Buttons";
+import { ReturnHomeButton } from "../elements/Buttons";
 import { useRouter } from "next/router";
 
 const stripe = require("stripe")(
@@ -40,7 +40,9 @@ const Success = ({ order }) => {
         </Text>
         <Text>We look forward your next visit.</Text>
       </Flex>
-      <ContinueShoppingButton onClick={() => router.push("/")} />
+      <ReturnHomeButton onClick={() => router.push("/")}>
+        Back Home
+      </ReturnHomeButton>
     </Box>
   );
 };

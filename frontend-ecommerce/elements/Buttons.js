@@ -81,3 +81,24 @@ export const ContinueShoppingButton = forwardRef((props, ref) => (
     </Button>
   </Flex>
 ));
+
+export const ReturnHomeButton = forwardRef((props, ref) => (
+  <Flex alignItems='center' justifyContent='center'>
+    <Button
+      {...props}
+      ref={ref}
+      backgroundColor='transparent'
+      mt='5rem'
+      _hover={{
+        color: "blue",
+        WebkitTransform: "translateY(-3px)",
+        transform: "translateY(-3px)",
+        textDecoration: "none",
+      }}
+      _active={{ transform: "scale(1.05)" }}
+    >
+      <MdKeyboardBackspace size='30' />
+      <Text>Return to home</Text>
+    </Button>
+  </Flex>
+));

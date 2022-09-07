@@ -85,7 +85,10 @@ const Nav = () => {
                 Home
               </NavLinkText>
             </Link>
-            <NavLinkText>Shop</NavLinkText>
+            <Link href={"/shop"}>
+              <NavLinkText>Shop</NavLinkText>
+            </Link>
+
             <NavLinkText>
               <FaRegUser size='22' />
             </NavLinkText>
