@@ -54,8 +54,8 @@ export const FooterHeaderText = ({ ...children }) => {
     <Text
       {...children}
       textTransform='uppercase'
-      fontSize='1.2rem'
       fontWeight='bold'
+      fontSize='1rem'
       color='brand.800'
       pb='2rem'
     ></Text>

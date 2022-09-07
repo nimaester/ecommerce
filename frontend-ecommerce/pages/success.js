@@ -22,10 +22,9 @@ const Success = ({ order }) => {
   return (
     <Box>
       <Flex
-        mb='5rem'
-        h='50vh'
+        h='70vh'
         flexDir='column'
-        justifyContent='end'
+        justifyContent='center'
         alignItems='center'
       >
         <Image
@@ -40,7 +39,7 @@ const Success = ({ order }) => {
         </Text>
         <Text>We look forward your next visit.</Text>
       </Flex>
-      <ReturnHomeButton onClick={() => router.push("/")}>
+      <ReturnHomeButton mb='5rem' onClick={() => router.push("/")}>
         Back Home
       </ReturnHomeButton>
     </Box>
