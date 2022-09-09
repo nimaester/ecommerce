@@ -38,11 +38,11 @@ const Nav = () => {
     >
       <Container
         p={{
-          sm: "0.5rem 2rem",
-          md: "0.5rem 3rem",
-          lg: "0.5rem 3rem",
-          xl: "0.5rem 3rem",
-          base: "0.5rem 2rem",
+          sm: "1rem 2rem",
+          md: "1rem 3rem",
+          lg: "1rem 3rem",
+          xl: "1rem 3rem",
+          base: "1rem 2rem",
         }}
         fontSize={{
           sm: "1rem",
@@ -63,16 +63,6 @@ const Nav = () => {
                 _hover={{ cursor: "pointer" }}
               />
             </Link>
-
-            <Text
-              ml='10px'
-              fontStyle='italic'
-              color='brand.200'
-              fontSize='1.4rem'
-              display={!isSmallScreen ? "block" : "none"}
-            >
-              Marcia's Boutique
-            </Text>
           </Box>
           <Flex
             justifyContent='space-between'

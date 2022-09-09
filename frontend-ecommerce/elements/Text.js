@@ -57,7 +57,7 @@ export const FooterHeaderText = ({ ...children }) => {
       fontWeight='bold'
       fontSize='1rem'
       color='brand.800'
-      pb='2rem'
+      pb='1rem'
     ></Text>
   );
 };
