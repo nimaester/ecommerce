@@ -12,6 +12,9 @@ import { DefaultContainer } from "../../elements/Container";
 import { FooterHeaderText } from "../../elements/Text";
 import { BsFacebook, BsTwitter, BsInstagram } from "react-icons/bs";
 
+const faq = ["Questions", "Return Center", "Return Policy", "Terms of Service"];
+const about = ["About us", "Our Mission", " Disclaimer", "Privacy Policy"];
+
 const Footer = () => {
   return (
     <Box
@@ -53,38 +56,24 @@ const Footer = () => {
           </Box>
 
           <Box>
-            <FooterHeaderText>FAQ</FooterHeaderText>
+            <FooterHeaderText>Faq</FooterHeaderText>
             <List>
-              <ListItem color='white' _hover={{ cursor: "pointer" }}>
-                Questions
-              </ListItem>
-              <ListItem color='white' _hover={{ cursor: "pointer" }}>
-                Return Center
-              </ListItem>
-              <ListItem color='white' _hover={{ cursor: "pointer" }}>
-                Return Policy
-              </ListItem>
-              <ListItem color='white' _hover={{ cursor: "pointer" }}>
-                Terms of Service
-              </ListItem>
+              {faq.map((entry, i) => (
+                <ListItem key={i} color='white' _hover={{ cursor: "pointer" }}>
+                  {entry}
+                </ListItem>
+              ))}
             </List>
           </Box>
 
           <Box>
             <FooterHeaderText>About</FooterHeaderText>
             <List>
-              <ListItem color='white' _hover={{ cursor: "pointer" }}>
-                About us
-              </ListItem>
-              <ListItem color='white' _hover={{ cursor: "pointer" }}>
-                Our Mission
-              </ListItem>
-              <ListItem color='white' _hover={{ cursor: "pointer" }}>
-                Disclaimer
-              </ListItem>
-              <ListItem color='white' _hover={{ cursor: "pointer" }}>
-                Privacy Policy
-              </ListItem>
+              {about.map((entry, i) => (
+                <ListItem key={i} color='white' _hover={{ cursor: "pointer" }}>
+                  {entry}
+                </ListItem>
+              ))}
             </List>
           </Box>
         </Flex>
