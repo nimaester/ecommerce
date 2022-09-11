@@ -26,7 +26,7 @@ const Footer = () => {
     >
       <DefaultContainer>
         <Flex justifyContent='space-between'>
-          <Box>
+          <Box flex='1'>
             <FooterHeaderText>FOLLOW US</FooterHeaderText>
             <Flex gap='2rem'>
               <BsFacebook color='white' size='30' />
@@ -39,7 +39,7 @@ const Footer = () => {
             <Text color='white'>marciasboutique@gmail.com</Text>
           </Box>
 
-          <Box>
+          <Box flex='1'>
             <Image
               h='65px'
               src='https://mbpics7528.s3.us-west-1.amazonaws.com/logo.png'
@@ -55,27 +55,37 @@ const Footer = () => {
             </Text>
           </Box>
 
-          <Box>
-            <FooterHeaderText>Faq</FooterHeaderText>
-            <List>
-              {faq.map((entry, i) => (
-                <ListItem key={i} color='white' _hover={{ cursor: "pointer" }}>
-                  {entry}
-                </ListItem>
-              ))}
-            </List>
-          </Box>
+          <Flex>
+            <Box pr='2rem'>
+              <FooterHeaderText>Faq</FooterHeaderText>
+              <List>
+                {faq.map((entry, i) => (
+                  <ListItem
+                    key={i}
+                    color='white'
+                    _hover={{ cursor: "pointer" }}
+                  >
+                    {entry}
+                  </ListItem>
+                ))}
+              </List>
+            </Box>
 
-          <Box>
-            <FooterHeaderText>About</FooterHeaderText>
-            <List>
-              {about.map((entry, i) => (
-                <ListItem key={i} color='white' _hover={{ cursor: "pointer" }}>
-                  {entry}
-                </ListItem>
-              ))}
-            </List>
-          </Box>
+            <Box flex='1'>
+              <FooterHeaderText>About</FooterHeaderText>
+              <List>
+                {about.map((entry, i) => (
+                  <ListItem
+                    key={i}
+                    color='white'
+                    _hover={{ cursor: "pointer" }}
+                  >
+                    {entry}
+                  </ListItem>
+                ))}
+              </List>
+            </Box>
+          </Flex>
         </Flex>
       </DefaultContainer>
     </Box>
