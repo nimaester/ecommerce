@@ -1,11 +1,10 @@
 import React from "react";
-import Shop from "./shop";
-import Link from "next/link";
+import HomeMain from "../components/Home/index";
 
 const Home = () => {
   return (
     <div>
-      <h1>HOME PAGE</h1>
+      <HomeMain />
     </div>
   );
 };
