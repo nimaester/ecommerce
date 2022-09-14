@@ -26,37 +26,90 @@ const Footer = () => {
       color='#2B3636'
     >
       <DefaultContainer>
-        <Grid templateColumns='repeat(3, 1fr)' w='100%'>
-          <Flex alignItems='start' flexDir='column'>
+        <Grid
+          templateColumns={{
+            sm: "1fr",
+            md: "repeat(2, 1fr)",
+            lg: "repeat(3, 1fr)",
+            xl: "repeat(3, 1fr)",
+            base: "1fr",
+          }}
+          w='100%'
+        >
+          <Flex
+            alignItems={{ sm: "center", md: "start", base: "center" }}
+            flexDir='column'
+          >
             <FooterHeaderText>FOLLOW US</FooterHeaderText>
-            <Flex gap='2rem'>
+            <Flex
+              gap={{
+                sm: "8rem",
+                md: "5rem",
+                lg: "3rem",
+                base: "4rem",
+              }}
+            >
               <BsFacebook color='white' size='30' />
               <BsTwitter color='white' size='30' />
               <BsInstagram color='white' size='30' />
             </Flex>
-            <Text color='white' pt='18px'>
+            <Text
+              pt={{
+                sm: "2rem",
+                md: "18px",
+                base: "2rem",
+              }}
+              color='white'
+            >
               Contact Us :
             </Text>
-            <Text color='white'>marciasboutique@gmail.com</Text>
+            <Text
+              pb={{
+                md: "3rem",
+                lg: "0rem",
+              }}
+              color='white'
+            >
+              marciasboutique@gmail.com
+            </Text>
           </Flex>
 
-          <Flex flexDir='column' alignItems='center'>
+          <Flex
+            flexDir='column'
+            alignItems={{
+              sm: "center",
+              md: "end",
+              lg: "center",
+              base: "center",
+            }}
+            p={{
+              sm: "3rem",
+              md: "0rem",
+              base: "3rem",
+            }}
+          >
             <Image
-              h='65px'
               src='https://mbpics7528.s3.us-west-1.amazonaws.com/resizedLogoColorFull.png'
               alt='black_white_logo'
-              mb='23px'
+              mb='10px'
             />
-
             <Text pl='10px' color='white'>
               Marcia's Boutique 2022 &#174;
             </Text>
-            <Text pl='10px' color='white'>
+            <Text whiteSpace='nowrap' pl='10px' color='white'>
               162 York Pl Hayward, CA 94544
             </Text>
           </Flex>
 
-          <Flex justifyContent='end'>
+          <Flex
+            justifyContent={{
+              sm: "space-evenly",
+              md: "start",
+              lg: "end",
+              base: "space-evenly",
+            }}
+            w='100%'
+          >
             <Box pr='2rem'>
               <FooterHeaderText>Faq</FooterHeaderText>
               <List>

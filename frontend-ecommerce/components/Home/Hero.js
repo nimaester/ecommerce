@@ -13,7 +13,11 @@ const Hero = () => {
       flexDir='column'
     >
       <Text
-        fontSize='3.5rem'
+        fontSize={{
+          sm: "2.5rem",
+          md: "3.5rem",
+          base: "2rem",
+        }}
         fontWeight='500'
         color='white'
         textShadow='2px 2px 2px black'
@@ -22,7 +26,11 @@ const Hero = () => {
         Marcia's Boutique
       </Text>
       <Text
-        fontSize='1.5rem'
+        fontSize={{
+          sm: "1.2rem",
+          md: "1.4rem",
+          base: "1rem",
+        }}
         fontWeight='500'
         color='white'
         textShadow='2px 2px 2px black'
