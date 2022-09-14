@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import {
   Box,
   Container,
+  Grid,
   Flex,
   Image,
   Text,
@@ -25,8 +26,8 @@ const Footer = () => {
       color='#2B3636'
     >
       <DefaultContainer>
-        <Flex justifyContent='space-between'>
-          <Box flex='1'>
+        <Grid templateColumns='repeat(3, 1fr)' w='100%'>
+          <Flex alignItems='start' flexDir='column'>
             <FooterHeaderText>FOLLOW US</FooterHeaderText>
             <Flex gap='2rem'>
               <BsFacebook color='white' size='30' />
@@ -37,12 +38,12 @@ const Footer = () => {
               Contact Us :
             </Text>
             <Text color='white'>marciasboutique@gmail.com</Text>
-          </Box>
+          </Flex>
 
-          <Box flex='1'>
+          <Flex flexDir='column' alignItems='center'>
             <Image
               h='65px'
-              src='https://mbpics7528.s3.us-west-1.amazonaws.com/logo.png'
+              src='https://mbpics7528.s3.us-west-1.amazonaws.com/resizedLogoColorFull.png'
               alt='black_white_logo'
               mb='23px'
             />
@@ -53,9 +54,9 @@ const Footer = () => {
             <Text pl='10px' color='white'>
               162 York Pl Hayward, CA 94544
             </Text>
-          </Box>
+          </Flex>
 
-          <Flex>
+          <Flex justifyContent='end'>
             <Box pr='2rem'>
               <FooterHeaderText>Faq</FooterHeaderText>
               <List>
@@ -70,8 +71,7 @@ const Footer = () => {
                 ))}
               </List>
             </Box>
-
-            <Box flex='1'>
+            <Box>
               <FooterHeaderText>About</FooterHeaderText>
               <List>
                 {about.map((entry, i) => (
@@ -86,7 +86,7 @@ const Footer = () => {
               </List>
             </Box>
           </Flex>
-        </Flex>
+        </Grid>
       </DefaultContainer>
     </Box>
   );

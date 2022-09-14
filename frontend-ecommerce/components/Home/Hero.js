@@ -8,7 +8,7 @@ const Hero = () => {
       justifyContent='center'
       alignItems='center'
       bg='url(https://mbpics7528.s3.us-west-1.amazonaws.com/wallpaper.jpg) center no-repeat'
-      h='90vh'
+      h='100vh'
       backgroundSize='cover'
       flexDir='column'
     >

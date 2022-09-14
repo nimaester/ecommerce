@@ -13,13 +13,14 @@ import {
 import { useGlobalContext } from "../../lib/storeContext";
 
 const RemoveItemPopUp = ({ itemName }) => {
-  const { cart, setCart } = useGlobalContext();
+  const { cart, setCart, setCartSlider } = useGlobalContext();
 
   const removeItem = (item) => {
     const newCartItems = cart.filter((cartItem) => {
       return cartItem.slug === item ? false : true;
     });
     setCart(newCartItems);
+    if (newCartItems.length === 0) setCartSlider(false);
   };
 
   const initRef = React.useRef();

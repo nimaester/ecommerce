@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaRegUser } from "react-icons/fa";
@@ -8,9 +8,12 @@ import { useGlobalContext } from "../../lib/storeContext";
 import { NavLinkText } from "../../elements/Text";
 import CartSlider from "../Cart/CartSlider";
 import { useMediaQuery } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 const Nav = () => {
   const [isSmallScreen] = useMediaQuery("(max-width: 768px)");
+  const [scrolled, setScrolled] = useState(false);
+  const router = useRouter();
 
   const { cart, cartSlider, setCartSlider } = useGlobalContext();
 
@@ -24,14 +27,24 @@ const Nav = () => {
     if (isSmallScreen) setCartSlider(false);
   };
 
+  const checkPageLocation = () => {
+    if (window.location.pathname === "/") {
+      window.scrollY > 30 ? setScrolled(true) : setScrolled(false);
+    }
+  };
+
   useEffect(() => {
+    window.addEventListener("scroll", checkPageLocation);
     closeSliderOnSmallScreenSize();
-  }, [isSmallScreen]);
+    window.location.pathname === "/" ? setScrolled(false) : setScrolled(true);
+  }, [isSmallScreen, router.asPath]);
 
   return (
     <Box
-      backgroundColor='brand.900'
-      position='sticky'
+      backgroundColor={scrolled ? "brand.900" : "transparent"}
+      transition='ease-in-out 0.3s'
+      position='fixed'
+      w='100%'
       top='0'
       zIndex='5'
       color='#2B3636'
@@ -57,7 +70,11 @@ const Nav = () => {
           <Box display='flex' alignItems='center' flex='3'>
             <Link href={"/"}>
               <Image
-                src='https://mbpics7528.s3.us-west-1.amazonaws.com/logoWhite.png'
+                src={
+                  scrolled
+                    ? "https://mbpics7528.s3.us-west-1.amazonaws.com/logoWhite.png"
+                    : "https://mbpics7528.s3.us-west-1.amazonaws.com/logoColor.png"
+                }
                 alt='marcias_boutique'
                 w='80px'
                 _hover={{ cursor: "pointer" }}

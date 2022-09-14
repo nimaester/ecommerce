@@ -133,7 +133,13 @@ const ItemDetail = () => {
       as={motion.div}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { duration: 0.2 } }}
-      mt='3rem'
+      mt={{
+        sm: "5rem",
+        md: "10rem",
+        lg: "10rem",
+        xl: "10rem",
+        base: "5rem",
+      }}
     >
       {zoom ? (
         showZoomedImage()
