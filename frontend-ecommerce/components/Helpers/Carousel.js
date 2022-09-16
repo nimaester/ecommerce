@@ -59,7 +59,7 @@ const Carousel = ({ title }) => {
         },
       },
       {
-        breakpoint: 767,
+        breakpoint: 815,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -67,10 +67,11 @@ const Carousel = ({ title }) => {
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 550,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          dots: "false",
         },
       },
     ],
@@ -81,11 +82,13 @@ const Carousel = ({ title }) => {
       <Text fontSize='3xl' m='2rem 0rem'>
         {title}
       </Text>
-      <Slider style={{ margin: "0 2rem" }} {...settings}>
+      <Slider style={{ margin: "0 1rem" }} {...settings}>
         {inventories.map((item) => (
-          <Link href={`item/${item.attributes.slug}`}>
+          <Link
+            key={item.attributes.title}
+            href={`/item/${item.attributes.slug}`}
+          >
             <Flex
-              key={item.attributes.title}
               textAlign='center'
               _hover={{
                 transform: "scale(1.02)",
@@ -101,7 +104,12 @@ const Carousel = ({ title }) => {
                 borderRadius='5px'
               >
                 <Image
-                  h='90px'
+                  h={{
+                    sm: "90px",
+                    md: "120px",
+                    lg: "150px",
+                    base: "180px",
+                  }}
                   w='auto'
                   m='0 auto'
                   objectFit='scale-down'
@@ -111,7 +119,16 @@ const Carousel = ({ title }) => {
                   alt={item.title}
                 />
 
-                <Text whiteSpace='nowrap' fontSize='0.9rem' mt='2rem'>
+                <Text
+                  whiteSpace='nowrap'
+                  fontSize={{
+                    sm: "0.8rem",
+                    md: "0.9rem",
+                    lg: "1rem",
+                    base: "0.8rem",
+                  }}
+                  mt='2rem'
+                >
                   {item.attributes.title}
                 </Text>
               </Box>
