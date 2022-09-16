@@ -23,6 +23,7 @@ import { useGlobalContext } from "../../lib/storeContext";
 import { Loading } from "../../elements/Loading";
 import { FailedToFetch } from "../../elements/FailedToFetch";
 import { motion } from "framer-motion";
+import Carousel from "../../components/Helpers/Carousel";
 
 const ItemDetail = () => {
   const toast = useToast();
@@ -234,6 +235,7 @@ const ItemDetail = () => {
           </Flex>
         </Box>
       )}
+      <Carousel title={"Similar Items"} />
       <ContinueShoppingButton onClick={() => returnToShopping()} />
     </DefaultContainer>
   );
