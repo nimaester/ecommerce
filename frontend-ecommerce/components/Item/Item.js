@@ -10,7 +10,7 @@ const Items = ({ item }) => {
 
   return (
     <Box w='100%'>
-      <Link href={`${slug}`}>
+      <Link href={`/item/${slug}`}>
         <Flex
           position='relative'
           onMouseOver={() => setHover(true)}
