@@ -83,20 +83,7 @@ const CartItem = ({ cartItem }) => {
             borderRadius='5px'
             display='flex'
             alignItems='center'
-          >
-            <CartPlusMinusButton
-              onClick={() => updateItemQuantity(cartItem.name, "minus")}
-            >
-              <AiOutlineMinus size='20px' />
-            </CartPlusMinusButton>
-
-            <Text>{cartItem.count}</Text>
-            <CartPlusMinusButton
-              onClick={() => updateItemQuantity(cartItem.name, "add")}
-            >
-              <AiOutlinePlus size='20px' />
-            </CartPlusMinusButton>
-          </Box>
+          ></Box>
           <Flex flexDir='column' alignItems='end'>
             <Text>$ {cartItem.price}</Text>
             <Text

@@ -34,16 +34,18 @@ const Nav = () => {
   };
 
   useEffect(() => {
+    // transparent on top when on homepage
     window.addEventListener("scroll", checkPageLocation);
+    // closes CartSlider on resize
     closeSliderOnSmallScreenSize();
-    window.location.pathname === "/" ? setScrolled(false) : setScrolled(true);
+    router.pathname === "/" ? setScrolled(false) : setScrolled(true);
   }, [isSmallScreen, router.asPath]);
 
   return (
     <Box
       backgroundColor={scrolled ? "brand.900" : "transparent"}
       transition='ease-in-out 0.3s'
-      position='fixed'
+      position={router.pathname === "/" ? "fixed" : "sticky"}
       w='100%'
       top='0'
       zIndex='5'

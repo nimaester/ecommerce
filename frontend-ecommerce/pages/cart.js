@@ -59,8 +59,8 @@ const Cart = () => {
   };
 
   return (
-    <DefaultContainer mt='5rem' minH='65vh'>
-      <HeaderText textAlign='center' pb='4rem' fontSize='4xl'>
+    <DefaultContainer minH='550px'>
+      <HeaderText textAlign='center' pb='5rem' fontSize='4xl'>
         Shopping Cart
       </HeaderText>
 
