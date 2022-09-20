@@ -1,6 +1,5 @@
 import React from "react";
-import { Flex, Box, Text, Image, Container } from "@chakra-ui/react";
-import { DefaultContainer } from "../../elements/Container";
+import { Flex, Text } from "@chakra-ui/react";
 
 const Hero = () => {
   return (
@@ -36,7 +35,7 @@ const Hero = () => {
         textShadow='2px 2px 2px black'
         textAlign='center'
       >
-        A collection of used/new products at great prices!
+        A collection of products at great prices!
       </Text>
     </Flex>
   );

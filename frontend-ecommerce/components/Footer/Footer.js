@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Box,
   Container,
@@ -29,9 +29,7 @@ const Footer = () => {
         <Grid
           templateColumns={{
             sm: "1fr",
-            md: "repeat(2, 1fr)",
-            lg: "repeat(3, 1fr)",
-            xl: "repeat(3, 1fr)",
+            md: "repeat(3, 1fr)",
             base: "1fr",
           }}
           rowGap='2rem'
@@ -44,9 +42,9 @@ const Footer = () => {
             <FooterHeaderText>FOLLOW US</FooterHeaderText>
             <Flex
               gap={{
-                sm: "8rem",
-                md: "5rem",
-                lg: "3rem",
+                sm: "6rem",
+                md: "4rem",
+                lg: "4rem",
                 base: "4rem",
               }}
             >
@@ -69,29 +67,19 @@ const Footer = () => {
 
           <Flex
             flexDir='column'
-            alignItems={{
-              sm: "center",
-              md: "end",
-              lg: "center",
-              base: "center",
-            }}
+            alignItems='center'
             p={{
               sm: "3rem",
               md: "0rem",
-              base: "rem",
+              base: "3rem",
             }}
           >
             <Image
-              src='https://mbpics7528.s3.us-west-1.amazonaws.com/resizedLogoColorFull.png'
+              src='https://mbpics7528.s3.us-west-1.amazonaws.com/MBLogo.png'
               alt='black_white_logo'
               mb='10px'
+              w='130px'
             />
-            <Text pl='10px' color='white'>
-              Marcia's Boutique 2022 &#174;
-            </Text>
-            <Text whiteSpace='nowrap' pl='10px' color='white'>
-              162 York Pl Hayward, CA 94544
-            </Text>
           </Flex>
 
           <Flex
@@ -99,7 +87,7 @@ const Footer = () => {
               sm: "space-evenly",
               md: "start",
               lg: "end",
-              base: "space-between",
+              base: "space-evenly",
             }}
             w='100%'
           >
@@ -111,6 +99,7 @@ const Footer = () => {
                     key={i}
                     color='white'
                     _hover={{ cursor: "pointer" }}
+                    whiteSpace='nowrap'
                   >
                     {entry}
                   </ListItem>
@@ -125,6 +114,7 @@ const Footer = () => {
                     key={i}
                     color='white'
                     _hover={{ cursor: "pointer" }}
+                    whiteSpace='nowrap'
                   >
                     {entry}
                   </ListItem>

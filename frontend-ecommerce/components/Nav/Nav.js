@@ -43,11 +43,11 @@ const Nav = () => {
     >
       <Container
         p={{
-          sm: "1rem",
+          sm: "1rem 2rem",
           md: "1rem 3rem",
           lg: "1rem 3rem",
           xl: "1rem 3rem",
-          base: "1rem",
+          base: "1rem 2rem",
         }}
         fontSize={{
           sm: "1rem",
@@ -62,14 +62,14 @@ const Nav = () => {
           <Box display='flex' alignItems='center' flex='3'>
             <Link href={"/"}>
               <Image
-                src={
-                  isSmallScreen
-                    ? "https://mbpics7528.s3.us-west-1.amazonaws.com/logoColor.png"
-                    : "https://mbpics7528.s3.us-west-1.amazonaws.com/logoWhite.png"
-                }
+                src='https://mbpics7528.s3.us-west-1.amazonaws.com/MBLogo.png'
                 alt='marcias_boutique'
-                w='80px'
-                _hover={{ cursor: "pointer" }}
+                w={{
+                  sm: "80px",
+                  md: "100px",
+                  base: "80px",
+                }}
+                _hover={{ cursor: "pointer", transform: "scale(1.05)" }}
               />
             </Link>
           </Box>

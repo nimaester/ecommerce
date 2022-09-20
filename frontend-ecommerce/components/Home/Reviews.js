@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Grid, Flex, Image, Text } from "@chakra-ui/react";
 import { DefaultContainer } from "../../elements/Container";
-import { HeaderText } from "../../elements/Text";
 
 const reviewsData = [
   {
@@ -63,7 +62,7 @@ const Reviews = () => {
               <Text fontWeight='bold' p='1rem 0rem'>
                 {review.name}
               </Text>
-              <Text>{review.review}</Text>
+              <Text lineHeight='1.9'>{review.review}</Text>
             </Box>
           ))}
         </Grid>

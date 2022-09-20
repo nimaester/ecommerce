@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Image, Flex, Box, Text } from "@chakra-ui/react";
 import Slider from "react-slick";
 import { useQuery } from "urql";

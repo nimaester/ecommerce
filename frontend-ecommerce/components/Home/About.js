@@ -24,16 +24,10 @@ const About = () => {
               base: "0rem 0rem 5rem 0rem",
             }}
           >
-            <Text fontSize='3xl'>Our goal...</Text>
-            <Text
-              fontSize={{
-                sm: "1rem",
-                md: "1.1rem",
-                lg: "1.1rem",
-                xl: "1.1rem",
-                base: "0.9rem",
-              }}
-            >
+            <Text fontSize='3xl' mb='1rem'>
+              Our goal...
+            </Text>
+            <Text lineHeight='1.9'>
               We're the best in our field, and it's all thanks to the incredible
               relationships we've formed with our clients. Unlike our
               competitors, we're invested in developing a personal connection
