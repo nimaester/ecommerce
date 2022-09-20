@@ -43,17 +43,13 @@ const Nav = () => {
     >
       <Container
         p={{
-          sm: "1rem 2rem",
-          md: "1rem 3rem",
-          lg: "1rem 3rem",
-          xl: "1rem 3rem",
-          base: "1rem 2rem",
+          sm: "0.5rem 2rem",
+          md: "0.5rem 3rem",
+          base: "0.5rem 2rem",
         }}
         fontSize={{
           sm: "1rem",
           md: "1.5rem",
-          lg: "1.5rem",
-          xl: "1.5rem",
           base: "1rem",
         }}
         maxW='container.xl'

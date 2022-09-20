@@ -10,13 +10,7 @@ const about = ["About us", "Our Mission", " Disclaimer", "Privacy Policy"];
 
 const Footer = () => {
   return (
-    <Box
-      backgroundColor='brand.900'
-      position='sticky'
-      top='0'
-      zIndex='5'
-      color='#2B3636'
-    >
+    <Box backgroundColor='brand.900' zIndex='5' color='#2B3636'>
       <DefaultContainer>
         <Grid
           templateColumns={{
