@@ -6,7 +6,6 @@ const Home = () => {
   return (
     <div>
       <HomeMain />
-      <Carousel title={"Popular Items"} />
     </div>
   );
 };

@@ -99,16 +99,16 @@ const Carousel = ({ title }) => {
               <Box
                 p='1rem'
                 w='100%'
-                border='1px solid #525F6E'
                 m='0 1px'
                 borderRadius='5px'
+                boxShadow='rgba(0, 0, 0, 0.24) 0px 3px 8px'
               >
                 <Image
                   h={{
                     sm: "90px",
                     md: "120px",
                     lg: "150px",
-                    base: "180px",
+                    base: "150px",
                   }}
                   w='auto'
                   m='0 auto'

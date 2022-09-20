@@ -30,7 +30,7 @@ export const HeaderText = ({ ...children }) => {
         xl: "5xl",
         base: "3xl",
       }}
-      pb='6'
+      pb='6rem'
       textAlign='center'
     ></Text>
   );

@@ -34,6 +34,7 @@ const Footer = () => {
             xl: "repeat(3, 1fr)",
             base: "1fr",
           }}
+          rowGap='2rem'
           w='100%'
         >
           <Flex
@@ -63,15 +64,7 @@ const Footer = () => {
             >
               Contact Us :
             </Text>
-            <Text
-              pb={{
-                md: "3rem",
-                lg: "0rem",
-              }}
-              color='white'
-            >
-              marciasboutique@gmail.com
-            </Text>
+            <Text color='white'>marciasboutique@gmail.com</Text>
           </Flex>
 
           <Flex
@@ -85,7 +78,7 @@ const Footer = () => {
             p={{
               sm: "3rem",
               md: "0rem",
-              base: "3rem",
+              base: "rem",
             }}
           >
             <Image
@@ -106,7 +99,7 @@ const Footer = () => {
               sm: "space-evenly",
               md: "start",
               lg: "end",
-              base: "space-evenly",
+              base: "space-between",
             }}
             w='100%'
           >

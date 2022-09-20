@@ -11,8 +11,8 @@ import { useMediaQuery } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 const Nav = () => {
-  const [isSmallScreen] = useMediaQuery("(max-width: 768px)");
-  const [scrolled, setScrolled] = useState(false);
+  const [isSmallScreen] = useMediaQuery("(max-width: 767px)");
+
   const router = useRouter();
 
   const { cart, cartSlider, setCartSlider } = useGlobalContext();
@@ -27,37 +27,27 @@ const Nav = () => {
     if (isSmallScreen) setCartSlider(false);
   };
 
-  const checkPageLocation = () => {
-    if (window.location.pathname === "/") {
-      window.scrollY > 30 ? setScrolled(true) : setScrolled(false);
-    }
-  };
-
   useEffect(() => {
-    // transparent on top when on homepage
-    window.addEventListener("scroll", checkPageLocation);
-    // closes CartSlider on resize
     closeSliderOnSmallScreenSize();
-    router.pathname === "/" ? setScrolled(false) : setScrolled(true);
-  }, [isSmallScreen, router.asPath]);
+  }, [isSmallScreen]);
 
   return (
     <Box
-      backgroundColor={scrolled ? "brand.900" : "transparent"}
+      backgroundColor='brand.900'
       transition='ease-in-out 0.3s'
       position={router.pathname === "/" ? "fixed" : "sticky"}
       w='100%'
       top='0'
-      zIndex='30'
+      zIndex='10'
       color='#2B3636'
     >
       <Container
         p={{
-          sm: "1rem 2rem",
+          sm: "1rem",
           md: "1rem 3rem",
           lg: "1rem 3rem",
           xl: "1rem 3rem",
-          base: "1rem 2rem",
+          base: "1rem",
         }}
         fontSize={{
           sm: "1rem",
@@ -73,9 +63,9 @@ const Nav = () => {
             <Link href={"/"}>
               <Image
                 src={
-                  scrolled
-                    ? "https://mbpics7528.s3.us-west-1.amazonaws.com/logoWhite.png"
-                    : "https://mbpics7528.s3.us-west-1.amazonaws.com/logoColor.png"
+                  isSmallScreen
+                    ? "https://mbpics7528.s3.us-west-1.amazonaws.com/logoColor.png"
+                    : "https://mbpics7528.s3.us-west-1.amazonaws.com/logoWhite.png"
                 }
                 alt='marcias_boutique'
                 w='80px'

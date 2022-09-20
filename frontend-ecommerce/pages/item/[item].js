@@ -95,7 +95,7 @@ const ItemDetail = () => {
     return (
       <Box
         position='fixed'
-        zIndex='20'
+        zIndex='100'
         top='0'
         left='0'
         w='100%'

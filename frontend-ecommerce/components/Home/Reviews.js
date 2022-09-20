@@ -1,19 +1,20 @@
 import React from "react";
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Grid, Flex, Image, Text } from "@chakra-ui/react";
+import { DefaultContainer } from "../../elements/Container";
+import { HeaderText } from "../../elements/Text";
 
 const reviewsData = [
   {
     id: 0,
-    img: image1,
+    img: "https://7528userurl.s3.us-west-1.amazonaws.com/userImage102.jpg",
     name: "Joanne L.",
-    review: `I honestly received the best service I could have asked for. 
-        They were super professional to deal with; they met all my needs 
-        and helped`,
+    review: `I was skeptical at first buying from Marcia's Boutique but I am glad I did.
+    Communication was also on point.`,
   },
 
   {
     id: 1,
-    img: image2,
+    img: "https://7528userurl.s3.us-west-1.amazonaws.com/userImage104.jpg",
     name: "Andre I.",
     review: `I can't say enough good things about the quality of this company. 
       Highly, highly recommend using them!`,
@@ -21,16 +22,54 @@ const reviewsData = [
 
   {
     id: 2,
-    img: image3,
+    img: "https://7528userurl.s3.us-west-1.amazonaws.com/userImage39.jpg",
     name: "Brian S.",
-    review: `The entire thing process was so easy and friendly, 
-      and the price was very reasonable. I don't know what 
-      I would have done without them.`,
+    review: `The entire thing process was so easy and the price was very reasonable. I am buying again in the future`,
   },
 ];
 
 const Reviews = () => {
-  return <div></div>;
+  return (
+    <Box>
+      <DefaultContainer>
+        <Text fontSize='3xl' mb='2rem'>
+          Customer Reviews
+        </Text>
+        <Grid
+          gridTemplateColumns={{
+            sm: "1fr",
+            md: "repeat(2, 1fr)",
+            lg: "repeat(3, 1fr)",
+          }}
+          gap='3rem'
+        >
+          {reviewsData.map((review) => (
+            <Box
+              key={review.id}
+              flex='1'
+              borderRadius='10px'
+              border='1px solid rgba(40, 146, 170, 0.4)'
+              p='2rem'
+              boxShadow='rgba(40, 146, 170, 0.4) 5px 5px, rgba(40, 146, 170, 0.3) 10px 10px, rgba(40, 146, 170, 0.2) 15px 15px, rgba(40, 146, 170, 0.1) 20px 20px, rgba(40, 146, 170, 0.05) 25px 25px'
+            >
+              <Flex alignItems='center' justifyContent='center'>
+                <Image
+                  borderRadius='100px'
+                  src={review.img}
+                  alt={review.name}
+                />
+              </Flex>
+
+              <Text fontWeight='bold' p='1rem 0rem'>
+                {review.name}
+              </Text>
+              <Text>{review.review}</Text>
+            </Box>
+          ))}
+        </Grid>
+      </DefaultContainer>
+    </Box>
+  );
 };
 
 export default Reviews;

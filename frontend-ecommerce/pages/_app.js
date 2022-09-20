@@ -9,7 +9,7 @@ import Head from "next/head";
 const colors = {
   brand: {
     900: "#525F6E",
-    800: "#BFBFBF",
+    800: "#F2F2F2",
     700: "#7395ae",
     500: "#557a95",
     400: "#b1a296",
