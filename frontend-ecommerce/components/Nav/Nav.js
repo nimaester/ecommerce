@@ -66,10 +66,10 @@ const Nav = () => {
                 alt='marcias_boutique'
                 w={{
                   sm: "80px",
-                  md: "100px",
-                  base: "80px",
+                  md: "80px",
+                  base: "60px",
                 }}
-                _hover={{ cursor: "pointer", transform: "scale(1.05)" }}
+                _hover={{ cursor: "pointer" }}
               />
             </Link>
           </Box>
@@ -112,7 +112,7 @@ const Nav = () => {
             }}
             display={isSmallScreen ? "flex" : "none"}
           >
-            <GiHamburgerMenu size='35' />
+            <GiHamburgerMenu size='30' />
           </Flex>
         </Flex>
       </Container>

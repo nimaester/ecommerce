@@ -1,17 +1,9 @@
 import React from "react";
-import {
-  Box,
-  Container,
-  Grid,
-  Flex,
-  Image,
-  Text,
-  List,
-  ListItem,
-} from "@chakra-ui/react";
+import { Box, Grid, Flex, Image, Text, List, ListItem } from "@chakra-ui/react";
 import { DefaultContainer } from "../../elements/Container";
 import { FooterHeaderText } from "../../elements/Text";
 import { BsFacebook, BsTwitter, BsInstagram } from "react-icons/bs";
+import { NavLinkText } from "../../elements/Text";
 
 const faq = ["Questions", "Return Center", "Return Policy", "Terms of Service"];
 const about = ["About us", "Our Mission", " Disclaimer", "Privacy Policy"];
@@ -48,9 +40,22 @@ const Footer = () => {
                 base: "4rem",
               }}
             >
-              <BsFacebook color='white' size='30' />
-              <BsTwitter color='white' size='30' />
-              <BsInstagram color='white' size='30' />
+              <NavLinkText>
+                <a href='https://www.facebook.com/' target='_blank'>
+                  <BsFacebook color='white' size='30' />
+                </a>
+              </NavLinkText>
+              <NavLinkText>
+                <a href='https://www.twitter.com/' target='_blank'>
+                  <BsTwitter color='white' size='30' />
+                </a>
+              </NavLinkText>
+
+              <NavLinkText>
+                <a href='https://www.instagram.com/' target='_blank'>
+                  <BsInstagram color='white' size='30' />
+                </a>
+              </NavLinkText>
             </Flex>
             <Text
               pt={{
@@ -62,7 +67,14 @@ const Footer = () => {
             >
               Contact Us :
             </Text>
-            <Text color='white'>marciasboutique@gmail.com</Text>
+            <a href='mailto: marciasboutique@gmail.com'>
+              <Text
+                _hover={{ cursor: "pointer", transform: "scale(1.02)" }}
+                color='white'
+              >
+                marciasboutique@gmail.com
+              </Text>
+            </a>
           </Flex>
 
           <Flex
@@ -98,7 +110,7 @@ const Footer = () => {
                   <ListItem
                     key={i}
                     color='white'
-                    _hover={{ cursor: "pointer" }}
+                    _hover={{ cursor: "pointer", transform: "scale(1.02)" }}
                     whiteSpace='nowrap'
                   >
                     {entry}
@@ -113,7 +125,7 @@ const Footer = () => {
                   <ListItem
                     key={i}
                     color='white'
-                    _hover={{ cursor: "pointer" }}
+                    _hover={{ cursor: "pointer", transform: "scale(1.02)" }}
                     whiteSpace='nowrap'
                   >
                     {entry}
