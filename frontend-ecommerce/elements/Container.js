@@ -7,11 +7,11 @@ export const DefaultContainer = ({ ...children }) => {
       {...children}
       maxW='container.xl'
       p={{
-        sm: "5rem 2rem",
+        sm: "3rem 2rem",
         md: "4rem 3rem",
         lg: "4rem 3rem",
         xl: "4rem 3rem",
-        base: "5rem 1rem",
+        base: "3rem 1rem",
       }}
       fontSize={{
         sm: "0.9rem",

@@ -79,7 +79,7 @@ const Carousel = ({ title }) => {
 
   return (
     <DefaultContainer>
-      <Text fontSize='3xl' m='2rem 0rem'>
+      <Text fontSize='3xl' mb='2rem'>
         {title}
       </Text>
       <Slider style={{ margin: "0 1rem" }} {...settings}>

@@ -48,7 +48,7 @@ const Nav = () => {
       position={router.pathname === "/" ? "fixed" : "sticky"}
       w='100%'
       top='0'
-      zIndex='5'
+      zIndex='30'
       color='#2B3636'
     >
       <Container
