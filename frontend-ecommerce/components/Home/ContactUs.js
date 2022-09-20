@@ -1,10 +1,15 @@
 import React, { useState } from "react";
-import { Box, Text, Flex, Textarea, Button, Input } from "@chakra-ui/react";
 import {
+  Box,
+  Text,
+  Flex,
+  Textarea,
+  Button,
+  Input,
+  InputGroup,
+  InputLeftAddon,
+  useToast,
   FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
 } from "@chakra-ui/react";
 import emailjs from "@emailjs/browser";
 import { DefaultContainer } from "../../elements/Container";
@@ -16,6 +21,9 @@ const ContactUs = () => {
     email: "",
     message: "",
   });
+
+  const toast = useToast();
+  const id = "test-toast";
 
   const handleChange = (e) => {
     setMessage({
@@ -30,10 +38,10 @@ const ContactUs = () => {
 
       emailjs
         .send(
-          "service_bl63zyk",
-          "template_1fnqpcr",
+          `${process.env.NEXT_PUBLIC_EMAIL_JS_SERVICE}`,
+          `${process.env.NEXT_PUBLIC_EMAIL_JS_TEMPLATE}`,
           message,
-          "user_7q9goxLOYdywpMLHQQLe3"
+          `${process.env.NEXT_PUBLIC_EMAIL_JS_USER}`
         )
         .then((error) => {
           console.log(error.text);
@@ -44,11 +52,20 @@ const ContactUs = () => {
         message: "",
       });
       setSentMessage(true);
+    } else {
+      if (!toast.isActive(id)) {
+        toast({
+          id,
+          title: "Please fill in all the required fields",
+          status: "error",
+          duration: 2000,
+        });
+      }
     }
   };
 
   return (
-    <Box backgroundColor='brand.800'>
+    <Box backgroundColor='brand.800' pb='5rem'>
       <DefaultContainer>
         <Text fontSize='3xl' mb='3rem'>
           Contact Us
@@ -61,7 +78,7 @@ const ContactUs = () => {
             base: "3rem",
           }}
         >
-          <Box flex='1'>
+          <Flex flexDir='column' justifyContent='center' flex='1'>
             <Text mb='1rem' fontWeight='medium'>
               How can we help?
             </Text>
@@ -72,7 +89,7 @@ const ContactUs = () => {
               customers and we would like to help you regarding your concerns.
               We look forward to hearing from you.
             </Text>
-          </Box>
+          </Flex>
           <Box flex='1'>
             {sentMessage ? (
               <div>
@@ -80,35 +97,38 @@ const ContactUs = () => {
               </div>
             ) : (
               <FormControl isRequired>
-                <FormLabel>Your Name: </FormLabel>
-                <Input
-                  variant='outline'
-                  placeholder='Name'
-                  spellCheck='false'
-                  name='name'
-                  onChange={handleChange}
-                  value={message.name}
-                />
-                <FormLabel>Your Email: </FormLabel>
-                <Input
-                  variant='outline'
-                  placeholder='Email'
-                  spellCheck='false'
-                  name='email'
-                  onChange={handleChange}
-                  value={message.email}
-                />
-                <FormLabel>Message: </FormLabel>
+                <InputGroup pb='1rem'>
+                  <InputLeftAddon w='100px' children='Name: ' />
+                  <Input
+                    variant='outline'
+                    placeholder='your name...'
+                    name='name'
+                    onChange={handleChange}
+                    value={message.name}
+                  />
+                </InputGroup>
+
+                <InputGroup pb='1rem'>
+                  <InputLeftAddon w='100px' children='Email: ' />
+                  <Input
+                    variant='outline'
+                    placeholder='your email...'
+                    name='email'
+                    onChange={handleChange}
+                    value={message.email}
+                  />
+                </InputGroup>
+
                 <Textarea
                   variant='outline'
-                  placeholder='Message'
-                  spellCheck='false'
-                  type='text'
+                  placeholder='your message...'
                   name='message'
                   onChange={handleChange}
                   value={message.message}
                 />
-                <Button onClick={sendEmail}>Send</Button>
+                <Button mt='2rem' onClick={sendEmail}>
+                  Send
+                </Button>
               </FormControl>
             )}
           </Box>
