@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useGlobalContext } from "../../lib/storeContext";
 import { NavLinkText } from "../../elements/Text";
 import CartSlider from "../Cart/CartSlider";
+import MiniNav from "./MiniNav";
 import { useMediaQuery } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
@@ -15,7 +16,8 @@ const Nav = () => {
 
   const router = useRouter();
 
-  const { cart, cartSlider, setCartSlider } = useGlobalContext();
+  const { cart, cartSlider, setCartSlider, miniNavbar, setMiniNavbar } =
+    useGlobalContext();
 
   const countCartItems = () => {
     let itemCount = 0;
@@ -24,7 +26,12 @@ const Nav = () => {
   };
 
   const closeSliderOnSmallScreenSize = () => {
-    if (isSmallScreen) setCartSlider(false);
+    if (isSmallScreen) {
+      setCartSlider(false);
+    }
+    if (!isSmallScreen) {
+      setMiniNavbar(false);
+    }
   };
 
   useEffect(() => {
@@ -98,6 +105,7 @@ const Nav = () => {
               </span>
             </NavLinkText>
           </Flex>
+
           <Flex
             alignItems='center'
             color='white'
@@ -108,9 +116,13 @@ const Nav = () => {
             }}
             display={isSmallScreen ? "flex" : "none"}
           >
-            <GiHamburgerMenu size='30' />
+            <GiHamburgerMenu
+              onClick={() => setMiniNavbar(!miniNavbar)}
+              size='30'
+            />
           </Flex>
         </Flex>
+        {miniNavbar && <MiniNav />}
       </Container>
 
       {cartSlider && <CartSlider />}
