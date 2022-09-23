@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { GrClose } from "react-icons/gr";
 import { FaRegUser } from "react-icons/fa";
 import { Box, Container, Flex, Image, Text } from "@chakra-ui/react";
 import Link from "next/link";
@@ -45,7 +46,7 @@ const Nav = () => {
       position={router.pathname === "/" ? "fixed" : "sticky"}
       w='100%'
       top='0'
-      zIndex='10'
+      zIndex='90'
       color='#2B3636'
     >
       <Container
@@ -60,6 +61,7 @@ const Nav = () => {
           base: "1rem",
         }}
         maxW='container.xl'
+        userSelect='none'
       >
         <Flex justifyContent='space-between'>
           <Box display='flex' alignItems='center' flex='3'>
@@ -116,10 +118,18 @@ const Nav = () => {
             }}
             display={isSmallScreen ? "flex" : "none"}
           >
-            <GiHamburgerMenu
-              onClick={() => setMiniNavbar(!miniNavbar)}
-              size='30'
-            />
+            {miniNavbar ? (
+              <GrClose
+                backgroundColor='white'
+                onClick={() => setMiniNavbar(!miniNavbar)}
+                size='30'
+              />
+            ) : (
+              <GiHamburgerMenu
+                onClick={() => setMiniNavbar(!miniNavbar)}
+                size='30'
+              />
+            )}
           </Flex>
         </Flex>
         {miniNavbar && <MiniNav />}
