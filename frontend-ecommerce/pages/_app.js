@@ -4,7 +4,7 @@ import { Provider, createClient } from "urql";
 import { StoreProvider } from "../lib/storeContext";
 import Nav from "../components/Nav/Nav.js";
 import Footer from "../components/Footer/Footer";
-import Head from "next/head";
+// import Head from "next/head";
 
 const colors = {
   brand: {
