@@ -4,6 +4,7 @@ import { Provider, createClient } from "urql";
 import { StoreProvider } from "../lib/storeContext";
 import Nav from "../components/Nav/Nav.js";
 import Footer from "../components/Footer/Footer";
+import { UserProvider } from "@auth0/nextjs-auth0";
 // import Head from "next/head";
 
 const colors = {
@@ -29,13 +30,15 @@ const client = createClient({ url: process.env.NEXT_PUBLIC_INVENTORIES_API });
 function MyApp({ Component, pageProps }) {
   return (
     <Provider value={client}>
-      <ChakraProvider theme={theme}>
-        <StoreProvider>
-          <Nav />
-          <Component {...pageProps} />
-          <Footer />
-        </StoreProvider>
-      </ChakraProvider>
+      <UserProvider>
+        <ChakraProvider theme={theme}>
+          <StoreProvider>
+            <Nav />
+            <Component {...pageProps} />
+            <Footer />
+          </StoreProvider>
+        </ChakraProvider>
+      </UserProvider>
     </Provider>
   );
 }

@@ -11,6 +11,8 @@ import CartSlider from "../Cart/CartSlider";
 import MiniNav from "./MiniNav";
 import { useMediaQuery } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import User from "../User/User";
+import { useUser } from "@auth0/nextjs-auth0";
 
 const Nav = () => {
   const [isSmallScreen] = useMediaQuery("(max-width: 767px)");
@@ -19,6 +21,9 @@ const Nav = () => {
 
   const { cart, cartSlider, setCartSlider, miniNavbar, setMiniNavbar } =
     useGlobalContext();
+
+  const { user, error, isLoading } = useUser();
+  console.log(user);
 
   const countCartItems = () => {
     let itemCount = 0;
@@ -93,9 +98,21 @@ const Nav = () => {
               <NavLinkText>Shop</NavLinkText>
             </Link>
 
-            <NavLinkText>
-              <FaRegUser size='22' />
-            </NavLinkText>
+            <Flex>
+              {user ? (
+                <Flex flexDir='column' alignItems='center'>
+                  <Image
+                    borderRadius='50%'
+                    maxW='20px'
+                    src={user.picture}
+                    alt='user_pic'
+                  />
+                  <Text fontSize='0.9rem'>Hi {user.given_name}</Text>
+                </Flex>
+              ) : (
+                <User />
+              )}
+            </Flex>
             <NavLinkText
               position='relative'
               onClick={() => setCartSlider(!cartSlider)}
