@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GrClose } from "react-icons/gr";
-import { FaRegUser } from "react-icons/fa";
 import { Box, Container, Flex, Image, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { useGlobalContext } from "../../lib/storeContext";
@@ -100,15 +99,14 @@ const Nav = () => {
 
             <Flex>
               {user ? (
-                <Flex flexDir='column' alignItems='center'>
+                <NavLinkText>
                   <Image
                     borderRadius='50%'
-                    maxW='20px'
+                    maxW='30px'
                     src={user.picture}
                     alt='user_pic'
                   />
-                  <Text fontSize='0.9rem'>Hi {user.given_name}</Text>
-                </Flex>
+                </NavLinkText>
               ) : (
                 <User />
               )}

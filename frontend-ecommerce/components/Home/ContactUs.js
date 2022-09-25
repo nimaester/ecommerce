@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import emailjs from "@emailjs/browser";
 import { DefaultContainer } from "../../elements/Container";
+import { ButtonDefault } from "../../elements/Buttons";
 
 const ContactUs = () => {
   const [sentMessage, setSentMessage] = useState(false);
@@ -79,7 +80,7 @@ const ContactUs = () => {
           }}
         >
           <Flex flexDir='column' justifyContent='center' flex='1'>
-            <Text mb='1rem' fontWeight='medium'>
+            <Text mb='3rem' fontWeight='medium'>
               How can we help?
             </Text>
             <Text lineHeight='1.9'>
@@ -98,8 +99,15 @@ const ContactUs = () => {
             ) : (
               <FormControl isRequired>
                 <InputGroup pb='1rem'>
-                  <InputLeftAddon w='100px' children='Name: ' />
+                  <InputLeftAddon
+                    backgroundColor='brand.900'
+                    color='white'
+                    h='3rem'
+                    w='100px'
+                    children='Name: '
+                  />
                   <Input
+                    h='3rem'
                     variant='outline'
                     placeholder='your name...'
                     name='name'
@@ -109,8 +117,15 @@ const ContactUs = () => {
                 </InputGroup>
 
                 <InputGroup pb='1rem'>
-                  <InputLeftAddon w='100px' children='Email: ' />
+                  <InputLeftAddon
+                    backgroundColor='brand.900'
+                    color='white'
+                    h='3rem'
+                    w='100px'
+                    children='Email: '
+                  />
                   <Input
+                    h='3rem'
                     variant='outline'
                     placeholder='your email...'
                     name='email'
@@ -126,9 +141,9 @@ const ContactUs = () => {
                   onChange={handleChange}
                   value={message.message}
                 />
-                <Button mt='2rem' onClick={sendEmail}>
+                <ButtonDefault mt='1rem' onClick={sendEmail}>
                   Send
-                </Button>
+                </ButtonDefault>
               </FormControl>
             )}
           </Box>
