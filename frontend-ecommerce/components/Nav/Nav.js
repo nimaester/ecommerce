@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { GrClose } from "react-icons/gr";
+import { GrClose, GrHomeRounded } from "react-icons/gr";
+import { BsShop } from "react-icons/bs";
+import { AiOutlineHome } from "react-icons/ai";
 import { Box, Container, Flex, Image, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { useGlobalContext } from "../../lib/storeContext";
@@ -22,7 +24,6 @@ const Nav = () => {
     useGlobalContext();
 
   const { user, error, isLoading } = useUser();
-  console.log(user);
 
   const countCartItems = () => {
     let itemCount = 0;
@@ -41,7 +42,7 @@ const Nav = () => {
 
   useEffect(() => {
     closeSliderOnSmallScreenSize();
-  }, [isSmallScreen]);
+  }, [isSmallScreen, user]);
 
   return (
     <Box
@@ -90,11 +91,19 @@ const Nav = () => {
           >
             <Link href={"/"}>
               <NavLinkText onClick={() => setCartSlider(false)}>
-                Home
+                <AiOutlineHome size='22' />
+                <Text pt='10px' fontSize='0.8rem'>
+                  Home
+                </Text>
               </NavLinkText>
             </Link>
             <Link href={"/shop"}>
-              <NavLinkText>Shop</NavLinkText>
+              <NavLinkText>
+                <BsShop size='22' />
+                <Text pt='10px' fontSize='0.8rem'>
+                  Shop
+                </Text>
+              </NavLinkText>
             </Link>
 
             <Flex>
@@ -102,24 +111,30 @@ const Nav = () => {
                 <NavLinkText>
                   <Image
                     borderRadius='50%'
-                    maxW='30px'
+                    maxW='25px'
                     src={user.picture}
                     alt='user_pic'
                   />
+                  <Text pt='10px' fontSize='0.8rem'>
+                    {user.nickname}
+                  </Text>
                 </NavLinkText>
               ) : (
                 <User />
               )}
             </Flex>
+
             <NavLinkText
               position='relative'
               onClick={() => setCartSlider(!cartSlider)}
             >
               <RiShoppingCart2Line size='25' />
-
-              <span style={{ marginTop: "-10px", color: "white" }}>
+              <span style={{ position: "absolute", margin: "-40px 0 0 40px" }}>
                 {countCartItems()}
               </span>
+              <Text pt='10px' fontSize='0.8rem'>
+                Cart
+              </Text>
             </NavLinkText>
           </Flex>
 
@@ -134,11 +149,7 @@ const Nav = () => {
             display={isSmallScreen ? "flex" : "none"}
           >
             {miniNavbar ? (
-              <GrClose
-                backgroundColor='white'
-                onClick={() => setMiniNavbar(!miniNavbar)}
-                size='30'
-              />
+              <GrClose onClick={() => setMiniNavbar(!miniNavbar)} size='30' />
             ) : (
               <GiHamburgerMenu
                 onClick={() => setMiniNavbar(!miniNavbar)}

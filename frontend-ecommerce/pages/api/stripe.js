@@ -1,8 +1,12 @@
 import Stripe from "stripe";
-
 const stripe = new Stripe(`${process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY}`);
+import { getSession, GetSession } from "@auth0/nextjs-auth0";
 
 export default async function handler(req, res) {
+  const session = getSession(req, res);
+  const user = session?.user;
+  console.log(user);
+
   if (req.method === "POST") {
     try {
       const session = await stripe.checkout.sessions.create({

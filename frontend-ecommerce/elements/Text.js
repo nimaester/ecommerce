@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, forwardRef } from "@chakra-ui/react";
+import { Text, Flex, forwardRef } from "@chakra-ui/react";
 
 export const ItemNameText = ({ ...children }) => {
   return (
@@ -37,16 +37,16 @@ export const HeaderText = ({ ...children }) => {
 };
 
 export const NavLinkText = forwardRef((props, ref) => (
-  <Text
+  <Flex
     {...props}
-    _hover={{ transform: "scale(1.05)", color: "brand.800", cursor: "pointer" }}
+    _hover={{ color: "brand.700", cursor: "pointer" }}
     ref={ref}
-    textTransform='uppercase'
     fontSize='1rem'
-    fontWeight='bold'
     color='brand.200'
-    display='flex'
-  ></Text>
+    flexDir='column'
+    justifyContent='center'
+    alignItems='center'
+  ></Flex>
 ));
 
 export const FooterHeaderText = ({ ...children }) => {
