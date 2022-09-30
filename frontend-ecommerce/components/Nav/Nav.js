@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GrClose, GrHomeRounded } from "react-icons/gr";
+import { FaRegUser } from "react-icons/fa";
 import { BsShop } from "react-icons/bs";
 import { AiOutlineHome } from "react-icons/ai";
 import { Box, Container, Flex, Image, Text } from "@chakra-ui/react";
@@ -108,12 +109,12 @@ const Nav = () => {
 
             <Flex>
               {user ? (
-                <NavLinkText>
+                <NavLinkText onClick={() => router.push("/profile")}>
                   <Image
                     borderRadius='50%'
                     maxW='25px'
                     src={user.picture}
-                    alt='user_pic'
+                    alt={null}
                   />
                   <Text pt='10px' fontSize='0.8rem'>
                     {user.nickname}

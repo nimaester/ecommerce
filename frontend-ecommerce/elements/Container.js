@@ -18,7 +18,7 @@ export const DefaultContainer = ({ ...children }) => {
         md: "1rem",
         lg: "1rem",
         xl: "1rem",
-        base: "0.8rem",
+        base: "0.7rem",
       }}
     ></Container>
   );
