@@ -4,16 +4,17 @@ import { getSession } from "@auth0/nextjs-auth0";
 
 export default async function handler(req, res) {
   const session = getSession(req, res);
-  const user = session?.user;
+  const user = session.user;
   let stripeId;
-  // console.log(user);
+  // need to fix adding user to customer in sessions create
+  console.log(user["http://localhost:3000/stripe_customer_id"]);
 
-  if (user) stripeId = user["http://localhost:3000/stripe_customer_id"];
   if (req.method === "POST") {
+    if (user) stripeId = user["http://localhost:3000/stripe_customer_id"];
     try {
       const session = await stripe.checkout.sessions.create({
+        // customer: stripeId,
         submit_type: "pay",
-        customer: stripeId,
         payment_method_types: ["card"],
         allow_promotion_codes: true,
         shipping_address_collection: {
@@ -40,6 +41,7 @@ export default async function handler(req, res) {
         }),
 
         mode: "payment",
+
         success_url: `${req.headers.origin}/success?&session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${req.headers.origin}`,
       });

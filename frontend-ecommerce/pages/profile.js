@@ -14,12 +14,10 @@ export const getServerSideProps = withPageAuthRequired({
     const paymentIntents = await stripe.paymentIntents.list({
       customer: stripeId,
     });
-    // console.log(paymentIntents);
+    console.log(paymentIntents);
     return { props: { orders: paymentIntents.data } };
   },
 });
-// cus_MVXm0NWcGlCnnn
-// cus_MVsCtuL2Ndra0W
 const formatMoney = (amount) => {
   return (amount * 0.01).toFixed(2);
 };
