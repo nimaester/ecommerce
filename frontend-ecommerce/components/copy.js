@@ -1,101 +1,103 @@
-import React, { useState } from "react";
-import Head from "next/head";
-import { useQuery } from "urql";
-import { PRODUCT_QUERY } from "../lib/query";
-import { Grid, Box } from "@chakra-ui/react";
-import Item from "../components/Item/Item.js";
-import SortItem from "../components/Helpers/SortItem";
-import { useGlobalContext } from "../lib/storeContext";
-import { DefaultContainer } from "../elements/Container";
-import { HeaderText } from "../elements/Text";
-import { Loading } from "../elements/Loading";
-import { FailedToFetch } from "../elements/FailedToFetch";
-import { motion } from "framer-motion";
+import Stripe from "stripe";
+const stripe = new Stripe(`${process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY}`);
+import { getSession } from "@auth0/nextjs-auth0";
 
-const Home = () => {
-  const { sort } = useGlobalContext();
+export default async function handler(req, res) {
+  const session = getSession(req, res);
+  const user = session?.user;
 
-  //Fetch products from strapi
-  const [result] = useQuery({
-    query: PRODUCT_QUERY,
-  });
+  if (user) {
+    const stripeId = user["http://localhost:3000/stripe_customer_id"];
+    if (req.method === "POST") {
+      try {
+        // Create Checkout Sessions from body params.
+        const session = await stripe.checkout.sessions.create({
+          submit_type: "pay",
+          mode: "payment",
+          payment_method_types: ["card"],
+          customer: stripeId,
+          shipping_address_collection: {
+            allowed_countries: ["US", "CA"],
+          },
 
-  const { data, fetching, error } = result;
-  if (fetching) return <Loading />;
-  if (error) return <FailedToFetch />;
-  const inventories = data.inventories.data;
-
-  const displaySort = () => {
-    if (sort === "philo") {
-      return (
-        <>
-          {inventories
-            .sort((a, b) => b.attributes.price - a.attributes.price)
-            .map((item) => (
-              <Item key={item.attributes.slug} item={item.attributes} />
-            ))}
-        </>
-      );
-    } else if (sort === "plohi") {
-      return (
-        <>
-          {inventories
-            .sort((a, b) => a.attributes.price - b.attributes.price)
-            .map((item, i) => (
-              <Item key={item.attributes.slug} item={item.attributes} />
-            ))}
-        </>
-      );
-    } else if (sort === "avail") {
-      return (
-        <>
-          {inventories
-            .sort((a, b) => b.attributes.count - a.attributes.count)
-            .map((item, i) => (
-              <Item key={item.attributes.slug} item={item.attributes} />
-            ))}
-        </>
-      );
+          allow_promotion_codes: true,
+          shipping_options: [
+            { shipping_rate: "shr_1LemInCGPgQ7vRl5JavEVTdp" },
+            { shipping_rate: "shr_1LemJfCGPgQ7vRl5jlGj8kFq" },
+          ],
+          line_items: req.body.map((item) => {
+            return {
+              price_data: {
+                currency: "usd",
+                product_data: {
+                  name: item.name,
+                  images: [item.image],
+                },
+                unit_amount: item.price * 100,
+              },
+              adjustable_quantity: {
+                enabled: true,
+                minimum: 1,
+              },
+              quantity: item.count,
+            };
+          }),
+          success_url: `${req.headers.origin}/success?&session_id={CHECKOUT_SESSION_ID}`,
+          cancel_url: `${req.headers.origin}/`,
+        });
+        res.status(200).json(session);
+      } catch (err) {
+        res.status(err.statusCode || 500).json(err.message);
+      }
     } else {
-      return (
-        <>
-          {inventories.map((item) => (
-            <Item key={item.attributes.slug} item={item.attributes} />
-          ))}
-        </>
-      );
+      res.setHeader("Allow", "POST");
+      res.status(405).end("Method Not Allowed");
     }
-  };
+  } else {
+    console.log("NO USER");
+    if (req.method === "POST") {
+      try {
+        // Create Checkout Sessions from body params.
+        const session = await stripe.checkout.sessions.create({
+          submit_type: "pay",
+          mode: "payment",
+          payment_method_types: ["card"],
+          shipping_address_collection: {
+            allowed_countries: ["US", "CA"],
+          },
 
-  return (
-    <Box
-      backgroundColor='brand.100'
-      as={motion.div}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1, transition: { duration: 0.3 } }}
-    >
-      <Head>
-        <title>Ecommerce App</title>
-        <link rel='icon' href='/favicon.ico' />
-        <meta name='description' content="Marcia's Boutique" />
-      </Head>
-      <DefaultContainer>
-        <HeaderText>Current Inventory</HeaderText>
-        <SortItem />
-        <Grid
-          gridTemplateColumns={{
-            md: "repeat(3, 1fr)",
-            lg: "repeat(4, 1fr)",
-            xl: "repeat(5, 1fr)",
-            base: "repeat(2, 1fr)",
-          }}
-          gap='1rem'
-        >
-          {displaySort()}
-        </Grid>
-      </DefaultContainer>
-    </Box>
-  );
-};
-
-export default Home;
+          allow_promotion_codes: true,
+          shipping_options: [
+            { shipping_rate: "shr_1LemInCGPgQ7vRl5JavEVTdp" },
+            { shipping_rate: "shr_1LemJfCGPgQ7vRl5jlGj8kFq" },
+          ],
+          line_items: req.body.map((item) => {
+            return {
+              price_data: {
+                currency: "usd",
+                product_data: {
+                  name: item.name,
+                  images: [item.image],
+                },
+                unit_amount: item.price * 100,
+              },
+              adjustable_quantity: {
+                enabled: true,
+                minimum: 1,
+              },
+              quantity: item.quantity,
+            };
+          }),
+          success_url: `${req.headers.origin}/success?&session_id={CHECKOUT_SESSION_ID}`,
+          cancel_url: `${req.headers.origin}/`,
+        });
+        res.status(200).json(session);
+      } catch (err) {
+        res.status(err.statusCode || 500).json(err.message);
+      }
+    } else {
+      res.setHeader("Allow", "POST");
+      res.status(405).end("Method Not Allowed");
+    }
+  }
+}

@@ -12,7 +12,7 @@ export const getServerSideProps = withPageAuthRequired({
     const session = getSession(ctx.req, ctx.res);
     const stripeId = session.user[`${process.env.BASE_URL}/stripe_customer_id`];
     const paymentIntents = await stripe.paymentIntents.list({
-      customer: stripeId,
+      limit: 3,
     });
     console.log(paymentIntents);
     return { props: { orders: paymentIntents.data } };
