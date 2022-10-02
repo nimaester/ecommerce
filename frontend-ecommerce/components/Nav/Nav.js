@@ -17,7 +17,7 @@ import User from "../User/User";
 import { useUser } from "@auth0/nextjs-auth0";
 
 const Nav = () => {
-  const [isSmallScreen] = useMediaQuery("(max-width: 767px)");
+  const [isSmallScreen] = useMediaQuery("(max-width: 768px)");
 
   const router = useRouter();
 
