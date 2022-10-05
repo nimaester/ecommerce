@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { GrClose, GrHomeRounded } from "react-icons/gr";
+import { GrClose } from "react-icons/gr";
 import { FaRegUser } from "react-icons/fa";
 import { BsShop } from "react-icons/bs";
 import { AiOutlineHome } from "react-icons/ai";
@@ -17,7 +17,7 @@ import User from "../User/User";
 import { useUser } from "@auth0/nextjs-auth0";
 
 const Nav = () => {
-  const [isSmallScreen] = useMediaQuery("(max-width: 768px)");
+  const [isSmallScreen] = useMediaQuery("(max-width: 767px)");
 
   const router = useRouter();
 

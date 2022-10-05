@@ -7,6 +7,7 @@ const StoreProvider = ({ children }) => {
   const [sort, setSort] = useState("");
   const [cartSlider, setCartSlider] = useState(false);
   const [miniNavbar, setMiniNavbar] = useState(false);
+  const [user, setUser] = useState("");
 
   return (
     <StoreContext.Provider
@@ -19,6 +20,8 @@ const StoreProvider = ({ children }) => {
         setCartSlider,
         miniNavbar,
         setMiniNavbar,
+        user,
+        setUser,
       }}
     >
       {children}

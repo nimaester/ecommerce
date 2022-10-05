@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import { Flex, Text, Box, Button } from "@chakra-ui/react";
 import { DefaultContainer } from "../elements/Container";
+import { HeaderText } from "../elements/Text";
+
 const stripe = require("stripe")(
   `${process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY}`
 );
@@ -14,7 +16,7 @@ export const getServerSideProps = withPageAuthRequired({
     const paymentIntents = await stripe.paymentIntents.list({
       limit: 3,
     });
-    console.log(paymentIntents);
+
     return { props: { orders: paymentIntents.data } };
   },
 });
@@ -24,41 +26,11 @@ const formatMoney = (amount) => {
 
 export default function Profile({ user, orders }) {
   const router = useRouter();
-  // console.log(orders);
 
   return (
     user && (
       <DefaultContainer>
-        <Flex justifyContent='space-between'>
-          <Box>
-            <Text fontWeight='bold'>{user.name}</Text>
-            <Text>{user.email}</Text>
-          </Box>
-          <Button
-            p={{
-              sm: "1.5rem 1.3rem",
-              md: "1.5rem 1.3rem",
-              base: "1rem 0.9rem",
-            }}
-            backgroundColor='button.primary'
-            color='#fff'
-            _hover={{
-              WebkitTransform: "translateY(-3px)",
-              transform: "translateY(-3px)",
-            }}
-            _active={{ transform: "scale(1.05)" }}
-            fontSize={{
-              sm: "0.9rem",
-              md: "1rem",
-              lg: "1rem",
-              xl: "1rem",
-              base: "0.7rem",
-            }}
-            onClick={() => router.push("/api/auth/logout")}
-          >
-            Logout
-          </Button>
-        </Flex>
+        <HeaderText>Past Orders</HeaderText>
 
         <Box m='2rem 0rem'>
           {orders.map((order) => (
@@ -82,6 +54,43 @@ export default function Profile({ user, orders }) {
               <Text>Total: $ {formatMoney(order.amount)}</Text>
             </Flex>
           ))}
+
+          <Flex
+            m={{
+              lg: "4rem 5.5rem 0rem 5.5rem",
+              base: "4rem 1rem 0rem 1rem",
+            }}
+            justifyContent='space-between'
+          >
+            <Box>
+              <Text fontWeight='bold'>{user.name}</Text>
+              <Text>{user.email}</Text>
+            </Box>
+            <Button
+              p={{
+                sm: "1.5rem 1.3rem",
+                md: "1.5rem 1.3rem",
+                base: "1rem 0.9rem",
+              }}
+              backgroundColor='button.primary'
+              color='#fff'
+              _hover={{
+                WebkitTransform: "translateY(-3px)",
+                transform: "translateY(-3px)",
+              }}
+              _active={{ transform: "scale(1.05)" }}
+              fontSize={{
+                sm: "0.9rem",
+                md: "1rem",
+                lg: "1rem",
+                xl: "1rem",
+                base: "0.7rem",
+              }}
+              onClick={() => router.push("/api/auth/logout")}
+            >
+              Logout
+            </Button>
+          </Flex>
         </Box>
       </DefaultContainer>
     )

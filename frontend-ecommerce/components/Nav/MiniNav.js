@@ -2,7 +2,9 @@ import React from "react";
 import { Box, Text, Flex } from "@chakra-ui/react";
 import Link from "next/link";
 import { useGlobalContext } from "../../lib/storeContext";
+import { useUser } from "@auth0/nextjs-auth0";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 const MiniNav = () => {
   const { setMiniNavbar } = useGlobalContext();
@@ -10,6 +12,9 @@ const MiniNav = () => {
   const handleNavClick = () => {
     setMiniNavbar(false);
   };
+
+  const { user, error, isLoading } = useUser();
+  const router = useRouter();
 
   return (
     <Flex
@@ -56,18 +61,26 @@ const MiniNav = () => {
           Shop
         </Text>
       </Link>
-      <Link href='/cart'>
+
+      {user ? (
         <Text
+          onClick={() => {
+            router.push("/profile");
+            handleNavClick();
+          }}
+          color='orange'
           _hover={{
             cursor: "pointer",
             transform: "scale(1.05)",
             color: "white",
           }}
-          onClick={handleNavClick}
         >
-          Login
+          {user.nickname}
         </Text>
-      </Link>
+      ) : (
+        <Text onClick={router.push("/api/auth/login")}>Login</Text>
+      )}
+
       <Link href='/cart'>
         <Text
           _hover={{

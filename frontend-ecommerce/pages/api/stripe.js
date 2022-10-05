@@ -7,8 +7,7 @@ export default async function handler(req, res) {
   const user = session?.user;
 
   if (user) {
-    const stripeId = user["http://localhost:3000/stripe_customer_id"];
-    console.log(user, session);
+    // const stripeId = user["http://localhost:3000/stripe_customer_id"];
     if (req.method === "POST") {
       try {
         // Create Checkout Sessions from body params.
