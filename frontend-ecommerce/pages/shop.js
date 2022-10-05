@@ -83,6 +83,7 @@ const Shop = () => {
             xl: "repeat(5, 1fr)",
             base: "repeat(2, 1fr)",
           }}
+          mb='4rem'
           gap='1rem'
         >
           {displaySort()}
