@@ -56,9 +56,9 @@ const Nav = () => {
     >
       <Container
         p={{
-          sm: "0.5rem 2rem",
+          sm: "0.5rem 1rem",
           md: "0.5rem 3rem",
-          base: "0.5rem 2rem",
+          base: "0.5rem 1rem",
         }}
         fontSize={{
           sm: "1rem",
@@ -77,7 +77,7 @@ const Nav = () => {
                 w={{
                   sm: "80px",
                   md: "80px",
-                  base: "60px",
+                  base: "50px",
                 }}
                 _hover={{ cursor: "pointer" }}
               />
@@ -140,6 +140,7 @@ const Nav = () => {
 
           <Flex
             alignItems='center'
+            justifyContent='space-between'
             color='white'
             _hover={{
               transform: "scale(1.05)",

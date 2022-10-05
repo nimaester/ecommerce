@@ -41,6 +41,10 @@ const Reviews = () => {
             lg: "repeat(3, 1fr)",
           }}
           gap='3rem'
+          p={{
+            sm: "0rem 1rem 0rem 1rem",
+            base: "0rem 1rem 0rem 1rem",
+          }}
         >
           {reviewsData.map((review) => (
             <Box

@@ -24,17 +24,16 @@ const MiniNav = () => {
       flexDir='column'
       alignItems='center'
       position='fixed'
-      top={{ sm: "90px", base: "70px" }}
+      top={{ sm: "90px", base: "60px" }}
       left='0'
       w='100vw'
       h='100vh'
-      gap='3rem'
+      gap='2rem'
       backgroundColor='brand.900'
       fontSize='1.7rem'
       overflowX='hidden'
       pt='6rem'
       zIndex='-10'
-      userSelect='none'
       color='white'
     >
       <Link href='/'>
