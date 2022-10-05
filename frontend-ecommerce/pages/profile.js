@@ -14,7 +14,7 @@ export const getServerSideProps = withPageAuthRequired({
     const session = getSession(ctx.req, ctx.res);
     const stripeId = session.user[`${process.env.BASE_URL}/stripe_customer_id`];
     const paymentIntents = await stripe.paymentIntents.list({
-      limit: 3,
+      customer: stripeId,
     });
 
     return { props: { orders: paymentIntents.data } };
@@ -31,7 +31,6 @@ export default function Profile({ user, orders }) {
     user && (
       <DefaultContainer>
         <HeaderText>Past Orders</HeaderText>
-
         <Box m='2rem 0rem'>
           {orders.map((order) => (
             <Flex

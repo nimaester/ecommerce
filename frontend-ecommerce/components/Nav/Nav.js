@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GrClose } from "react-icons/gr";
-import { FaRegUser } from "react-icons/fa";
 import { BsShop } from "react-icons/bs";
 import { AiOutlineHome } from "react-icons/ai";
 import { Box, Container, Flex, Image, Text } from "@chakra-ui/react";

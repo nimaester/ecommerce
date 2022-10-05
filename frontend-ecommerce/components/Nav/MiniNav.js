@@ -78,7 +78,9 @@ const MiniNav = () => {
           {user.nickname}
         </Text>
       ) : (
-        <Text onClick={router.push("/api/auth/login")}>Login</Text>
+        <Link href='/api/auth/login'>
+          <Text>Login</Text>
+        </Link>
       )}
 
       <Link href='/cart'>

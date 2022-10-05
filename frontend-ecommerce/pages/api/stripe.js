@@ -7,15 +7,16 @@ export default async function handler(req, res) {
   const user = session?.user;
 
   if (user) {
-    // const stripeId = user["http://localhost:3000/stripe_customer_id"];
+    const stripeId = user["http://localhost:3000/stripe_customer_id"];
+
     if (req.method === "POST") {
       try {
         // Create Checkout Sessions from body params.
         const session = await stripe.checkout.sessions.create({
           submit_type: "pay",
           mode: "payment",
+          customer: stripeId,
           payment_method_types: ["card"],
-          // customer: stripeId,
           shipping_address_collection: {
             allowed_countries: ["US", "CA"],
           },
