@@ -27,8 +27,6 @@ const formatMoney = (amount) => {
 
 export default function Profile({ user, orders }) {
   const router = useRouter();
-  console.log(orders);
-
   const noOrder = () => {
     return (
       <Flex
