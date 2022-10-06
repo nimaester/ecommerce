@@ -19,6 +19,7 @@ export const getServerSideProps = async (params) => {
 
 const Success = ({ order }) => {
   const router = useRouter();
+
   return (
     <Box>
       <Flex
@@ -32,12 +33,16 @@ const Success = ({ order }) => {
           src='https://mbpics7528.s3.us-west-1.amazonaws.com/thank_you.png'
           alt='thank_you_png'
         />
+        <Flex>
+          <Text fontWeight='bold' mr='1rem'>
+            Order no:{" "}
+          </Text>
+          <Text> {order.payment_intent}</Text>
+        </Flex>
+
         <Text>
-          {`Please visit us again ${
-            order.customer_details.name.split(" ")[0]
-          }!`}
+          Thank you for your order {order.customer_details.name.split(" ")[0]}
         </Text>
-        <Text>We look forward your next visit.</Text>
       </Flex>
       <ReturnHomeButton mb='5rem' onClick={() => router.push("/")}>
         Back Home

@@ -7,10 +7,13 @@ import { DefaultContainer } from "../elements/Container";
 import { HeaderText } from "../elements/Text";
 import { ContinueShoppingButton, ButtonDefault } from "../elements/Buttons";
 import getStripe from "../lib/getStripe";
+import { useUser } from "@auth0/nextjs-auth0";
 
 const Cart = () => {
   const { cart } = useGlobalContext();
   const router = useRouter();
+
+  const { user, error, isLoading } = useUser();
 
   const emptyCart = () => {
     return (
@@ -47,6 +50,14 @@ const Cart = () => {
     await stripePromise.redirectToCheckout({ sessionId: data.id });
   };
 
+  const checkUser = () => {
+    if (!user) {
+      router.push("/api/auth/login");
+    } else {
+      handlePurchaseButton();
+    }
+  };
+
   const calculatePrice = () => {
     let total = cart
       .reduce((val, cart) => {
@@ -71,11 +82,7 @@ const Cart = () => {
       </Text>
       <Flex justifyContent='center'>
         {cart.length > 0 && (
-          <ButtonDefault
-            onClick={handlePurchaseButton}
-            border='1px solid black'
-            w='280px'
-          >
+          <ButtonDefault onClick={checkUser} border='1px solid black' w='280px'>
             Proceed To Payment
           </ButtonDefault>
         )}

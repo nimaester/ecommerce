@@ -7,9 +7,8 @@ export default async function handler(req, res) {
   const user = session?.user;
 
   if (user) {
-    console.log("Login");
     const stripeId =
-      user["https://marciasboutique.vercel.app/stripe_customer_id"];
+      user[`${process.env.NEXT_PUBLIC_BASE_URL}/stripe_customer_id`];
 
     if (req.method === "POST") {
       try {
@@ -88,7 +87,7 @@ export default async function handler(req, res) {
                 enabled: true,
                 minimum: 1,
               },
-              quantity: item.count,
+              quantity: item.quantity,
             };
           }),
           success_url: `${req.headers.origin}/success?&session_id={CHECKOUT_SESSION_ID}`,

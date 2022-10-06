@@ -27,38 +27,63 @@ const formatMoney = (amount) => {
 
 export default function Profile({ user, orders }) {
   const router = useRouter();
+  console.log(orders);
 
   const noOrder = () => {
     return (
       <Flex
+        position='relative'
         alignItems='center'
         justifyContent='center'
         minH='calc(100vh / 2.5)'
       >
-        <Flex
-          justifyContent='center'
-          alignItems='center'
+        <Image
+          src='https://mbpics7528.s3.us-west-1.amazonaws.com/noOrders.png'
+          alt='no_orders'
+          zIndex='-100'
+          opacity='0.2'
+          maxW='250px'
           position='absolute'
-          top='calc(70vh / 2)'
-        >
-          <Image
-            src='https://mbpics7528.s3.us-west-1.amazonaws.com/noOrders.png'
-            alt='no_orders'
-            zIndex='-100'
-            opacity='0.2'
-            maxW='250px'
-          />
-        </Flex>
+          top='-5rem'
+        />
 
-        <Text
-          fontSize={{
-            base: "1.4rem",
-            sm: "2rem",
+        <Flex
+          m={{
+            lg: "15rem 5.5rem 0rem 5.5rem",
+            base: "15rem 1rem 0rem 1rem",
           }}
-          mt='-10rem'
+          w='100%'
+          justifyContent='space-between'
         >
-          No orders
-        </Text>
+          <Box>
+            <Text fontWeight='bold'>{user.name}</Text>
+            <Text>{user.email}</Text>
+          </Box>
+          <Button
+            p={{
+              sm: "1.5rem 1.3rem",
+              md: "1.5rem 1.3rem",
+              base: "1rem 0.9rem",
+            }}
+            backgroundColor='button.primary'
+            color='#fff'
+            _hover={{
+              WebkitTransform: "translateY(-3px)",
+              transform: "translateY(-3px)",
+            }}
+            _active={{ transform: "scale(1.05)" }}
+            fontSize={{
+              sm: "0.9rem",
+              md: "1rem",
+              lg: "1rem",
+              xl: "1rem",
+              base: "0.7rem",
+            }}
+            onClick={() => router.push("/api/auth/logout")}
+          >
+            Logout
+          </Button>
+        </Flex>
       </Flex>
     );
   };
@@ -131,7 +156,7 @@ export default function Profile({ user, orders }) {
   return (
     <DefaultContainer>
       <HeaderText>Past Orders</HeaderText>
-      {user.orders ? displayOrders() : noOrder()}
+      {orders ? displayOrders() : noOrder()}
     </DefaultContainer>
   );
 }
