@@ -12,7 +12,8 @@ export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     // access the user session
     const session = getSession(ctx.req, ctx.res);
-    const stripeId = session.user[`${process.env.BASE_URL}/stripe_customer_id`];
+    const stripeId =
+      user["https://marcias-boutique.vercel.app/stripe_customer_id"];
     const paymentIntents = await stripe.paymentIntents.list({
       customer: stripeId,
     });
