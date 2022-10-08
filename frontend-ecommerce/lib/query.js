@@ -1,6 +1,6 @@
 export const PRODUCT_QUERY = `
   query{
-    inventories {
+    inventories (pagination: { limit: 50 }) {
       data {
         attributes {
           title,
