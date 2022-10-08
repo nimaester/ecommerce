@@ -5,7 +5,7 @@ import { StoreProvider } from "../lib/storeContext";
 import Nav from "../components/Nav/Nav.js";
 import Footer from "../components/Footer/Footer";
 import { UserProvider } from "@auth0/nextjs-auth0";
-// import Head from "next/head";
+import Head from "next/head";
 
 const colors = {
   brand: {
@@ -33,6 +33,10 @@ function MyApp({ Component, pageProps }) {
       <UserProvider>
         <ChakraProvider theme={theme}>
           <StoreProvider>
+            <Head>
+              <title>Marcia's Boutique</title>
+              <link rel='icon' href='/favicon.ico' />
+            </Head>
             <Nav />
             <Component {...pageProps} />
             <Footer />
