@@ -73,6 +73,7 @@ const Shop = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { duration: 0.3 } }}
     >
+      {console.log(inventories)}
       <DefaultContainer>
         <HeaderText>Current Inventory</HeaderText>
         <SortItem />
