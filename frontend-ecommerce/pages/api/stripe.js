@@ -7,9 +7,7 @@ export default async function handler(req, res) {
   const user = session?.user;
 
   if (user) {
-    const stripeId =
-      user[`${process.env.NEXT_PUBLIC_BASE_URL}/stripe_customer_id`];
-
+    const stripeId = user["http://localhost:3000/stripe_customer_id"];
     if (req.method === "POST") {
       try {
         // Create Checkout Sessions from body params.
@@ -21,6 +19,7 @@ export default async function handler(req, res) {
           shipping_address_collection: {
             allowed_countries: ["US", "CA"],
           },
+
           allow_promotion_codes: true,
           shipping_options: [
             { shipping_rate: "shr_1LemInCGPgQ7vRl5JavEVTdp" },
@@ -41,6 +40,52 @@ export default async function handler(req, res) {
                 minimum: 1,
               },
               quantity: item.count,
+            };
+          }),
+          success_url: `${req.headers.origin}/success?&session_id={CHECKOUT_SESSION_ID}`,
+          cancel_url: `${req.headers.origin}/`,
+        });
+        res.status(200).json(session);
+      } catch (err) {
+        res.status(err.statusCode || 500).json(err.message);
+      }
+    } else {
+      res.setHeader("Allow", "POST");
+      res.status(405).end("Method Not Allowed");
+    }
+  } else {
+    console.log("NO USER");
+    if (req.method === "POST") {
+      try {
+        // Create Checkout Sessions from body params.
+        const session = await stripe.checkout.sessions.create({
+          submit_type: "pay",
+          mode: "payment",
+          payment_method_types: ["card"],
+          shipping_address_collection: {
+            allowed_countries: ["US", "CA"],
+          },
+
+          allow_promotion_codes: true,
+          shipping_options: [
+            { shipping_rate: "shr_1LemInCGPgQ7vRl5JavEVTdp" },
+            { shipping_rate: "shr_1LemJfCGPgQ7vRl5jlGj8kFq" },
+          ],
+          line_items: req.body.map((item) => {
+            return {
+              price_data: {
+                currency: "usd",
+                product_data: {
+                  name: item.name,
+                  images: [item.image],
+                },
+                unit_amount: item.price * 100,
+              },
+              adjustable_quantity: {
+                enabled: true,
+                minimum: 1,
+              },
+              quantity: item.quantity,
             };
           }),
           success_url: `${req.headers.origin}/success?&session_id={CHECKOUT_SESSION_ID}`,

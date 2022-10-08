@@ -16,7 +16,7 @@ export const getServerSideProps = withPageAuthRequired({
     const paymentIntents = await stripe.paymentIntents.list({
       customer: stripeId,
     });
-
+    console.log(paymentIntents);
     return { props: { orders: paymentIntents.data } };
   },
 });
@@ -154,7 +154,7 @@ export default function Profile({ user, orders }) {
   return (
     <DefaultContainer>
       <HeaderText>Past Orders</HeaderText>
-      {orders ? displayOrders() : noOrder()}
+      {orders.length > 0 ? displayOrders() : noOrder()}
     </DefaultContainer>
   );
 }
