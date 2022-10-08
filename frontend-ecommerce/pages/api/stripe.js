@@ -54,7 +54,6 @@ export default async function handler(req, res) {
       res.status(405).end("Method Not Allowed");
     }
   } else {
-    console.log("NO USER");
     if (req.method === "POST") {
       try {
         // Create Checkout Sessions from body params.
