@@ -28,7 +28,8 @@ import Carousel from "../../components/Helpers/Carousel";
 const ItemDetail = () => {
   const toast = useToast();
   const id = "test-toast";
-  const { cart, setCart, setCartSlider } = useGlobalContext();
+  const { cart, setCart, setCartSlider, preview, setPreview } =
+    useGlobalContext();
   const [numOfItem, setNumOfItem] = useState(1);
 
   const [zoom, setZoom] = useState(false);
@@ -54,7 +55,7 @@ const ItemDetail = () => {
       description: description,
       price: price,
       slug: slug,
-      image: itemData.image.data.attributes.formats.thumbnail.url,
+      image: itemData.images.data[0].attributes.formats.thumbnail.url,
       count: Number(numOfItem),
       limit: count,
     };
@@ -106,8 +107,14 @@ const ItemDetail = () => {
         backgroundColor='white'
       >
         <Image
-          maxH='95vh'
-          src={itemData.image.data.attributes.formats.medium.url}
+          maxH='90vh'
+          maxW='80vw'
+          objectFit='fill'
+          src={
+            preview === null
+              ? itemData.images.data[0].attributes.formats.medium.url
+              : preview
+          }
           alt={slug}
         />
 
@@ -117,8 +124,11 @@ const ItemDetail = () => {
           position='fixed'
           right='0'
           top='0'
+          style={{ WebkitTapHighlightColor: "transparent" }}
+          _hover={{ outline: "none" }}
+          mt='1.5rem'
         >
-          <IoIosCloseCircle size='30' />
+          <IoIosCloseCircle size='40' />
         </Button>
       </Box>
     );
@@ -153,6 +163,7 @@ const ItemDetail = () => {
             display='flex'
             justifyContent='center'
             alignItems='center'
+            flexDir='column'
             pb={{
               sm: "4rem",
               md: "flex",
@@ -163,18 +174,50 @@ const ItemDetail = () => {
           >
             <Image
               _hover={{ cursor: "zoom-in" }}
-              src={itemData.image.data.attributes.formats.medium.url}
+              src={
+                preview !== null
+                  ? preview
+                  : itemData.images.data[0].attributes.formats.medium.url
+              }
               alt={slug}
               onClick={() => setZoom(true)}
+              objectFit='contain'
               w={{
-                sm: "80%",
-                md: "100%",
-                lg: "100%",
-                xl: "100%",
-                base: "80%",
+                sm: "300px",
+                md: "350px",
+                base: "250px",
+              }}
+              h={{
+                sm: "300px",
+                md: "350px",
+                lg: "350px",
+                xl: "350px",
+                base: "200px",
               }}
               maxW='450px'
             />
+            <Flex pt='3rem' gap='1rem' justifyContent='center' w='80%'>
+              {itemData.images.data.map((img, i) => (
+                <Flex
+                  onMouseEnter={() =>
+                    setPreview(img.attributes.formats.medium.url)
+                  }
+                  onClick={() => setPreview(img.attributes.formats.medium.url)}
+                  _hover={{ cursor: "pointer" }}
+                  key={i}
+                  boxShadow='rgba(99, 99, 99, 0.2) 0px 2px 8px 0px'
+                  borderRadius='5px'
+                  p='0.5rem'
+                >
+                  <Image
+                    objectFit='contain'
+                    w='50px'
+                    src={img.attributes.formats.thumbnail.url}
+                    alt={title}
+                  />
+                </Flex>
+              ))}
+            </Flex>
           </Box>
 
           <Flex
@@ -187,7 +230,6 @@ const ItemDetail = () => {
             }}
             flex='1'
             flexDir='column'
-            justifyContent='center'
           >
             <Box>
               <ItemNameText>{title}</ItemNameText>
@@ -207,7 +249,7 @@ const ItemDetail = () => {
               alignItems='center'
               p='2rem 0rem'
             >
-              {count > 0 ? (
+              {count > 0 && (
                 <Select
                   onChange={(e) => setNumOfItem(e.target.value)}
                   maxW='80px'
@@ -215,7 +257,7 @@ const ItemDetail = () => {
                 >
                   {showNumberOfItems(count)}
                 </Select>
-              ) : null}
+              )}
               <Box>
                 {count > 0 ? (
                   <ButtonDefault onClick={() => addToCart(slug)}>

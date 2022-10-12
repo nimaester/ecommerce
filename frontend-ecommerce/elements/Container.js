@@ -15,10 +15,9 @@ export const DefaultContainer = ({ ...children }) => {
       }}
       fontSize={{
         sm: "0.9rem",
-        md: "1rem",
-        lg: "1rem",
-        xl: "1rem",
-        base: "0.7rem",
+        md: "1.1rem",
+
+        base: "1rem",
       }}
     ></Container>
   );

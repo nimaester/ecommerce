@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import { useQuery } from "urql";
 import { PRODUCT_QUERY } from "../../lib/query";
 import { DefaultContainer } from "../../elements/Container";
+import { useGlobalContext } from "../../lib/storeContext";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
@@ -13,6 +14,8 @@ const Carousel = ({ title }) => {
   const [result] = useQuery({
     query: PRODUCT_QUERY,
   });
+
+  const { setPreview } = useGlobalContext();
 
   const ButtonStyle = (props) => {
     const { className, style, onClick } = props;
@@ -102,6 +105,7 @@ const Carousel = ({ title }) => {
                 m='0 1px'
                 borderRadius='5px'
                 boxShadow='rgba(0, 0, 0, 0.24) 0px 3px 8px'
+                onClick={() => setPreview(null)}
               >
                 <Image
                   h={{
@@ -114,7 +118,8 @@ const Carousel = ({ title }) => {
                   m='0 auto'
                   objectFit='scale-down'
                   src={
-                    item.attributes.image.data.attributes.formats.thumbnail.url
+                    item.attributes.images.data[0].attributes.formats.thumbnail
+                      .url
                   }
                   alt={item.title}
                 />
@@ -122,10 +127,8 @@ const Carousel = ({ title }) => {
                 <Text
                   whiteSpace='nowrap'
                   fontSize={{
-                    sm: "0.8rem",
-                    md: "0.9rem",
-                    lg: "1rem",
-                    base: "0.8rem",
+                    sm: "1.05rem",
+                    base: "1rem",
                   }}
                   mt='2rem'
                 >

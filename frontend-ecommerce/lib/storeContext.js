@@ -8,6 +8,7 @@ const StoreProvider = ({ children }) => {
   const [cartSlider, setCartSlider] = useState(false);
   const [miniNavbar, setMiniNavbar] = useState(false);
   const [user, setUser] = useState("");
+  const [preview, setPreview] = useState(null);
 
   return (
     <StoreContext.Provider
@@ -22,6 +23,8 @@ const StoreProvider = ({ children }) => {
         setMiniNavbar,
         user,
         setUser,
+        preview,
+        setPreview,
       }}
     >
       {children}
