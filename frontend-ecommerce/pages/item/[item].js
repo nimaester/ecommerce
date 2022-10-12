@@ -77,6 +77,31 @@ const ItemDetail = () => {
     ));
   };
 
+  const multipleImg = () => {
+    return (
+      <Flex pt='3rem' gap='1rem' justifyContent='center' w='80%'>
+        {itemData.images.data.map((img, i) => (
+          <Flex
+            onMouseEnter={() => setPreview(img.attributes.formats.medium.url)}
+            onClick={() => setPreview(img.attributes.formats.medium.url)}
+            _hover={{ cursor: "pointer" }}
+            key={i}
+            boxShadow='rgba(99, 99, 99, 0.2) 0px 2px 8px 0px'
+            borderRadius='5px'
+            p='0.5rem'
+          >
+            <Image
+              objectFit='contain'
+              w='50px'
+              src={img.attributes.formats.thumbnail.url}
+              alt={title}
+            />
+          </Flex>
+        ))}
+      </Flex>
+    );
+  };
+
   const addToCart = (slugName) => {
     const inCart = cart.find((item) => item.slug === slugName);
     if (!inCart) {
@@ -196,28 +221,8 @@ const ItemDetail = () => {
               }}
               maxW='450px'
             />
-            <Flex pt='3rem' gap='1rem' justifyContent='center' w='80%'>
-              {itemData.images.data.map((img, i) => (
-                <Flex
-                  onMouseEnter={() =>
-                    setPreview(img.attributes.formats.medium.url)
-                  }
-                  onClick={() => setPreview(img.attributes.formats.medium.url)}
-                  _hover={{ cursor: "pointer" }}
-                  key={i}
-                  boxShadow='rgba(99, 99, 99, 0.2) 0px 2px 8px 0px'
-                  borderRadius='5px'
-                  p='0.5rem'
-                >
-                  <Image
-                    objectFit='contain'
-                    w='50px'
-                    src={img.attributes.formats.thumbnail.url}
-                    alt={title}
-                  />
-                </Flex>
-              ))}
-            </Flex>
+
+            {itemData.images.data.length > 1 && multipleImg()}
           </Box>
 
           <Flex
