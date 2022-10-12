@@ -23,7 +23,6 @@ const Shop = () => {
   if (fetching) return <Loading />;
   if (error) return <FailedToFetch />;
   const inventories = data.inventories.data;
-  console.log(inventories);
 
   const displaySort = () => {
     if (sort === "philo") {
