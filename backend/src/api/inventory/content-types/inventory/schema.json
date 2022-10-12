@@ -21,9 +21,9 @@
       "type": "text",
       "required": true
     },
-    "image": {
+    "images": {
       "type": "media",
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "allowedTypes": [
         "images"
