@@ -9,6 +9,7 @@ const StoreProvider = ({ children }) => {
   const [miniNavbar, setMiniNavbar] = useState(false);
   const [user, setUser] = useState("");
   const [preview, setPreview] = useState(null);
+  const [zoom, setZoom] = useState(false);
 
   return (
     <StoreContext.Provider
@@ -25,6 +26,8 @@ const StoreProvider = ({ children }) => {
         setUser,
         preview,
         setPreview,
+        zoom,
+        setZoom,
       }}
     >
       {children}

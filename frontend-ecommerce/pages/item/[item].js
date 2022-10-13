@@ -23,16 +23,16 @@ import { useGlobalContext } from "../../lib/storeContext";
 import { Loading } from "../../elements/Loading";
 import { FailedToFetch } from "../../elements/FailedToFetch";
 import { motion } from "framer-motion";
+import useScrollBlock from "../../lib/blockScroll";
 import Carousel from "../../components/Helpers/Carousel";
 
 const ItemDetail = () => {
   const toast = useToast();
   const id = "test-toast";
-  const { cart, setCart, setCartSlider, preview, setPreview } =
+  const { cart, setCart, setCartSlider, preview, setPreview, zoom, setZoom } =
     useGlobalContext();
   const [numOfItem, setNumOfItem] = useState(1);
-
-  const [zoom, setZoom] = useState(false);
+  const [blockScroll, allowScroll] = useScrollBlock();
   const { query } = useRouter();
   const router = useRouter();
 
@@ -171,6 +171,7 @@ const ItemDetail = () => {
       animate={{ opacity: 1, transition: { duration: 0.2 } }}
       mt='3rem'
     >
+      {zoom ? blockScroll() : allowScroll()}
       {zoom ? (
         showZoomedImage()
       ) : (
