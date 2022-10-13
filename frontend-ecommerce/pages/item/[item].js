@@ -23,7 +23,7 @@ import { useGlobalContext } from "../../lib/storeContext";
 import { Loading } from "../../elements/Loading";
 import { FailedToFetch } from "../../elements/FailedToFetch";
 import { motion } from "framer-motion";
-import useScrollBlock from "../../lib/blockScroll";
+import useScrollBlock from "../../lib/customHooks/useScrollBlock";
 import Carousel from "../../components/Helpers/Carousel";
 
 const ItemDetail = () => {
@@ -32,9 +32,11 @@ const ItemDetail = () => {
   const { cart, setCart, setCartSlider, preview, setPreview, zoom, setZoom } =
     useGlobalContext();
   const [numOfItem, setNumOfItem] = useState(1);
-  const [blockScroll, allowScroll] = useScrollBlock();
   const { query } = useRouter();
   const router = useRouter();
+
+  // disable scrolling when on zoon mode
+  const [blockScroll, allowScroll] = useScrollBlock();
 
   // fetch item data from graphql api
   const [result] = useQuery({
@@ -42,7 +44,6 @@ const ItemDetail = () => {
     variables: { slug: query.item },
   });
   const { data, fetching, error } = result;
-
   if (fetching) return <Loading />;
   if (error) return <FailedToFetch />;
 
@@ -216,16 +217,12 @@ const ItemDetail = () => {
               h={{
                 sm: "300px",
                 md: "350px",
-                lg: "350px",
-                xl: "350px",
                 base: "200px",
               }}
               maxW='450px'
             />
-
             {itemData.images.data.length > 1 && multipleImg()}
           </Box>
-
           <Flex
             pl={{
               sm: "0rem",
@@ -244,7 +241,6 @@ const ItemDetail = () => {
                 {description}
               </Text>
             </Box>
-
             <Box
               display='flex'
               gap='2rem'
